@@ -1,18 +1,21 @@
 import type { Metadata } from "next";
-import { Barlow, Barlow_Condensed, JetBrains_Mono } from "next/font/google";
+import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
+import { MobileCTA } from "./components/MobileCTA";
 import "./globals.css";
 
-const bodyFont = Barlow({
+const bodyFont = Inter({
   variable: "--font-app-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
   display: "swap",
 });
 
-const displayFont = Barlow_Condensed({
+const displayFont = Inter_Tight({
   variable: "--font-app-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["500", "600", "700", "800", "900"],
   display: "swap",
 });
 
@@ -24,38 +27,67 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://jimeneztreepro.com'),
-  title: "Tree Service in Pasadena & Houston, TX | Jimenez Tree Pro",
-  description: "Tree removal, tree trimming, stump grinding, and storm damage cleanup for homeowners in Pasadena, Houston, Pearland, Friendswood, League City, and Clear Lake. 24/7 emergency service and free estimates.",
+  metadataBase: new URL('https://onestopoutdoorconstruction.net'),
+  title: {
+    default: "Patio Covers & Outdoor Construction in Richmond TX | One Stop Outdoor Construction",
+    template: "%s | One Stop Outdoor Construction",
+  },
+  description: "Patio covers, concrete, outdoor kitchens & pergolas in Richmond, Katy, Houston & Sugar Land TX. 15+ years. Licensed & insured. Free estimates — (832) 945-8084.",
+  keywords: [
+    'patio cover Richmond TX',
+    'patio cover Katy TX',
+    'concrete contractor Richmond TX',
+    'outdoor kitchen Richmond TX',
+    'outdoor construction Houston TX',
+    'pergola builder Katy TX',
+    'stamped concrete Richmond TX',
+    'covered patio Houston TX',
+    'outdoor kitchen builder Katy TX',
+    'roofing contractor Richmond TX',
+    'walkway installation Katy TX',
+    'paver contractor Houston TX',
+    'concrete driveway Sugar Land TX',
+    'patio cover Sugar Land TX',
+    'outdoor construction Rosenberg TX',
+    'outdoor living Richmond TX 77407',
+    'patio cover near me Katy 77493',
+    'concrete contractor Houston 77048',
+    'outdoor kitchen Sugar Land TX',
+    'pergola installation Richmond TX',
+    'licensed contractor Richmond TX',
+    'home improvement Katy TX',
+    'backyard remodel Houston TX',
+    'outdoor renovation Sugar Land TX',
+  ],
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Professional Tree Service for Houston Area Homeowners | Jimenez Tree Pro",
-    description: "Done right. Done safely. Done today. Emergency tree removal, large tree trimming, stump grinding, and storm cleanup. Call for a free estimate.",
-    url: 'https://jimeneztreepro.com',
-    siteName: 'Jimenez Tree Pro',
+    title: "Patio Covers & Outdoor Construction in Richmond TX | One Stop Outdoor Construction",
+    description: "Patio covers, concrete, outdoor kitchens & pergolas in Richmond, Katy, Houston & Sugar Land TX. 15+ years. Licensed & insured. Free estimates — (832) 945-8084.",
+    url: 'https://onestopoutdoorconstruction.net',
+    siteName: 'One Stop Outdoor Construction',
     locale: 'en_US',
     type: 'website',
     images: [
       {
-        url: '/tree_pro/og-tree.jpg',
+        url: '/facebook/hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Jimenez Tree Pro - Professional Tree Service',
+        alt: 'One Stop Outdoor Construction — Patio Covers, Concrete & Outdoor Kitchens in Richmond, Katy & Houston TX',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Tree Service in Pasadena & Houston | Jimenez Tree Pro",
-    description: "24/7 emergency tree service. Tree removal, tree trimming, stump grinding, and storm cleanup for Houston area homeowners.",
-    images: ['/tree_pro/og-tree.jpg'],
+    title: "Quality Outdoor Construction | One Stop Outdoor Construction",
+    description: "Patio covers, concrete, outdoor kitchens, pergolas & roofing for Richmond, Katy, Houston, Sugar Land & Rosenberg TX. Licensed & insured. Free estimates.",
+    images: ['/facebook/hero.jpg'],
   },
   icons: {
-    icon: '/tree_pro/tree_logo.svg',
-    shortcut: '/tree_pro/tree_logo.svg',
-    apple: '/tree_pro/tree_logo.svg',
+    icon: '/facebook/hero.jpg',
+    shortcut: '/facebook/hero.jpg',
+    apple: '/facebook/hero.jpg',
   },
 };
 
@@ -75,48 +107,111 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "Jimenez Tree Pro",
-              "image": "https://jimeneztreepro.com/tree_pro/og-tree.jpg",
-              "@id": "https://jimeneztreepro.com",
-              "url": "https://jimeneztreepro.com",
-              "telephone": "+18329667045",
-              "description": "Professional tree removal, trimming, and storm damage cleanup for homeowners in Pasadena and surrounding Houston areas. 24/7 emergency service.",
+              "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
+              "name": "One Stop Outdoor Construction",
+              "image": "https://onestopoutdoorconstruction.net/facebook/hero.jpg",
+              "@id": "https://onestopoutdoorconstruction.net",
+              "url": "https://onestopoutdoorconstruction.net",
+              "telephone": "+18329458084",
+              "email": "faridarabzadeh77@yahoo.com",
+              "description": "Quality patio covers, concrete, outdoor kitchens, pergolas, roofing and walkways serving Richmond, Katy, Houston, Sugar Land & Rosenberg TX. 15+ years in business. Licensed & insured. Free estimates.",
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "Pasadena",
+                "addressLocality": "Richmond",
                 "addressRegion": "TX",
+                "postalCode": "77407",
                 "addressCountry": "US"
               },
               "geo": {
                 "@type": "GeoCoordinates",
-                "latitude": 29.6911,
-                "longitude": -95.2091
+                "latitude": 29.5823,
+                "longitude": -95.7607
               },
               "areaServed": [
-                { "@type": "City", "name": "Pasadena" },
+                { "@type": "City", "name": "Richmond", "sameAs": "https://en.wikipedia.org/wiki/Richmond,_Texas" },
+                { "@type": "City", "name": "Katy" },
                 { "@type": "City", "name": "Houston" },
-                { "@type": "City", "name": "Alvin" },
-                { "@type": "City", "name": "Pearland" },
-                { "@type": "City", "name": "Friendswood" },
-                { "@type": "City", "name": "League City" },
-                { "@type": "City", "name": "Clear Lake" }
+                { "@type": "City", "name": "Sugar Land" },
+                { "@type": "City", "name": "Rosenberg" },
+                { "@type": "City", "name": "Missouri City" },
+                { "@type": "City", "name": "Fulshear" },
+                { "@type": "City", "name": "Stafford" },
+                { "@type": "City", "name": "Pearland" }
               ],
               "openingHoursSpecification": {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                "opens": "00:00",
-                "closes": "23:59"
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "08:00",
+                "closes": "17:00"
               },
               "priceRange": "$$",
+              "foundingDate": "2011",
+              "knowsLanguage": ["en", "es"],
+              "paymentAccepted": "Cash, Credit Card, Check, Zelle",
+              "currenciesAccepted": "USD",
+              "slogan": "Quality Outdoor Construction You Can Trust",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "5.0",
+                "reviewCount": "32",
+                "bestRating": "5",
+                "worstRating": "1"
+              },
+              "review": [
+                {
+                  "@type": "Review",
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "author": { "@type": "Person", "name": "Barbara Autry Huyser" },
+                  "reviewBody": "I can't rave about this company enough. Communication was excellent throughout the project. The transformation was completed in 8 working days. I would recommend these guys to anyone for any outdoor projects.",
+                  "datePublished": "2025-09-15"
+                },
+                {
+                  "@type": "Review",
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "author": { "@type": "Person", "name": "Vishakha Dastidar" },
+                  "reviewBody": "Amazing people! Outstanding team! His efficient team finished the job earlier than expected and under budget. He quoted the best price of all the contractors and delivered excellent workmanship.",
+                  "datePublished": "2025-08-20"
+                },
+                {
+                  "@type": "Review",
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "author": { "@type": "Person", "name": "Angelina Smith" },
+                  "reviewBody": "One Stop Outdoor Construction Texas is one of the best contractors I have ever done business with. David was patient and came out to my house three times before we decided to proceed. His team is very skilled and efficient.",
+                  "datePublished": "2025-07-10"
+                },
+                {
+                  "@type": "Review",
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "author": { "@type": "Person", "name": "AC Nguyen" },
+                  "reviewBody": "We had a vision for our patio and David and his crew built it into existence. His mission was to build it so it looked like it came with the house initially, and he exceeded expectations.",
+                  "datePublished": "2025-06-05"
+                },
+                {
+                  "@type": "Review",
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "author": { "@type": "Person", "name": "Art DRjr" },
+                  "reviewBody": "Reasonable price and best of all, quality work. Every crew member is pleasant and polite. We had a covered patio, with concrete floor, stamped concrete, and other work done. All completed within 5 days. 100% recommended.",
+                  "datePublished": "2025-05-22"
+                },
+                {
+                  "@type": "Review",
+                  "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                  "author": { "@type": "Person", "name": "Jennifer Clark" },
+                  "reviewBody": "David did our patio in April this year and we love it! He was extremely professional and reasonably priced. Unlike most contractors, he was always there when he said he would be.",
+                  "datePublished": "2025-04-18"
+                }
+              ],
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
-                "name": "Tree Services",
+                "name": "Outdoor Construction Services",
                 "itemListElement": [
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Emergency & Large Tree Removal" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Large Tree Trimming & Structural Pruning" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Storm Damage Cleanup & Debris Hauling" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Stump Grinding" } }
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Patio Covers", "description": "Custom patio cover installation — lattice, solid insulated, aluminum with optional skylights and ceiling fans" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Concrete & Driveways", "description": "Decorative concrete, stamped concrete, colored concrete, driveway installation in Richmond, Katy & Houston TX" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Outdoor Kitchens", "description": "Custom outdoor kitchen design and construction with built-in grills, countertops, and stone veneer" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pergolas", "description": "Custom pergola design and installation for outdoor living spaces" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Roofing Services", "description": "Residential roofing including shingle, metal, flat, and green roofing installations" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Walkways & Pavers", "description": "Paver stone walkway design and installation with flagstone, slate, and natural stone options" } },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Stamped Concrete", "description": "Decorative stamped concrete for driveways, patios, pool decks and walkways" } }
                 ]
               }
             })
@@ -128,9 +223,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "WebSite",
-              "name": "Jimenez Tree Pro",
-              "alternateName": ["Jimenez Tree Pro Pasadena", "JimenezTreePro.com"],
-              "url": "https://jimeneztreepro.com"
+              "name": "One Stop Outdoor Construction",
+              "alternateName": ["One Stop Outdoor", "OSOC", "One Stop Outdoor Construction LLC"],
+              "url": "https://onestopoutdoorconstruction.net"
             })
           }}
         />
@@ -156,8 +251,15 @@ export default function RootLayout({
       <body
         className={`${bodyFont.variable} ${displayFont.variable} ${monoFont.variable} antialiased`}
       >
-        {children}
+        <div className="onestop-site min-h-screen bg-white text-slate-900 selection:bg-[var(--onestop-navy)] selection:text-white">
+          <Header />
+          <main>
+            {children}
+          </main>
+          <Footer />
+          <MobileCTA />
+        </div>
       </body>
-    </html >
+    </html>
   );
 }

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
             allow: '/',
             disallow: '/api/',
         },
-        sitemap: 'https://jimeneztreepro.com/sitemap.xml',
+        sitemap: 'https://onestopoutdoorconstruction.net/sitemap.xml',
     };
 }

@@ -2,7 +2,14 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #111827;
+  --onestop-ink: #0f2847;
+  --onestop-navy: #1a3a6b;
+  --onestop-navy-deep: #0f2847;
+  --onestop-red: #c0392b;
+  --onestop-gold: #c0392b;
+  --onestop-cream: #f5f7fa;
+  --onestop-line: #e2e8f0;
 }
 
 @theme inline {
@@ -13,71 +20,188 @@
   --font-display: var(--font-app-display);
 }
 
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Eliminate 300ms tap delay on mobile */
+a, button, input, select, textarea, [role="button"] {
+  touch-action: manipulation;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-app-body), "Segoe UI", sans-serif;
+  font-family: var(--font-app-body), -apple-system, "Segoe UI", sans-serif;
 }
 
-.jimenez-site h1,
-.jimenez-site h2,
-.jimenez-site h3,
-.jimenez-site h4,
-.jimenez-site h5,
-.jimenez-site h6,
-.jimenez-site .font-black,
-.jimenez-site .font-extrabold,
-.jimenez-site .brand-display,
-.jimenez-site .uppercase {
-  font-family: var(--font-app-display), "Arial Narrow", sans-serif;
+.onestop-site h1,
+.onestop-site h2,
+.onestop-site h3 {
+  letter-spacing: -0.02em;
 }
 
-/* ═══════════════════════════════════════════
-   MARQUEE
-═══════════════════════════════════════════ */
-@keyframes marquee {
-  0% {
+/* Industrial construction feel — square edges, bold weight */
+.onestop-site .rounded-2xl { border-radius: 0.25rem; }
+.onestop-site .rounded-xl { border-radius: 0.25rem; }
+.onestop-site .rounded-lg { border-radius: 0.25rem; }
+.onestop-site .rounded-full { border-radius: 9999px; } /* keep pills round */
+
+/* Heavier heading weight for industrial feel */
+.onestop-site h1 { font-weight: 900; }
+.onestop-site h2 { font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
+
+/* Buttons — squared off, industrial */
+.onestop-site button, .onestop-site a[class*="rounded"] {
+  border-radius: 0.25rem;
+}
+
+/* Dividers — thicker, more visible */
+.onestop-site hr, .onestop-site .border-t { border-color: #d1d5db; }
+
+/* Form inputs — square */
+.onestop-site input, .onestop-site select, .onestop-site textarea {
+  border-radius: 0.25rem !important;
+}
+
+.onestop-site h1,
+.onestop-site h2,
+.onestop-site h3,
+.onestop-site h4,
+.onestop-site h5,
+.onestop-site h6,
+.onestop-site .font-black,
+.onestop-site .font-extrabold,
+.onestop-site .eyebrow {
+  font-family: var(--font-app-display), -apple-system, "Segoe UI", sans-serif;
+}
+
+.onestop-site .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.onestop-site .section-heading {
+  text-wrap: pretty;
+}
+
+.proof-marquee {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.proof-marquee-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: proofMarquee 28s linear infinite;
+}
+
+.proof-marquee-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes proofMarquee {
+  from {
     transform: translateX(0);
   }
 
-  100% {
+  to {
     transform: translateX(-50%);
   }
 }
 
-.animate-marquee {
+/* ── Hero form fields (underline style, dark context) ── */
+.hero-form-field {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  padding: 0.75rem 0;
+  font-size: 1rem;
+  line-height: 1.4rem;
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.hero-form-field::placeholder {
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.hero-form-field:focus {
+  border-bottom-color: var(--onestop-gold);
+}
+
+.hero-form-field option {
+  background: #0f2847;
+  color: #fff;
+}
+
+/* ── Review ticker (estimate section) ── */
+.review-ticker {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.review-ticker-track {
+  display: flex;
+  width: max-content;
   will-change: transform;
-  animation: marquee 60s linear infinite;
+  animation: reviewScroll 40s linear infinite;
 }
 
-@media (max-width: 768px) {
-  .animate-marquee {
-    animation-duration: 25s;
-  }
+.review-ticker-track:hover {
+  animation-play-state: paused;
 }
 
-/* ═══════════════════════════════════════════
-   NOISE TEXTURE OVERLAY
-═══════════════════════════════════════════ */
-.noise-overlay {
-  position: relative;
+@keyframes reviewScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
-.noise-overlay::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.035;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
-  background-repeat: repeat;
-  background-size: 256px 256px;
-  z-index: 1;
+/* ── Standard form fields (light sections) ── */
+.form-field {
+  width: 100%;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  color: #0f172a;
+  padding: 1rem 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.5rem;
+  outline: none;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
 }
 
-/* ═══════════════════════════════════════════
-   FAQ ACCORDION
-═══════════════════════════════════════════ */
+.form-field::placeholder {
+  color: rgba(71, 85, 105, 0.72);
+}
+
+.form-field:focus {
+  border-color: rgba(26, 58, 107, 0.5);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(26, 58, 107, 0.1);
+}
+
 details summary {
   list-style: none;
 }
@@ -86,8 +210,8 @@ details summary::-webkit-details-marker {
   display: none;
 }
 
-details[open]>*:not(summary) {
-  animation: faqReveal 0.3s ease-out;
+details[open] > *:not(summary) {
+  animation: faqReveal 0.25s ease-out;
 }
 
 @keyframes faqReveal {
@@ -102,25 +226,138 @@ details[open]>*:not(summary) {
   }
 }
 
-/* ═══════════════════════════════════════════
-   CARD GLOW HOVER
-═══════════════════════════════════════════ */
-.card-glow {
-  transition: box-shadow 0.4s ease, transform 0.3s ease;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .proof-marquee-track {
+    animation: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-.card-glow:hover {
-  box-shadow: 0 0 30px rgba(234, 88, 12, 0.1), 0 8px 32px rgba(0, 0, 0, 0.25);
-  transform: translateY(-4px);
+/* ── Blog prose content ── */
+.blog-prose h2 {
+  color: var(--onestop-navy-deep);
+  font-family: var(--font-app-display);
+  font-weight: 700;
+  font-size: 1.625rem;
+  line-height: 1.3;
+  margin-top: 2.25rem;
+  margin-bottom: 0.875rem;
 }
 
-/* ═══════════════════════════════════════════
-   ORGANIC SECTION TRANSITIONS
-═══════════════════════════════════════════ */
-.section-dark {
-  background-color: #0c1220;
+.blog-prose h3 {
+  color: var(--onestop-navy-deep);
+  font-family: var(--font-app-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.4;
+  margin-top: 1.75rem;
+  margin-bottom: 0.625rem;
 }
 
-.section-warm {
-  background-color: #faf8f5;
+.blog-prose p {
+  color: #475569;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  margin-bottom: 1.125rem;
+}
+
+.blog-prose a {
+  color: var(--onestop-red);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+
+.blog-prose a:hover {
+  color: #1a3a6b;
+}
+
+.blog-prose ul {
+  margin-top: 0.5rem;
+  margin-bottom: 1.125rem;
+  padding-left: 1.375rem;
+  list-style-type: disc;
+}
+
+.blog-prose li {
+  color: #475569;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+
+.blog-prose strong {
+  color: var(--onestop-ink);
+  font-weight: 700;
+}
+
+.blog-prose h2:first-child {
+  margin-top: 0;
+}
+
+.blog-prose table {
+  width: 100%;
+  margin-top: 0.75rem;
+  margin-bottom: 1.25rem;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  border: 1px solid var(--onestop-line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.blog-prose table th,
+.blog-prose table thead th {
+  background-color: #f5f7fa !important;
+  color: var(--onestop-navy-deep) !important;
+  font-weight: 700 !important;
+  font-size: 0.8125rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  padding: 0.75rem 1rem !important;
+  text-align: left !important;
+  border-bottom: 2px solid var(--onestop-line);
+}
+
+.blog-prose table td,
+.blog-prose table tbody td {
+  color: #475569 !important;
+  padding: 0.625rem 1rem !important;
+  border-bottom: 1px solid var(--onestop-line);
+}
+
+.blog-prose table tbody tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.blog-prose table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+@media (max-width: 640px) {
+  .blog-prose table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 0.8125rem;
+  }
+}
+
+.blog-prose em {
+  color: #64748b;
+  font-style: italic;
 }

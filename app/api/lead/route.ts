@@ -194,11 +194,11 @@ export async function POST(req: Request) {
   }).format(new Date());
   const safeName = name || 'Website Form';
   const safeService = service || 'Website Form';
-  const brandName = 'Jimenez Tree Pro';
-  const brandAddress = 'Pasadena, TX';
-  const brandPrimary = '#166534';
-  const brandAccent = '#ea580c';
-  const fromEmail = process.env.LEAD_FROM_EMAIL || 'Jimenez Tree Pro <leads@quicklaunchweb.us>';
+  const brandName = 'One Stop Outdoor Construction';
+  const brandAddress = 'Richmond, TX';
+  const brandPrimary = '#1a3a6b';
+  const brandAccent = '#c0392b';
+  const fromEmail = process.env.LEAD_FROM_EMAIL || 'One Stop Outdoor Construction <leads@onestopoutdoorconstruction.net>';
   const subject = `New Lead: ${safeService} | ${safeName}`;
 
   const pageUrlIsDev =
@@ -310,7 +310,7 @@ export async function POST(req: Request) {
       <tr>
         <td style="padding:0 20px 22px;">
           <div style="border-left:4px solid ${brandAccent};padding:12px;background:#f8fafc;border-radius:8px;font-size:12px;color:#475569;line-height:1.5;">
-            This lead came from the Jimenez Tree Pro website form.
+            This lead came from the One Stop Outdoor Construction website form.
             <span style="display:block;margin-top:6px;font-weight:700;color:${brandPrimary};">${brandAddress}</span>
           </div>
         </td>

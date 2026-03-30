@@ -45,3 +45,11 @@ next-env.d.ts
 # local upscaled working assets (not for git)
 public/*-upscaled-2x.png
 public/images/*-upscaled-2x.png
+
+# development screenshots
+/*.png
+
+# playwright & codex
+.playwright-mcp/
+.codex-next-dev.log
+$log

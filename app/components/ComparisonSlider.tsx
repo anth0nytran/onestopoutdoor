@@ -51,7 +51,7 @@ export function ComparisonSlider(props: ComparisonSliderProps) {
                             fill
                             className="object-cover"
                             sizes="(min-width: 768px) 50vw, 100vw"
-                            unoptimized={left.src.startsWith('http')}
+                            unoptimized
                         />
                     </div>
                     <div
@@ -67,7 +67,7 @@ export function ComparisonSlider(props: ComparisonSliderProps) {
                             fill
                             className="object-cover"
                             sizes="(min-width: 768px) 50vw, 100vw"
-                            unoptimized={right.src.startsWith('http')}
+                            unoptimized
                         />
                     </div>
                     <div className="absolute inset-y-0" style={{ left: `${value}%` }}>
