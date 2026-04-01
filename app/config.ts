@@ -73,11 +73,34 @@ export const siteConfig = {
   ],
 };
 
-export const serviceData = [
+export interface ServiceItem {
+  slug: string;
+  title: string;
+  media: { type: 'image' | 'video'; src: string }[];
+  summary: string;
+  details: string[];
+  turnaround: string;
+  longDescription: string;
+  keywords: string[];
+}
+
+export const serviceData: ServiceItem[] = [
   {
     slug: 'patio-covers',
     title: 'Patio Covers',
-    image: '/facebook/patiocover.jpg',
+    media: [
+      { type: 'video', src: '/service/IMG_2790.mp4' },
+      { type: 'video', src: '/service/IMG_5260.mp4' },
+      { type: 'video', src: '/service/IMG_5592.mp4' },
+      { type: 'video', src: '/service/IMG_6538.mp4' },
+      { type: 'video', src: '/service/IMG_6548.mp4' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_04.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_05.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_07.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_08.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_17.jpg' },
+      { type: 'image', src: '/service/IMG_4896.jpg' },
+    ],
     summary: 'Transform your outdoor space with a custom patio cover — lattice, solid insulated, or aluminum with optional skylights and ceiling fans.',
     details: [
       'Traditional open-style lattice patio covers',
@@ -92,7 +115,14 @@ export const serviceData = [
   {
     slug: 'concrete-driveways',
     title: 'Concrete & Driveways',
-    image: '/facebook/concrete_driveways.jpg',
+    media: [
+      { type: 'video', src: '/service/IMG_6542.mp4' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_06.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_18.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_19.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_24.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_27.jpg' },
+    ],
     summary: 'Top-notch decorative concrete and driveway installations by certified, experienced professionals — personalized to your preferences.',
     details: [
       'Stamped and colored concrete applications',
@@ -107,7 +137,20 @@ export const serviceData = [
   {
     slug: 'outdoor-kitchens',
     title: 'Outdoor Kitchens',
-    image: '/facebook/outdoorkitchen.jpg',
+    media: [
+      { type: 'video', src: '/service/7954120423b34f3fa5e5b918940baa56.mp4' },
+      { type: 'video', src: '/service/IMG_3984.mp4' },
+      { type: 'video', src: '/service/IMG_4125.mp4' },
+      { type: 'video', src: '/service/IMG_4907.mp4' },
+      { type: 'video', src: '/service/a3b9eb000bfe4c33adf03425f38b804d.mp4' },
+      { type: 'video', src: '/service/dc003ed213f245a29f0dfff749d23e1c.mp4' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_10.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_21.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_22.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_28.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_29.jpg' },
+      { type: 'image', src: '/service/IMG_4795.jpg' },
+    ],
     summary: 'Custom-designed outdoor kitchens built to your style, needs, and budget — with endless possibilities for your perfect outdoor cooking space.',
     details: [
       'Custom design and build from concept to completion',
@@ -122,7 +165,13 @@ export const serviceData = [
   {
     slug: 'pergolas',
     title: 'Pergolas',
-    image: '/facebook/perogla.jpg',
+    media: [
+      { type: 'image', src: '/service/IMG_6339.jpeg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_12.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_14.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_15.jpg' },
+      { type: 'image', src: '/OneStopOutdoor_Photos/photo_16.jpg' },
+    ],
     summary: 'Beautiful pergolas that provide the ideal space for relaxing, entertaining, and enjoying outdoor living year-round.',
     details: [
       'Custom wood and metal pergola designs',
@@ -137,7 +186,9 @@ export const serviceData = [
   {
     slug: 'roofing',
     title: 'Roofing Services',
-    image: '/onestop/images/service_roofing.png',
+    media: [
+      { type: 'image', src: '/onestop/images/service_roofing.png' },
+    ],
     summary: 'A wide variety of residential roofing from green roofing to metal and shingle — selecting the right material for a long-lasting roof.',
     details: [
       'Shingle, metal, and flat roofing installations',
@@ -152,7 +203,9 @@ export const serviceData = [
   {
     slug: 'walkways-pavers',
     title: 'Walkways & Pavers',
-    image: '/facebook/walkway.jpg',
+    media: [
+      { type: 'image', src: '/facebook/walkway.jpg' },
+    ],
     summary: 'Paver stone walkways that add beauty, curb appeal, strength, and flexibility to your property.',
     details: [
       'Paver stone walkway design and installation',

@@ -29,7 +29,7 @@ const monoFont = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://onestopoutdoorconstruction.net'),
   title: {
-    default: "Patio Covers & Outdoor Construction in Richmond TX | One Stop Outdoor Construction",
+    default: "Patio Covers & Outdoor Construction | Richmond TX",
     template: "%s | One Stop Outdoor Construction",
   },
   description: "Patio covers, concrete, outdoor kitchens & pergolas in Richmond, Katy, Houston & Sugar Land TX. 15+ years. Licensed & insured. Free estimates — (832) 945-8084.",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/facebook/hero.jpg',
+        url: '/logos/main_logo.svg',
         width: 1200,
         height: 630,
         alt: 'One Stop Outdoor Construction — Patio Covers, Concrete & Outdoor Kitchens in Richmond, Katy & Houston TX',
@@ -82,12 +82,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Quality Outdoor Construction | One Stop Outdoor Construction",
     description: "Patio covers, concrete, outdoor kitchens, pergolas & roofing for Richmond, Katy, Houston, Sugar Land & Rosenberg TX. Licensed & insured. Free estimates.",
-    images: ['/facebook/hero.jpg'],
+    images: ['/logos/main_logo.svg'],
   },
   icons: {
-    icon: '/facebook/hero.jpg',
-    shortcut: '/facebook/hero.jpg',
-    apple: '/facebook/hero.jpg',
+    icon: '/logos/main_logo.svg',
+    shortcut: '/logos/main_logo.svg',
+    apple: '/logos/main_logo.svg',
   },
 };
 

@@ -30,7 +30,18 @@ export default function AboutPageClient() {
     <>
       {/* ═══ PAGE HEADER ═══ */}
       <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)] py-10 sm:py-14 lg:py-16">
-        <div className="absolute inset-0 bg-[url('/facebook/filler3.jpg')] bg-cover bg-center bg-no-repeat opacity-20" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler3.jpg"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            quality={70}
+            className="object-cover opacity-20"
+          />
+        </div>
         <div className="absolute inset-0 bg-[var(--onestop-navy-deep)]/80" />
         <div className={`${shell} relative z-10`}>
           <nav aria-label="Breadcrumb" className="mb-4">
@@ -57,7 +68,7 @@ export default function AboutPageClient() {
           <div className="grid grid-cols-2 lg:grid-cols-4 divide-x divide-slate-100">
             {[
               { value: `${siteConfig.yearsInBusiness}+`, label: 'Years in Business' },
-              { value: `${siteConfig.reviewCount}+`, label: '5-Star Reviews' },
+              { value: '5.0', label: 'Star Rating' },
               { value: '70%', label: 'Repeat & Referral' },
               { value: '100%', label: 'Satisfaction Guarantee' },
             ].map((stat) => (
@@ -167,14 +178,14 @@ export default function AboutPageClient() {
                 whileInView="visible"
                 viewport={{ once: true, margin: '-40px' }}
                 variants={fadeUp}
-                className="rounded-2xl bg-white border border-slate-200 p-7 shadow-sm"
+                className="flex flex-col h-full rounded-2xl bg-white border border-slate-200 p-7 shadow-sm"
               >
-                <Stars count={5} size="h-4 w-4" />
-                <p className="mt-4 text-[0.9rem] leading-relaxed text-slate-600">
+                <Stars count={5} size="h-4 w-4 text-[#FBBC05]" />
+                <p className="mt-4 text-[0.9rem] leading-relaxed text-slate-600 flex-grow line-clamp-[12]">
                   &ldquo;{t.quote}&rdquo;
                 </p>
-                <div className="mt-6 pt-5 border-t border-slate-100 flex items-center gap-3">
-                  <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--onestop-navy-deep)] text-white text-xs font-bold">
+                <div className="mt-auto pt-5 border-t border-slate-100 flex items-center gap-3 shrink-0">
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--onestop-navy-deep)] text-white text-xs font-bold">
                     {t.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div>
@@ -267,22 +278,22 @@ export default function AboutPageClient() {
             whileInView="visible"
             viewport={{ once: true, margin: '-40px' }}
             variants={fadeUp}
-            className="mt-10 flex flex-wrap gap-2.5"
+            className="mt-10 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3"
           >
             {siteConfig.allServiceAreas.map((area, i) => {
-              const isPrimary = i < 6;
+              const isPrimary = i < 5;
               return (
-                <span
+                <div
                   key={area}
-                  className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-semibold transition-colors ${
+                  className={`flex items-center gap-2 rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm font-semibold ${
                     isPrimary
                       ? 'bg-[var(--onestop-navy-deep)] text-white'
                       : 'bg-white text-[var(--onestop-navy-deep)] border border-slate-200'
                   }`}
                 >
-                  <MapPin className="h-3.5 w-3.5 shrink-0" />
+                  <MapPin className="h-3 w-3 sm:h-3.5 sm:w-3.5 shrink-0 opacity-60" />
                   {area}
-                </span>
+                </div>
               );
             })}
           </motion.div>
@@ -298,7 +309,17 @@ export default function AboutPageClient() {
 
       {/* ═══ BOTTOM CTA ═══ */}
       <section className="relative isolate overflow-hidden bg-slate-950 py-20 sm:py-24">
-        <div className="absolute inset-0 bg-[url('/facebook/filler2.jpg')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler2.jpg"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            quality={65}
+            className="object-cover opacity-20 mix-blend-luminosity"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-slate-950/40" />
         
         <div className={`${shell} relative z-10`}>
@@ -317,24 +338,24 @@ export default function AboutPageClient() {
               Call us or fill out the form — no obligation.
             </p>
 
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-10 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
               <a
                 href={`tel:${siteConfig.cleanPhone}`}
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--onestop-red)] px-8 py-4 text-base font-bold uppercase tracking-wider text-white hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--onestop-red)] px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:brightness-110 transition-all whitespace-nowrap"
               >
-                <Phone className="h-5 w-5" /> Call {siteConfig.phone}
+                <Phone className="h-4 w-4" /> Call {siteConfig.phone}
               </a>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-8 py-4 text-base font-bold text-white hover:bg-white/5 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-xs sm:text-sm font-bold text-white hover:bg-white/5 transition-all whitespace-nowrap"
               >
-                Get Free Estimate <ArrowRight className="h-4 w-4" />
+                Free Estimate <ArrowRight className="h-4 w-4" />
               </Link>
             </div>
 
-            <div className="mt-10 flex items-center justify-center gap-6 text-xs font-semibold uppercase tracking-wider text-white/30">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider text-white/30">
               <span className="flex items-center gap-1.5"><Shield className="h-3.5 w-3.5 text-[var(--onestop-gold)]" /> Licensed &amp; Insured</span>
-              <span className="flex items-center gap-1.5"><Star className="h-3.5 w-3.5 text-[var(--onestop-gold)]" /> {siteConfig.reviewCount}+ 5-Star Reviews</span>
+              <span className="flex items-center gap-1.5"><Star className="h-3.5 w-3.5 text-[var(--onestop-gold)]" /> 5-Star Rated</span>
               <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-[var(--onestop-gold)]" /> Free Estimates</span>
             </div>
           </motion.div>

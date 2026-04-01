@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
 import { blogPosts } from './posts';
 import { siteConfig } from '../config';
@@ -152,7 +153,17 @@ export default function BlogPage() {
 
       {/* ── CTA ── */}
       <section className="relative isolate overflow-hidden bg-slate-950 py-12 sm:py-14">
-        <div className="absolute inset-0 bg-[url('/facebook/filler2.jpg')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler2.jpg"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            quality={65}
+            className="object-cover opacity-20 mix-blend-luminosity"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-slate-950/40" />
         <div className={`${shell} relative z-10`}>
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">

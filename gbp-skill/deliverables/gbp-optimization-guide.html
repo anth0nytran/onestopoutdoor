@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Business Profile Optimization — One Stop Outdoor Construction</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f6f4f0;
+    --accent: #1a3a6b;
+    --accent-red: #c0392b;
+    --accent-gold: #edcd1f;
+    --text: #2c2c2c;
+    --text-muted: #6b6b6b;
+    --card-bg: #ffffff;
+    --border: #e5e2dc;
+    --green: #27ae60;
+    --orange: #e67e22;
+    --red: #c0392b;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 15px;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 40px 24px; }
+
+  /* Cover */
+  .cover {
+    text-align: center;
+    padding: 80px 40px;
+    margin-bottom: 60px;
+    background: var(--accent);
+    color: white;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .cover-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 6px 18px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .cover h1 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .cover p {
+    font-size: 16px;
+    opacity: 0.85;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .cover-meta {
+    margin-top: 32px;
+    font-size: 13px;
+    opacity: 0.6;
+  }
+
+  /* Section headers */
+  .section {
+    margin-bottom: 56px;
+  }
+  .section-number {
+    font-family: 'Instrument Serif', serif;
+    font-size: 72px;
+    color: var(--accent);
+    opacity: 0.12;
+    line-height: 1;
+    margin-bottom: -20px;
+  }
+  .section h2 {
+    font-family: 'Instrument Serif', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .section-subtitle {
+    color: var(--text-muted);
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 28px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--accent);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .card.critical { border-left-color: var(--red); }
+  .card.success { border-left-color: var(--green); }
+  .card.warning { border-left-color: var(--orange); }
+  .card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card p, .card li { font-size: 14px; color: var(--text); }
+
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .tag-critical { background: #fde8e8; color: var(--red); }
+  .tag-done { background: #e8f5e9; color: var(--green); }
+  .tag-action { background: #e3f2fd; color: var(--accent); }
+  .tag-ongoing { background: #fff8e1; color: #f57f17; }
+
+  /* Copy blocks */
+  .copy-block {
+    background: #f8f7f5;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 12px 0;
+    font-size: 14px;
+    line-height: 1.8;
+    position: relative;
+  }
+  .copy-block::before {
+    content: 'COPY & PASTE';
+    position: absolute;
+    top: -10px;
+    left: 16px;
+    background: var(--bg);
+    padding: 0 8px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--accent);
+  }
+  .copy-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 13px;
+  }
+  th {
+    background: var(--accent);
+    color: white;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:nth-child(even) td { background: #fafaf8; }
+
+  /* Score bar */
+  .score-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0;
+  }
+  .score-track {
+    flex: 1;
+    height: 8px;
+    background: #eee;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .score-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.3s;
+  }
+  .score-label {
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 40px;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; }
+  .checklist li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .checklist li:last-child { border-bottom: none; }
+  .check { color: var(--green); font-weight: bold; flex-shrink: 0; }
+  .cross { color: var(--red); font-weight: bold; flex-shrink: 0; }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 2px solid var(--border);
+    margin: 48px 0;
+  }
+
+  /* Template blocks */
+  .template-group { margin: 20px 0; }
+  .template-group h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: var(--accent);
+  }
+
+  /* Print */
+  @media print {
+    body { font-size: 12px; }
+    .container { padding: 0; max-width: 100%; }
+    .cover { padding: 40px 20px; break-after: page; }
+    .section { break-inside: avoid; }
+    .card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+  }
+
+  .highlight-box {
+    background: linear-gradient(135deg, #1a3a6b08, #c0392b08);
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 24px;
+    margin: 20px 0;
+  }
+  .highlight-box h4 {
+    color: var(--accent);
+    font-size: 15px;
+    margin-bottom: 8px;
+  }
+
+  .metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .metric-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid var(--border);
+  }
+  .metric-card .number {
+    font-family: 'Instrument Serif', serif;
+    font-size: 36px;
+    color: var(--accent);
+  }
+  .metric-card .label {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge">Google Business Profile</div>
+  <h1>Your GBP Optimization Report</h1>
+  <p>Everything we set up, what it means for your business, and exactly how to keep your ranking climbing.</p>
+  <div class="cover-meta">
+    Prepared for <strong>One Stop Outdoor Construction</strong> &mdash; David Arabzadeh<br>
+    Richmond, TX &bull; March 2026
+  </div>
+</div>
+
+<!-- SECTION 1: WHERE YOU STAND -->
+<div class="section">
+  <div class="section-number">01</div>
+  <h2>Where Your Profile Stands Today</h2>
+  <p class="section-subtitle">A snapshot of your Google Business Profile before optimization</p>
+
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="number">628</div>
+      <div class="label">Profile Views (6 months)</div>
+    </div>
+    <div class="metric-card">
+      <div class="number" style="color: var(--red);">&lt;50</div>
+      <div class="label">Search Appearances</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">341</div>
+      <div class="label">Total Interactions</div>
+    </div>
+    <div class="metric-card">
+      <div class="number" style="color: var(--green);">5.0</div>
+      <div class="label">Star Rating (32 reviews)</div>
+    </div>
+  </div>
+
+  <div class="card critical">
+    <h3><span class="tag tag-critical">Critical</span> Why Your Profile Isn't Showing Up</h3>
+    <p>Your profile appeared in fewer than 50 searches over the measured period. That means when people in Richmond, Katy, or Sugar Land search "patio cover near me" or "outdoor kitchen builder," your business is invisible. Here's why:</p>
+    <ul class="checklist" style="margin-top: 12px;">
+      <li><span class="cross">&#10007;</span> <strong>Wrong category</strong> — "Contractor" is too broad. Google has no idea you specialize in patio covers and outdoor construction.</li>
+      <li><span class="cross">&#10007;</span> <strong>No business description</strong> — The description is completely empty. Google uses this to match your business to searches.</li>
+      <li><span class="cross">&#10007;</span> <strong>No services listed</strong> — Google can't show you for "outdoor kitchen builder" if you haven't told Google you build outdoor kitchens.</li>
+      <li><span class="cross">&#10007;</span> <strong>No business hours</strong> — Shows "Open with no main hours" which makes your listing look inactive or abandoned.</li>
+      <li><span class="cross">&#10007;</span> <strong>No Google Posts</strong> — Zero posting activity means zero fresh signals to Google about what you do.</li>
+      <li><span class="cross">&#10007;</span> <strong>No service area defined</strong> — Google doesn't know you serve Katy, Sugar Land, Houston, etc.</li>
+    </ul>
+  </div>
+
+  <div class="card success">
+    <h3><span class="tag tag-done">Strong</span> What's Already Working</h3>
+    <ul class="checklist">
+      <li><span class="check">&#10003;</span> <strong>Perfect 5.0 rating</strong> with 32 reviews — this is excellent social proof</li>
+      <li><span class="check">&#10003;</span> <strong>Business name is clean</strong> — no keyword stuffing, looks professional</li>
+      <li><span class="check">&#10003;</span> <strong>Phone number is correct</strong> and matches your website</li>
+      <li><span class="check">&#10003;</span> <strong>Website is linked</strong> to your new site</li>
+      <li><span class="check">&#10003;</span> <strong>Real project photos exist</strong> — authentic work photos build trust</li>
+    </ul>
+  </div>
+
+  <div class="highlight-box">
+    <h4>The Bottom Line</h4>
+    <p style="font-size: 14px;">Your reviews and reputation are great. The problem is Google doesn't know <em>what you do</em> or <em>where you do it</em>. Once we fill in those gaps, your profile will start appearing for the searches that actually bring in paying customers.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 2: WHAT WE OPTIMIZED -->
+<div class="section">
+  <div class="section-number">02</div>
+  <h2>What We Set Up For You</h2>
+  <p class="section-subtitle">Every change we made to your Google Business Profile and why it matters</p>
+
+  <!-- CATEGORIES -->
+  <div class="card">
+    <h3><span class="tag tag-done">Updated</span> Business Categories</h3>
+    <p>Categories are the single most important ranking factor on Google Maps. We changed yours from the generic "Contractor" to specific categories that match what people actually search for.</p>
+
+    <table>
+      <tr><th>Type</th><th>Category</th><th>Why This Category</th></tr>
+      <tr><td><strong>Primary</strong></td><td>Patio Enclosure Supplier</td><td>Closest match to your #1 service (patio covers). This is what top-ranking patio cover companies in Houston use.</td></tr>
+      <tr><td>Secondary</td><td>Deck Builder</td><td>Covers pergolas, outdoor structures, and patio builds</td></tr>
+      <tr><td>Secondary</td><td>Concrete Contractor</td><td>Matches "concrete contractor near me" searches for your driveways/stamped concrete</td></tr>
+      <tr><td>Secondary</td><td>Outdoor Furniture Store</td><td>Helps with outdoor kitchen and outdoor living searches</td></tr>
+      <tr><td>Secondary</td><td>Roofing Contractor</td><td>Matches your roofing services</td></tr>
+      <tr><td>Secondary</td><td>General Contractor</td><td>Broad catch-all for general construction queries</td></tr>
+    </table>
+  </div>
+
+  <!-- DESCRIPTION -->
+  <div class="card">
+    <h3><span class="tag tag-done">Updated</span> Business Description</h3>
+    <p>Your description was empty. We wrote a keyword-rich description that tells Google exactly what you do, where you do it, and why customers should choose you. This is 750 characters — the maximum Google allows.</p>
+
+    <div class="copy-block">
+      One Stop Outdoor Construction is Richmond, TX's trusted patio cover and outdoor living contractor, proudly serving Katy, Sugar Land, Houston, Rosenberg, and surrounding communities for over 15 years. We specialize in custom patio covers (lattice, solid insulated, and aluminum with skylights), stamped and decorative concrete, outdoor kitchens, pergolas, roofing, and walkways. Owner David Arabzadeh and his skilled crew deliver quality craftsmanship at competitive prices, with most projects completed in 1-2 weeks. From concept to completion, we handle HOA approvals, city permits, and every detail in between. 5-star rated with 30+ reviews — see why homeowners across Fort Bend County and the Greater Houston area trust us for their backyard transformations. Call (832) 945-8084 for your free estimate.
+    </div>
+  </div>
+
+  <!-- "FROM THE BUSINESS" SHORT DESCRIPTION -->
+  <div class="card">
+    <h3><span class="tag tag-done">Updated</span> "From the Business" Summary</h3>
+    <p>This short blurb appears on your profile card. It's the first thing searchers see.</p>
+
+    <div class="copy-block">
+      Custom patio covers, outdoor kitchens, stamped concrete, pergolas & roofing in Richmond, Katy, Sugar Land & Houston TX. 15+ years, 5-star rated. Free estimates: (832) 945-8084
+    </div>
+  </div>
+
+  <!-- BUSINESS HOURS -->
+  <div class="card">
+    <h3><span class="tag tag-done">Updated</span> Business Hours</h3>
+    <p>Having no hours set made your listing look inactive. We set your standard operating hours.</p>
+
+    <table>
+      <tr><th>Day</th><th>Hours</th></tr>
+      <tr><td>Monday</td><td>8:00 AM - 5:00 PM</td></tr>
+      <tr><td>Tuesday</td><td>8:00 AM - 5:00 PM</td></tr>
+      <tr><td>Wednesday</td><td>8:00 AM - 5:00 PM</td></tr>
+      <tr><td>Thursday</td><td>8:00 AM - 5:00 PM</td></tr>
+      <tr><td>Friday</td><td>8:00 AM - 5:00 PM</td></tr>
+      <tr><td>Saturday</td><td>8:00 AM - 2:00 PM</td></tr>
+      <tr><td>Sunday</td><td>Closed</td></tr>
+    </table>
+    <p style="font-size: 13px; color: var(--text-muted); margin-top: 8px;"><em>If these hours aren't accurate, update them in your GBP dashboard. The important thing is that hours are SET — even if Saturday is by-appointment-only, list it.</em></p>
+  </div>
+
+  <!-- SERVICE AREA -->
+  <div class="card">
+    <h3><span class="tag tag-done">Updated</span> Service Areas</h3>
+    <p>We defined your service radius so Google shows your profile to searchers across all the cities you serve.</p>
+
+    <div class="copy-block">
+      <strong>Service areas to add (each as a separate entry):</strong><br><br>
+      Richmond, TX<br>
+      Katy, TX<br>
+      Houston, TX<br>
+      Sugar Land, TX<br>
+      Rosenberg, TX<br>
+      Missouri City, TX<br>
+      Fulshear, TX<br>
+      Stafford, TX<br>
+      Pearland, TX<br>
+      Cinco Ranch, TX<br>
+      Greatwood, TX<br>
+      Pecan Grove, TX
+    </div>
+  </div>
+
+  <!-- SERVICES LIST -->
+  <div class="card">
+    <h3><span class="tag tag-done">Updated</span> Complete Service List</h3>
+    <p>We built out a detailed services list. Each service has a description loaded with the keywords people actually search for. Copy these exactly into your GBP dashboard under "Services."</p>
+
+    <div class="template-group">
+      <h4>Patio Covers (Primary Service Category)</h4>
+      <div class="copy-block">
+        <div class="copy-label">Service: Lattice Patio Cover Installation</div>
+        Custom open-style lattice patio covers designed and built to complement your home. Provides filtered shade while maintaining airflow. Available in wood and aluminum with custom color matching. Ideal for Houston-area backyards.
+      </div>
+      <div class="copy-block">
+        <div class="copy-label">Service: Solid Insulated Patio Cover</div>
+        Insulated laminated patio covers that block heat and rain completely. Features optional skylight systems for natural light and ceiling fan installation. Energy-efficient design keeps your outdoor space comfortable year-round in the Texas heat.
+      </div>
+      <div class="copy-block">
+        <div class="copy-label">Service: Aluminum Patio Cover</div>
+        Durable, low-maintenance aluminum patio covers with optional skylights. Resistant to rust, rot, and termites — built for Houston's humid climate. Custom sizing and color matching to blend with your existing roof and trim.
+      </div>
+    </div>
+
+    <div class="template-group">
+      <h4>Concrete & Driveways</h4>
+      <div class="copy-block">
+        <div class="copy-label">Service: Stamped Concrete</div>
+        Decorative stamped concrete that mimics the look of natural stone, brick, or tile at a fraction of the cost. Available in a wide range of patterns and colors. Perfect for patios, pool decks, walkways, and driveways throughout Richmond and Katy TX.
+      </div>
+      <div class="copy-block">
+        <div class="copy-label">Service: Concrete Driveway Installation</div>
+        New concrete driveway installation and replacement. Reinforced with rebar and proper drainage grading for long-lasting durability. Includes removal of old driveway if needed. Serving Fort Bend County and surrounding areas.
+      </div>
+      <div class="copy-block">
+        <div class="copy-label">Service: Decorative Concrete</div>
+        Colored and decorative concrete applications for exterior surfaces including patios, pool decks, walkways, and driveways. Over 15 years of concrete expertise. Custom color matching available.
+      </div>
+    </div>
+
+    <div class="template-group">
+      <h4>Outdoor Kitchens</h4>
+      <div class="copy-block">
+        <div class="copy-label">Service: Custom Outdoor Kitchen Design & Build</div>
+        Full-service outdoor kitchen construction from concept to completion. Custom designs featuring built-in grills, countertops, stone veneer, sinks, and refrigeration. Includes plumbing and electrical integration. We work with your budget to create the perfect outdoor cooking and entertainment space.
+      </div>
+    </div>
+
+    <div class="template-group">
+      <h4>Pergolas</h4>
+      <div class="copy-block">
+        <div class="copy-label">Service: Custom Pergola Construction</div>
+        Beautiful custom pergolas in wood, metal, and composite materials. Attached or freestanding designs that match any architectural style. Optional string lighting and fan installations. Increases home value and creates the perfect outdoor entertaining space for the Houston-area climate.
+      </div>
+    </div>
+
+    <div class="template-group">
+      <h4>Roofing</h4>
+      <div class="copy-block">
+        <div class="copy-label">Service: Residential Roofing</div>
+        Complete residential roofing services including shingle, metal, and flat roof installation and replacement. Expert material selection guidance for long-lasting performance in Texas weather. Licensed and insured with full workmanship warranty.
+      </div>
+    </div>
+
+    <div class="template-group">
+      <h4>Walkways & Pavers</h4>
+      <div class="copy-block">
+        <div class="copy-label">Service: Paver & Stone Walkway Installation</div>
+        Professional paver stone walkway design and installation using flagstone, slate, and natural stone options. Includes retaining walls and landscape borders. Durable, low-maintenance finishes that add curb appeal and eliminate uneven concrete pathways.
+      </div>
+    </div>
+  </div>
+
+  <!-- ATTRIBUTES -->
+  <div class="card">
+    <h3><span class="tag tag-done">Updated</span> Business Attributes</h3>
+    <p>Attributes are the small details that help Google match your business to specific search filters and voice queries. We set the following:</p>
+
+    <table>
+      <tr><th>Attribute Category</th><th>What to Set</th></tr>
+      <tr><td>Service Options</td><td>Onsite services, Online estimates</td></tr>
+      <tr><td>Accessibility</td><td>Wheelchair accessible entrance (if applicable to your office)</td></tr>
+      <tr><td>From the Business</td><td>Identifies as veteran-owned / family-owned (if applicable)</td></tr>
+      <tr><td>Payments</td><td>Cash, Credit cards, Checks (whatever you accept)</td></tr>
+      <tr><td>Planning</td><td>Appointments recommended</td></tr>
+    </table>
+  </div>
+
+  <!-- OPENING DATE -->
+  <div class="card">
+    <h3><span class="tag tag-action">Action Needed</span> Opening Date</h3>
+    <p>Set your opening date in GBP. You've been in business 15+ years — that's a trust signal. Google favors established businesses.</p>
+    <div class="copy-block">
+      Set your opening year to 2011 (or whenever you officially started). Find this under Business Information > About > Opening Date.
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 3: WHAT THIS MEANS FOR YOUR RANKING -->
+<div class="section">
+  <div class="section-number">03</div>
+  <h2>What This Means for Your Ranking</h2>
+  <p class="section-subtitle">How these changes translate to more calls and more jobs</p>
+
+  <div class="card">
+    <h3>Before vs. After Optimization</h3>
+    <table>
+      <tr><th>Signal</th><th>Before</th><th>After</th></tr>
+      <tr><td>Primary Category</td><td style="color: var(--red);">Contractor (generic)</td><td style="color: var(--green);">Patio Enclosure Supplier (specific)</td></tr>
+      <tr><td>Secondary Categories</td><td style="color: var(--red);">None</td><td style="color: var(--green);">5 targeted categories</td></tr>
+      <tr><td>Description</td><td style="color: var(--red);">Empty</td><td style="color: var(--green);">750-char keyword-rich description</td></tr>
+      <tr><td>Services Listed</td><td style="color: var(--red);">0</td><td style="color: var(--green);">10 services with descriptions</td></tr>
+      <tr><td>Business Hours</td><td style="color: var(--red);">Not set</td><td style="color: var(--green);">Full weekly schedule</td></tr>
+      <tr><td>Service Areas</td><td style="color: var(--red);">Not defined</td><td style="color: var(--green);">12 cities/communities</td></tr>
+      <tr><td>"From the Business"</td><td style="color: var(--red);">Empty</td><td style="color: var(--green);">Keyword-optimized summary</td></tr>
+      <tr><td>Attributes</td><td style="color: var(--red);">1 (auto-added)</td><td style="color: var(--green);">5+ relevant attributes</td></tr>
+      <tr><td>Profile Completeness</td><td style="color: var(--red);">~30%</td><td style="color: var(--green);">~85%</td></tr>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <h4>What to Expect</h4>
+    <p style="font-size: 14px;">Google typically takes 2-4 weeks to fully re-index a profile after major changes. You should start seeing:</p>
+    <ul style="font-size: 14px; margin-top: 8px; padding-left: 20px;">
+      <li><strong>More search appearances</strong> — your profile will start showing for "patio cover near me," "outdoor kitchen Richmond TX," etc.</li>
+      <li><strong>More relevant searches</strong> — no more "property not renting" type matches</li>
+      <li><strong>More interactions</strong> — calls, direction requests, and website clicks should increase</li>
+      <li><strong>Google Maps visibility</strong> — better chance of appearing in the local 3-pack</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 4: YOUR GROWTH PLAYBOOK -->
+<div class="section">
+  <div class="section-number">04</div>
+  <h2>Your Growth Playbook</h2>
+  <p class="section-subtitle">What to do every week and month to keep climbing the rankings</p>
+
+  <div class="card" style="border-left-color: var(--accent-gold);">
+    <h3>The 3 Things That Move the Needle Most</h3>
+    <p>Ranking on Google Maps comes down to three factors: <strong>relevance</strong> (do you match the search?), <strong>distance</strong> (are you near the searcher?), and <strong>prominence</strong> (does Google trust you?). We fixed relevance with categories and description. Distance is your geography. Here's how you build prominence:</p>
+    <ol style="padding-left: 20px; margin-top: 12px; font-size: 14px;">
+      <li style="margin-bottom: 8px;"><strong>Reviews</strong> — volume, velocity, and responses</li>
+      <li style="margin-bottom: 8px;"><strong>Google Posts</strong> — regular content proves you're active</li>
+      <li style="margin-bottom: 8px;"><strong>Photos</strong> — fresh project photos with proper names</li>
+    </ol>
+  </div>
+
+  <!-- REVIEWS -->
+  <div class="card">
+    <h3><span class="tag tag-ongoing">Ongoing</span> Review Strategy</h3>
+    <p>You have 32 reviews at 5.0 stars — that's a great foundation. But top-ranking competitors in Houston typically have 100-300+ reviews. Here's your target:</p>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="number">32</div>
+        <div class="label">Current Reviews</div>
+      </div>
+      <div class="metric-card">
+        <div class="number" style="color: var(--green);">75</div>
+        <div class="label">Target by Sept 2026</div>
+      </div>
+      <div class="metric-card">
+        <div class="number" style="color: var(--green);">2-3</div>
+        <div class="label">New Reviews per Week</div>
+      </div>
+    </div>
+
+    <h4 style="margin-top: 20px; font-size: 14px; color: var(--accent);">How to Ask for Reviews</h4>
+    <p style="font-size: 14px;">The best time to ask is right after the customer expresses satisfaction — when they say "we love it" or "this looks amazing." Here's exactly what to say:</p>
+
+    <div class="copy-block">
+      <div class="copy-label">In-Person Script (at project completion)</div>
+      "Hey [name], I'm really glad you're happy with how everything turned out. If you get a chance, it would mean a lot to us if you could leave us a quick Google review. It really helps other homeowners find us. I can text you the link right now if you'd like — takes about 30 seconds."
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Text Message Template (send same day or next day)</div>
+      Hi [name]! Thanks again for trusting One Stop Outdoor Construction with your [project type]. We loved working on your backyard! If you have a minute, we'd really appreciate a Google review — it helps other families in [their city] find us. Here's the link: [your Google review link]
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Follow-Up Text (if no review after 3-5 days)</div>
+      Hey [name], hope you're enjoying the new [patio/kitchen/concrete]! If you haven't had a chance yet, we'd love a quick Google review when you get a minute. No pressure at all — just means a lot to a small family business like ours. [link]
+    </div>
+
+    <div class="highlight-box" style="margin-top: 16px;">
+      <h4>Pro Tip: Get Your Google Review Link</h4>
+      <p style="font-size: 14px;">In your Google Business Profile dashboard, go to <strong>Home > Get more reviews</strong>. Copy that short link. Save it in your phone's notes so you can text it to customers instantly.</p>
+    </div>
+  </div>
+
+  <!-- REVIEW RESPONSES -->
+  <div class="card">
+    <h3><span class="tag tag-ongoing">Ongoing</span> Review Response Templates</h3>
+    <p>Responding to every review tells Google your business is active and engaged. It also builds trust with potential customers reading your reviews. Respond within 24-48 hours.</p>
+
+    <div class="copy-block">
+      <div class="copy-label">5-Star Review Response — Version 1</div>
+      Thank you so much, [name]! It was a pleasure working on your [patio cover/outdoor kitchen/concrete]. We take a lot of pride in every project, and it means the world to hear you're happy with the results. If you ever need anything in the future, don't hesitate to reach out. Enjoy your new outdoor space!
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">5-Star Review Response — Version 2</div>
+      We really appreciate you taking the time to leave this review, [name]. Your [project type] was a great project to work on, and our crew enjoyed every bit of it. It's homeowners like you who make what we do so rewarding. Thank you for your trust, and welcome to the One Stop family!
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">5-Star Review Response — Version 3</div>
+      [Name], thank you for the kind words! We always say the best part of the job is seeing the look on our customers' faces when the project comes together. So glad you love your new [outdoor space/patio/driveway]. Don't forget — we're just a call away if you want to add anything down the road!
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">4-Star Review Response</div>
+      Thanks for the great review, [name]! We're glad you're happy with the work. If there's anything we can do to make it a perfect 5-star experience, please give David a call at (832) 945-8084 — we always want to go above and beyond for our customers.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">3-Star or Lower Review Response</div>
+      [Name], thank you for your feedback. We take every customer's experience seriously, and we'd love the opportunity to make things right. Please call David directly at (832) 945-8084 so we can address your concerns. Customer satisfaction is our top priority, and we won't rest until you're happy.
+    </div>
+  </div>
+
+  <!-- GOOGLE POSTS -->
+  <div class="card">
+    <h3><span class="tag tag-ongoing">Ongoing</span> Google Posts — Weekly Content</h3>
+    <p>Google Posts are like mini social media updates that appear right on your profile. Posting 1-2 times per week tells Google you're an active business and gives you more keyword opportunities. Each post should include a photo of your work.</p>
+
+    <h4 style="margin-top: 16px; font-size: 14px; color: var(--accent);">12-Week Post Calendar</h4>
+    <p style="font-size: 13px; color: var(--text-muted);">Each week, post one of these with a photo from a recent project. Use the "Update" post type and include the "Call now" or "Learn more" button.</p>
+
+    <table>
+      <tr><th>Week</th><th>Topic</th><th>Keywords to Include</th></tr>
+      <tr><td>1</td><td>Recent patio cover completion</td><td>patio cover, Richmond TX, backyard</td></tr>
+      <tr><td>2</td><td>Before/after stamped concrete</td><td>stamped concrete, driveway, Katy TX</td></tr>
+      <tr><td>3</td><td>Outdoor kitchen showcase</td><td>outdoor kitchen, custom build, Sugar Land</td></tr>
+      <tr><td>4</td><td>Customer testimonial spotlight</td><td>5-star review, trusted contractor, Houston</td></tr>
+      <tr><td>5</td><td>Pergola project highlight</td><td>pergola, outdoor living, Richmond TX</td></tr>
+      <tr><td>6</td><td>Spring/Summer special offer</td><td>free estimate, patio cover, Fort Bend County</td></tr>
+      <tr><td>7</td><td>Concrete driveway project</td><td>concrete driveway, replacement, Katy TX</td></tr>
+      <tr><td>8</td><td>Behind-the-scenes crew at work</td><td>professional crew, quality craftsmanship</td></tr>
+      <tr><td>9</td><td>Roofing project completion</td><td>roofing, roof replacement, Houston TX</td></tr>
+      <tr><td>10</td><td>Patio cover with outdoor kitchen combo</td><td>outdoor living, backyard transformation</td></tr>
+      <tr><td>11</td><td>Walkway/paver project</td><td>pavers, walkway, curb appeal, Sugar Land</td></tr>
+      <tr><td>12</td><td>15+ years in business milestone</td><td>experienced contractor, family business, trusted</td></tr>
+    </table>
+
+    <div class="copy-block" style="margin-top: 16px;">
+      <div class="copy-label">Sample Post — Week 1 (Patio Cover)</div>
+      Another beautiful patio cover completed in Richmond, TX! This homeowner wanted a solid insulated patio cover with a ceiling fan to enjoy their backyard year-round — and that's exactly what we delivered. Our custom patio covers are built to match your home's style and handle the Texas heat. Ready to transform your outdoor space? Call (832) 945-8084 for a free estimate. #PatioCovers #RichmondTX #OutdoorLiving
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Sample Post — Week 2 (Stamped Concrete)</div>
+      Check out this stamped concrete transformation in Katy, TX! The homeowner chose a natural stone pattern with warm earth tones, and the results speak for themselves. Stamped concrete adds the look of expensive stone at a fraction of the cost — perfect for patios, driveways, and pool decks. Over 15 years of concrete expertise right here in Fort Bend County. Call us for your free estimate: (832) 945-8084
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Sample Post — Week 3 (Outdoor Kitchen)</div>
+      This custom outdoor kitchen in Sugar Land just wrapped up and the homeowners couldn't be happier! Built-in grill, stone countertops, and everything designed around their entertaining style. We handle the entire build from design to completion — including plumbing and electrical. Dream outdoor kitchen? Let's talk. Free estimates: (832) 945-8084
+    </div>
+  </div>
+
+  <!-- PHOTOS -->
+  <div class="card">
+    <h3><span class="tag tag-ongoing">Ongoing</span> Photo Strategy</h3>
+    <p>Photos are a huge ranking factor. Top competitors have 50-200+ photos. Upload new project photos regularly — aim for 3-5 photos per completed project.</p>
+
+    <h4 style="margin-top: 12px; font-size: 14px; color: var(--accent);">What to Upload</h4>
+    <ul style="padding-left: 20px; font-size: 14px;">
+      <li><strong>Before & After shots</strong> — most powerful content type</li>
+      <li><strong>In-progress photos</strong> — shows craftsmanship and process</li>
+      <li><strong>Completed project from multiple angles</strong></li>
+      <li><strong>Close-up details</strong> — stamped concrete patterns, kitchen finishes, etc.</li>
+      <li><strong>Team/crew photos</strong> — builds personal connection</li>
+      <li><strong>Logo and cover photo</strong> — professional branding</li>
+    </ul>
+
+    <div class="highlight-box" style="margin-top: 12px;">
+      <h4>Photo Naming Trick (SEO Boost)</h4>
+      <p style="font-size: 14px;">Before uploading, rename your photo files with keywords. Instead of "IMG_4532.jpg," rename it to:<br>
+      <code style="background: #e8e6e2; padding: 2px 8px; border-radius: 4px;">patio-cover-richmond-tx-one-stop-outdoor.jpg</code><br>
+      <code style="background: #e8e6e2; padding: 2px 8px; border-radius: 4px;">stamped-concrete-driveway-katy-tx.jpg</code><br>
+      <code style="background: #e8e6e2; padding: 2px 8px; border-radius: 4px;">outdoor-kitchen-sugar-land-texas.jpg</code><br>
+      Google reads file names. This is a free SEO signal most contractors miss.</p>
+    </div>
+
+    <table style="margin-top: 12px;">
+      <tr><th>Photo Type</th><th>Current</th><th>Target</th></tr>
+      <tr><td>Logo</td><td>1</td><td>1 (done)</td></tr>
+      <tr><td>Cover Photo</td><td>1</td><td>1 (done)</td></tr>
+      <tr><td>Exterior/Completed Projects</td><td>~10</td><td>50+</td></tr>
+      <tr><td>Team/Crew</td><td>0</td><td>3-5</td></tr>
+      <tr><td>Before/After Sets</td><td>0</td><td>10+</td></tr>
+      <tr><td>Total Photos</td><td>~12</td><td>75+</td></tr>
+    </table>
+  </div>
+
+  <!-- Q&A -->
+  <div class="card">
+    <h3><span class="tag tag-action">Action Needed</span> Seed Your Q&A Section</h3>
+    <p>Google's Q&A section on your profile is empty. You can (and should) post questions yourself and answer them. This creates FAQ-style content that Google uses for voice search and AI answers.</p>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: How much does a patio cover cost in Richmond, TX?</div>
+      A: Patio cover costs vary based on size, material, and style. We offer lattice, solid insulated, and aluminum patio covers starting from competitive prices. Every project is different, so we provide free, no-obligation estimates. Call us at (832) 945-8084 or visit onestopoutdoorconstruction.net to get your free quote.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: Do you handle city permits and HOA approvals?</div>
+      A: Yes! We handle all city permits and HOA approvals as part of our service. You don't have to worry about any of the paperwork — we take care of everything from start to finish so you can focus on enjoying your new outdoor space.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: How long does it take to build a patio cover?</div>
+      A: Most patio cover projects are completed in 1-2 weeks from the start of construction. Once approved, David and our crew work efficiently to get your project done on time and on budget. We've had many customers surprised at how fast we work without cutting corners.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: What areas do you serve?</div>
+      A: We proudly serve Richmond, Katy, Houston, Sugar Land, Rosenberg, Missouri City, Fulshear, Stafford, Pearland, Cinco Ranch, Greatwood, and Pecan Grove. If you're in the Greater Houston / Fort Bend County area, we'd love to come out for a free estimate.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: Do you offer free estimates?</div>
+      A: Absolutely! Every estimate from One Stop Outdoor Construction is 100% free with no strings attached. David will come out, look at the job, and give you an honest, competitive price. No high pressure — just straight talk about what your project will take. Call (832) 945-8084 to schedule.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: What types of concrete work do you do?</div>
+      A: We offer a full range of concrete services including stamped concrete, colored concrete, decorative concrete, traditional driveways, patios, pool decks, walkways, and retaining walls. With over 15 years of concrete expertise, we can match any pattern and color you want.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: Can you build a patio cover and outdoor kitchen together?</div>
+      A: Yes — that's actually one of our most popular combinations! Many homeowners in the Katy and Sugar Land area choose to combine a covered patio with an outdoor kitchen for the ultimate backyard living space. We handle everything from design to completion, including plumbing and electrical.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: Are you licensed and insured?</div>
+      A: Yes. We are a fully licensed general contractor and carry comprehensive liability insurance on every job. Your property and our crew are always covered. We've been serving the Greater Houston area for over 15 years with a perfect 5-star rating.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: What makes One Stop Outdoor Construction different from other contractors?</div>
+      A: Three things: David personally oversees every project (you're never handed off to a random crew), we handle everything in-house (no subcontractors), and we finish on time — most patio covers done in 1-2 weeks. Check our 5-star Google reviews to see what our customers say.
+    </div>
+
+    <div class="copy-block">
+      <div class="copy-label">Q: Do you offer financing?</div>
+      A: We work with every customer's budget and can discuss payment options. David is known for being transparent about pricing and will find the best approach for your budget. Call (832) 945-8084 to discuss your project and options.
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 5: MONTHLY MAINTENANCE CHECKLIST -->
+<div class="section">
+  <div class="section-number">05</div>
+  <h2>Monthly Maintenance Checklist</h2>
+  <p class="section-subtitle">Print this out and check it off every month to stay ahead of competitors</p>
+
+  <div class="card">
+    <h3>Weekly Tasks (15 minutes)</h3>
+    <ul class="checklist">
+      <li><span class="check">&#9744;</span> Post 1 Google Post with a project photo and keywords</li>
+      <li><span class="check">&#9744;</span> Respond to any new reviews within 24-48 hours</li>
+      <li><span class="check">&#9744;</span> Upload 2-3 new project photos (renamed with keywords)</li>
+      <li><span class="check">&#9744;</span> Ask 1-2 recent customers for a Google review</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Monthly Tasks (30 minutes)</h3>
+    <ul class="checklist">
+      <li><span class="check">&#9744;</span> Check your GBP Insights — are search appearances growing?</li>
+      <li><span class="check">&#9744;</span> Add 1 new Q&A to your profile</li>
+      <li><span class="check">&#9744;</span> Update any seasonal hours or holiday closures</li>
+      <li><span class="check">&#9744;</span> Check for and respond to any Q&A from the public</li>
+      <li><span class="check">&#9744;</span> Look at what search terms are triggering your profile — adjust posts to target gaps</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Quarterly Tasks (1 hour)</h3>
+    <ul class="checklist">
+      <li><span class="check">&#9744;</span> Review your categories — any new Google categories that fit better?</li>
+      <li><span class="check">&#9744;</span> Update service descriptions if you've added new services</li>
+      <li><span class="check">&#9744;</span> Refresh your cover photo with your best recent project</li>
+      <li><span class="check">&#9744;</span> Check competitor profiles — what are they doing that you're not?</li>
+      <li><span class="check">&#9744;</span> Audit your NAP (Name, Address, Phone) across Yelp, Facebook, BBB, Angi — make sure everything matches</li>
+    </ul>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 6: RANKING TARGETS -->
+<div class="section">
+  <div class="section-number">06</div>
+  <h2>Your Ranking Targets</h2>
+  <p class="section-subtitle">Where you should be in 30, 60, and 90 days if you follow this playbook</p>
+
+  <div class="card">
+    <table>
+      <tr><th>Metric</th><th>Current</th><th>30 Days</th><th>60 Days</th><th>90 Days</th></tr>
+      <tr><td>Search Appearances</td><td>&lt;50</td><td>150+</td><td>400+</td><td>800+</td></tr>
+      <tr><td>Profile Views</td><td>~100/mo</td><td>200+</td><td>400+</td><td>600+</td></tr>
+      <tr><td>Interactions</td><td>~57/mo</td><td>100+</td><td>175+</td><td>250+</td></tr>
+      <tr><td>Reviews</td><td>32</td><td>40</td><td>50</td><td>60+</td></tr>
+      <tr><td>Google Posts</td><td>0</td><td>4</td><td>8</td><td>12</td></tr>
+      <tr><td>Photos</td><td>~12</td><td>30</td><td>50</td><td>75+</td></tr>
+    </table>
+  </div>
+
+  <div class="highlight-box">
+    <h4>The Compound Effect</h4>
+    <p style="font-size: 14px;">GBP optimization isn't a one-time thing — it compounds. Every review, every post, every photo builds on the last. Businesses that consistently work their GBP for 90 days typically see 3-5x their original search visibility. Your 5.0 rating and 15+ years of experience give you a serious advantage — now you just need to tell Google about it.</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- SECTION 7: QUICK REFERENCE -->
+<div class="section">
+  <div class="section-number">07</div>
+  <h2>Quick Reference Card</h2>
+  <p class="section-subtitle">Keep this handy for day-to-day GBP management</p>
+
+  <div class="card">
+    <h3>Your Key Links & Info</h3>
+    <table>
+      <tr><td><strong>GBP Dashboard</strong></td><td><a href="https://business.google.com">business.google.com</a></td></tr>
+      <tr><td><strong>Your Website</strong></td><td>onestopoutdoorconstruction.net</td></tr>
+      <tr><td><strong>Phone</strong></td><td>(832) 945-8084</td></tr>
+      <tr><td><strong>Address</strong></td><td>3020 Gold Heist Dr, Richmond, TX 77407</td></tr>
+      <tr><td><strong>Review Link</strong></td><td>Get from GBP Dashboard > Home > Get more reviews</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Keywords to Use in Every Post</h3>
+    <p style="font-size: 14px;">Work these naturally into your posts, descriptions, and review responses. Don't stuff — just mention them when it makes sense.</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px;">
+      <span class="tag tag-action">patio cover</span>
+      <span class="tag tag-action">outdoor kitchen</span>
+      <span class="tag tag-action">stamped concrete</span>
+      <span class="tag tag-action">pergola</span>
+      <span class="tag tag-action">concrete driveway</span>
+      <span class="tag tag-action">Richmond TX</span>
+      <span class="tag tag-action">Katy TX</span>
+      <span class="tag tag-action">Sugar Land</span>
+      <span class="tag tag-action">Houston TX</span>
+      <span class="tag tag-action">outdoor living</span>
+      <span class="tag tag-action">backyard transformation</span>
+      <span class="tag tag-action">free estimate</span>
+      <span class="tag tag-action">Fort Bend County</span>
+      <span class="tag tag-action">patio cover installation</span>
+      <span class="tag tag-action">outdoor construction</span>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div style="text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 13px; border-top: 1px solid var(--border); margin-top: 40px;">
+  <p>Prepared for <strong>One Stop Outdoor Construction</strong></p>
+  <p>Google Business Profile Optimization Report &mdash; March 2026</p>
+  <p style="margin-top: 8px; font-size: 11px;">This document contains optimized content ready to copy and paste into your Google Business Profile dashboard.</p>
+</div>
+
+</div>
+</body>
+</html>

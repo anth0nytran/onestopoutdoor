@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   CheckCircle2,
@@ -20,8 +21,14 @@ export function Footer() {
 
           {/* 0. Brand & Contact */}
           <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="font-extrabold text-2xl sm:text-3xl tracking-tight inline-block">
-              ONE STOP <span className="text-[var(--onestop-red)]">OUTDOOR</span>
+            <Link href="/" className="inline-block">
+              <Image
+                src="/logos/main_logo.svg"
+                alt="One Stop Outdoor Construction"
+                width={220}
+                height={60}
+                className="h-14 sm:h-16 w-auto brightness-0 invert"
+              />
             </Link>
             <p className="mt-4 text-sm text-white/50 max-w-md leading-relaxed font-medium">
               Quality outdoor construction serving Richmond, Katy, Houston, Sugar Land &amp; Rosenberg TX. {siteConfig.yearsInBusiness}+ years of trusted service. Licensed &amp; insured. Free estimates.
@@ -79,7 +86,7 @@ export function Footer() {
 
             <div className="mt-8 pt-8 border-t border-white/10 space-y-4 text-sm text-white/60 font-semibold">
               <div className="flex items-center gap-3"><Shield className="h-4 w-4 text-white/30" />Licensed &amp; Insured</div>
-              <div className="flex items-center gap-3"><Star className="h-4 w-4 fill-[#FBBC05] text-[#FBBC05]" /> {siteConfig.rating} Stars — {siteConfig.reviewCount}+ Reviews</div>
+              <div className="flex items-center gap-3"><Star className="h-4 w-4 fill-[#FBBC05] text-[#FBBC05]" /> {siteConfig.rating} Star Rated on Google</div>
               <div className="flex items-center gap-3"><CheckCircle2 className="h-4 w-4 text-white/30" />{siteConfig.yearsInBusiness}+ Years Experience</div>
               <div className="flex items-center gap-3"><Truck className="h-4 w-4 text-white/30" />70% Repeat &amp; Referral</div>
             </div>

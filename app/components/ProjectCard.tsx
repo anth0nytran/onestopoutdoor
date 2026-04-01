@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import NextImage from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeftRight } from 'lucide-react';
 
 interface ProjectCardProps {

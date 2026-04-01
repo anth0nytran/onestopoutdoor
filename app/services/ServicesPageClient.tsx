@@ -11,21 +11,14 @@ import {
   ChevronDown,
   Shield,
   Star,
+  ChevronLeft,
+  ChevronRight,
+  X,
+  Play,
+  Expand,
 } from 'lucide-react';
-import { siteConfig } from '../config';
-import { Stars } from '../components/Stars';
-import { useState } from 'react';
-
-interface ServiceItem {
-  slug: string;
-  title: string;
-  image: string;
-  summary: string;
-  details: string[];
-  turnaround: string;
-  longDescription: string;
-  keywords: string[];
-}
+import { siteConfig, type ServiceItem } from '../config';
+import { useState, useRef, useCallback, useEffect } from 'react';
 
 interface FaqItem {
   q: string;
@@ -75,6 +68,223 @@ function FaqAccordion({ faq, index }: { faq: FaqItem; index: number }) {
   );
 }
 
+/* ── Fullscreen Lightbox ── */
+function MediaLightbox({
+  media,
+  startIndex,
+  title,
+  onClose,
+}: {
+  media: ServiceItem['media'];
+  startIndex: number;
+  title: string;
+  onClose: () => void;
+}) {
+  const [index, setIndex] = useState(startIndex);
+  const item = media[index];
+
+  const prev = useCallback(() => setIndex((i) => (i - 1 + media.length) % media.length), [media.length]);
+  const next = useCallback(() => setIndex((i) => (i + 1) % media.length), [media.length]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowLeft') prev();
+      if (e.key === 'ArrowRight') next();
+    };
+    document.addEventListener('keydown', handler);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handler);
+      document.body.style.overflow = '';
+    };
+  }, [onClose, prev, next]);
+
+  return (
+    <div className="fixed inset-0 z-[9999] flex flex-col bg-black/95 backdrop-blur-sm" onClick={onClose}>
+      {/* Top bar */}
+      <div className="flex items-center justify-between px-4 py-3 sm:px-6" onClick={(e) => e.stopPropagation()}>
+        <span className="text-sm font-semibold text-white/60">
+          {title} &mdash; {index + 1} / {media.length}
+        </span>
+        <button type="button" onClick={onClose} className="flex h-10 w-10 items-center justify-center rounded-full text-white/60 hover:bg-white/10 hover:text-white transition-all">
+          <X className="h-5 w-5" />
+        </button>
+      </div>
+
+      {/* Main content */}
+      <div className="relative flex flex-1 items-center justify-center px-4 sm:px-16" onClick={(e) => e.stopPropagation()}>
+        {/* Prev/Next */}
+        <button type="button" onClick={prev} className="absolute left-2 sm:left-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-all">
+          <ChevronLeft className="h-6 w-6" />
+        </button>
+        <button type="button" onClick={next} className="absolute right-2 sm:right-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition-all">
+          <ChevronRight className="h-6 w-6" />
+        </button>
+
+        {/* Media */}
+        <div className="relative w-full max-w-5xl max-h-[75vh] flex items-center justify-center">
+          {item.type === 'video' ? (
+            <video
+              key={item.src}
+              src={item.src}
+              controls
+              autoPlay
+              playsInline
+              className="max-h-[75vh] max-w-full rounded-lg"
+            />
+          ) : (
+            <div className="relative w-full max-h-[75vh] aspect-[4/3]">
+              <Image
+                key={item.src}
+                src={item.src}
+                alt={`${title} ${index + 1}`}
+                fill
+                sizes="90vw"
+                quality={90}
+                className="object-contain rounded-lg"
+              />
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Thumbnail strip */}
+      <div className="flex items-center justify-center gap-2 px-4 py-3 overflow-x-auto [&::-webkit-scrollbar]:hidden" onClick={(e) => e.stopPropagation()}>
+        {media.map((m, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setIndex(i)}
+            className={`relative h-14 w-14 sm:h-16 sm:w-16 shrink-0 rounded-lg overflow-hidden border-2 transition-all ${
+              i === index ? 'border-[var(--onestop-gold)] scale-110' : 'border-transparent opacity-50 hover:opacity-80'
+            }`}
+          >
+            {m.type === 'video' ? (
+              <>
+                <video src={m.src} preload="metadata" muted playsInline className="absolute inset-0 h-full w-full object-cover" />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                  <Play className="h-4 w-4 text-white drop-shadow" />
+                </div>
+              </>
+            ) : (
+              <Image src={m.src} alt={`${title} photo ${i + 1}`} fill sizes="64px" className="object-cover" />
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ── Service Media Gallery ── */
+function MediaCarouselPlayer({ service }: { service: ServiceItem }) {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const thumbRef = useRef<HTMLDivElement>(null);
+  const videoPoster = service.media.find((item) => item.type === 'image')?.src;
+
+  // Show first item as featured, rest as thumbnail grid
+  const featured = service.media[0];
+  const thumbnails = service.media.slice(1);
+  const maxThumbs = 5;
+  const visibleThumbs = thumbnails.slice(0, maxThumbs);
+  const remaining = thumbnails.length - maxThumbs;
+
+  return (
+    <div className="w-full lg:[direction:ltr]">
+      {/* Featured item */}
+      <div
+        className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-200 shadow-lg cursor-pointer"
+        onClick={() => setLightboxIndex(0)}
+      >
+        {featured.type === 'video' ? (
+          <video
+            src={featured.src}
+            controls
+            playsInline
+            preload="metadata"
+            poster={videoPoster}
+            className="absolute inset-0 h-full w-full object-cover"
+            onClick={(e) => e.stopPropagation()}
+          />
+        ) : (
+          <Image
+            src={featured.src}
+            alt={`${service.title} featured`}
+            fill
+            sizes="(max-width: 768px) 100vw, 50vw"
+            quality={85}
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+          />
+        )}
+        <button
+          type="button"
+          className="absolute top-3 right-3 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm hover:bg-black/60 transition-all"
+          onClick={() => setLightboxIndex(0)}
+          aria-label="View fullscreen"
+        >
+          <Expand className="h-4 w-4" />
+        </button>
+        {/* Turnaround badge */}
+        <div className="absolute bottom-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-[var(--onestop-navy-deep)] px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-wider text-white shadow-xl pointer-events-none">
+          <Clock className="h-3 w-3 text-[var(--onestop-gold)]" />
+          {service.turnaround}
+        </div>
+      </div>
+
+      {/* Thumbnail strip */}
+      <div ref={thumbRef} className="mt-3 grid grid-cols-5 gap-2 sm:gap-3">
+        {visibleThumbs.map((item, i) => {
+          const actualIndex = i + 1;
+          const isLast = i === maxThumbs - 1 && remaining > 0;
+
+          return (
+            <button
+              key={actualIndex}
+              type="button"
+              onClick={() => setLightboxIndex(actualIndex)}
+              className="group relative aspect-square overflow-hidden rounded-xl bg-slate-200 cursor-pointer hover:ring-2 hover:ring-[var(--onestop-gold)] transition-all"
+            >
+              {item.type === 'video' ? (
+                <>
+                  <video src={item.src} preload="metadata" muted playsInline className="absolute inset-0 h-full w-full object-cover" />
+                  <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                    <Play className="h-5 w-5 text-white drop-shadow group-hover:scale-110 transition-all" />
+                  </div>
+                </>
+              ) : (
+                <Image
+                  src={item.src}
+                  alt={`${service.title} ${actualIndex + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 20vw, 10vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              )}
+              {/* "+N more" overlay on last thumb */}
+              {isLast && (
+                <div className="absolute inset-0 bg-black/60 flex items-center justify-center backdrop-blur-[2px]">
+                  <span className="text-sm font-bold text-white">+{remaining + 1}</span>
+                </div>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {/* Lightbox */}
+      {lightboxIndex !== null && (
+        <MediaLightbox
+          media={service.media}
+          startIndex={lightboxIndex}
+          title={service.title}
+          onClose={() => setLightboxIndex(null)}
+        />
+      )}
+    </div>
+  );
+}
+
 export default function ServicesPageClient({
   services,
   faqs,
@@ -86,7 +296,18 @@ export default function ServicesPageClient({
     <>
       {/* ═══ PAGE HEADER ═══ */}
       <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)] py-10 sm:py-14 lg:py-16">
-        <div className="absolute inset-0 bg-[url('/facebook/filler.jpg')] bg-cover bg-center bg-no-repeat opacity-20" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler.jpg"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            quality={70}
+            className="object-cover opacity-20"
+          />
+        </div>
         <div className="absolute inset-0 bg-[var(--onestop-navy-deep)]/80" />
         <div className={`${shell} relative z-10`}>
           <nav aria-label="Breadcrumb" className="mb-4">
@@ -138,23 +359,16 @@ export default function ServicesPageClient({
                   idx % 2 !== 0 ? 'lg:[direction:rtl]' : ''
                 }`}
               >
-                {/* Photo placeholder */}
+                {/* Media Carousel Wrapper */}
                 <motion.div
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true, margin: '-60px' }}
                   variants={fadeUp}
                   transition={{ duration: 0.45 }}
-                  className="lg:[direction:ltr]"
+                  className="w-full"
                 >
-                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-                    <Image src={service.image} alt={service.title} fill className="object-cover" quality={85} />
-                    {/* Turnaround badge */}
-                    <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--onestop-navy-deep)] px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-wider text-white">
-                      <Clock className="h-3 w-3 text-[var(--onestop-gold)]" />
-                      {service.turnaround}
-                    </div>
-                  </div>
+                  <MediaCarouselPlayer service={service} />
                 </motion.div>
 
                 {/* Content */}
@@ -183,16 +397,16 @@ export default function ServicesPageClient({
                     ))}
                   </ul>
 
-                  <div className="mt-9 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4">
+                  <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--onestop-red)] px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-lg hover:brightness-110 transition-all active:scale-[0.98]"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--onestop-red)] px-5 sm:px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-lg hover:brightness-110 transition-all active:scale-[0.98] whitespace-nowrap"
                     >
-                      Get Free Estimate <ArrowRight className="h-4 w-4" />
+                      Free Estimate <ArrowRight className="h-4 w-4" />
                     </Link>
                     <a
                       href={`tel:${siteConfig.cleanPhone}`}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--onestop-navy-deep)]/15 px-6 py-3.5 text-sm font-bold text-[var(--onestop-navy-deep)] hover:bg-[var(--onestop-navy-deep)]/5 transition-all"
+                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--onestop-navy-deep)]/15 px-5 sm:px-6 py-3 text-xs sm:text-sm font-bold text-[var(--onestop-navy-deep)] hover:bg-[var(--onestop-navy-deep)]/5 transition-all whitespace-nowrap"
                     >
                       <Phone className="h-4 w-4" /> Call Now
                     </a>
@@ -206,7 +420,17 @@ export default function ServicesPageClient({
 
       {/* ═══ MID-PAGE CTA ═══ */}
       <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)] py-16 sm:py-20">
-        <div className="absolute inset-0 bg-[url('/facebook/filler2.jpg')] bg-cover bg-center bg-no-repeat opacity-30 mix-blend-luminosity" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler2.jpg"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            quality={65}
+            className="object-cover opacity-30 mix-blend-luminosity"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--onestop-navy-deep)]/90 to-transparent" />
         
         <div className={`${shell} relative z-10`}>
@@ -223,23 +447,23 @@ export default function ServicesPageClient({
             <p className="mt-5 text-base text-white/50 max-w-lg mx-auto leading-relaxed">
               Every project starts with a free, no-pressure estimate. Call us or fill out the form.
             </p>
-            <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="mt-9 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--onestop-red)] px-8 py-3.5 text-sm font-bold uppercase tracking-wider text-white hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--onestop-red)] px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:brightness-110 transition-all whitespace-nowrap"
               >
-                Get Your Free Estimate <ArrowRight className="h-4 w-4" />
+                Free Estimate <ArrowRight className="h-4 w-4" />
               </Link>
               <a
                 href={`tel:${siteConfig.cleanPhone}`}
-                className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-8 py-3.5 text-sm font-bold text-white hover:bg-white/5 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-xs sm:text-sm font-bold text-white hover:bg-white/5 transition-all whitespace-nowrap"
               >
                 <Phone className="h-4 w-4" /> {siteConfig.phone}
               </a>
             </div>
-            <div className="mt-8 flex items-center justify-center gap-6 text-xs font-semibold uppercase tracking-wider text-white/30">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider text-white/30">
               <span className="flex items-center gap-1.5"><Shield className="h-3.5 w-3.5 text-[var(--onestop-gold)]" /> Licensed &amp; Insured</span>
-              <span className="flex items-center gap-1.5"><Star className="h-3.5 w-3.5 text-[var(--onestop-gold)]" /> {siteConfig.reviewCount}+ 5-Star Reviews</span>
+              <span className="flex items-center gap-1.5"><Star className="h-3.5 w-3.5 text-[var(--onestop-gold)]" /> 5-Star Rated</span>
             </div>
           </motion.div>
         </div>
@@ -319,7 +543,17 @@ export default function ServicesPageClient({
 
       {/* ═══ BOTTOM CTA ═══ */}
       <section className="relative isolate overflow-hidden bg-slate-950 py-16 sm:py-20">
-        <div className="absolute inset-0 bg-[url('/facebook/filler2.jpg')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler2.jpg"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            quality={65}
+            className="object-cover opacity-20 mix-blend-luminosity"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-slate-950/40" />
         
         <div className={`${shell} relative z-10`}>
@@ -332,16 +566,16 @@ export default function ServicesPageClient({
                 Quality craftsmanship. Fair pricing. {siteConfig.yearsInBusiness}+ years of trust.
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-lg bg-[var(--onestop-red)] px-7 py-3.5 text-sm font-bold uppercase tracking-wider text-white hover:brightness-110 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--onestop-red)] px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white hover:brightness-110 transition-all whitespace-nowrap"
               >
-                Get Free Estimate <ArrowRight className="h-4 w-4" />
+                Free Estimate <ArrowRight className="h-4 w-4" />
               </Link>
               <a
                 href={`tel:${siteConfig.cleanPhone}`}
-                className="inline-flex items-center gap-2 rounded-lg border border-white/15 px-7 py-3.5 text-sm font-bold text-white hover:bg-white/5 transition-all"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/15 px-6 py-3 text-xs sm:text-sm font-bold text-white hover:bg-white/5 transition-all whitespace-nowrap"
               >
                 <Phone className="h-4 w-4" /> {siteConfig.phone}
               </a>

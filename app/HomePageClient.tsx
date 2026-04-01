@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback, type FormEvent } from 'react';
+import { useState, useCallback, type FormEvent } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
@@ -9,14 +9,9 @@ import {
   CheckCircle2,
   Phone,
   Shield,
-  Star,
   Clock,
   HardHat,
-  Lock,
-  User,
   MapPin,
-  ClipboardList,
-  Calendar,
   Award,
   ThumbsUp,
   ChevronLeft,
@@ -31,9 +26,6 @@ function HeroEstimateForm() {
   const [formError, setFormError] = useState('');
   const [formTimestamp] = useState(() => Date.now().toString());
   const [phoneValue, setPhoneValue] = useState('');
-  const [pageUrl, setPageUrl] = useState('');
-
-  useEffect(() => { setPageUrl(window.location.href); }, []);
 
   const formatPhone = (v: string) => {
     const d = v.replace(/\D/g, '').slice(0, 10);
@@ -49,6 +41,9 @@ function HeroEstimateForm() {
     setFormStatus('sending');
     const form = e.currentTarget;
     const fd = new FormData(form);
+    if (typeof window !== 'undefined') {
+      fd.set('page', window.location.href);
+    }
     if (String(fd.get('website') || '').trim()) { form.reset(); setPhoneValue(''); setFormStatus('success'); return; }
     try {
       const res = await fetch('/api/lead', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
@@ -58,40 +53,39 @@ function HeroEstimateForm() {
     } catch { setFormStatus('error'); setFormError('Something went wrong. Please try again.'); }
   };
 
-  const inputClass = "w-full border border-slate-300 bg-white px-3 py-3 text-base text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-[var(--onestop-navy)] focus:ring-2 focus:ring-[var(--onestop-navy)]/15";
+  const inputClass = "w-full border border-slate-300 bg-white px-3 py-2.5 lg:py-3 text-sm lg:text-base text-slate-900 outline-none transition-all placeholder:text-slate-400 focus:border-[var(--onestop-navy)] focus:ring-2 focus:ring-[var(--onestop-navy)]/15";
 
   return (
-    <form className="grid gap-4" action="/api/lead" method="POST" onSubmit={handleSubmit}>
+    <form className="grid gap-3 lg:gap-4" action="/api/lead" method="POST" onSubmit={handleSubmit}>
       <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
       <input type="hidden" name="_ts" value={formTimestamp} />
-      <input type="hidden" name="page" value={pageUrl} />
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 lg:gap-4 sm:grid-cols-2">
         <div>
-          <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Full Name <span className="text-[var(--onestop-red)]">*</span></label>
+          <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Full Name <span className="text-[var(--onestop-red)]">*</span></label>
           <input required name="name" type="text" placeholder="John Doe" autoComplete="name" pattern="[A-Za-z\s\-']{2,50}" className={inputClass} />
         </div>
         <div>
-          <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Phone <span className="text-[var(--onestop-red)]">*</span></label>
+          <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Phone <span className="text-[var(--onestop-red)]">*</span></label>
           <input required name="phone" type="tel" placeholder="(832) 555-0123" autoComplete="tel" value={phoneValue} onChange={(e) => setPhoneValue(formatPhone(e.target.value))} pattern="\(\d{3}\) \d{3}-\d{4}" className={inputClass} />
         </div>
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Street Address <span className="text-[var(--onestop-red)]">*</span></label>
+        <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Street Address <span className="text-[var(--onestop-red)]">*</span></label>
         <input required name="address" type="text" placeholder="123 Main St, Richmond TX" autoComplete="street-address" className={inputClass} />
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid gap-3 lg:gap-4 sm:grid-cols-2">
         <div>
-          <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Service Needed <span className="text-[var(--onestop-red)]">*</span></label>
+          <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Service Needed <span className="text-[var(--onestop-red)]">*</span></label>
           <select required name="service" defaultValue="" className={`${inputClass} appearance-none`}>
             <option value="" disabled>Select a service</option>
             {[siteConfig.primaryService, ...siteConfig.services].map((s) => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
         <div>
-          <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Timeline</label>
+          <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Timeline</label>
           <select name="timeline" defaultValue="" className={`${inputClass} appearance-none`}>
             <option value="" disabled>How soon?</option>
             <option value="ASAP">ASAP</option>
@@ -104,8 +98,8 @@ function HeroEstimateForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-slate-600 mb-1.5 uppercase tracking-wide">Project Details <span className="text-slate-400 normal-case font-normal">(optional)</span></label>
-        <textarea name="message" rows={3} maxLength={5000} placeholder="Describe your project, budget, or best time to reach you..." className={`${inputClass} resize-none`} />
+        <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Project Details <span className="text-slate-400 normal-case font-normal">(optional)</span></label>
+        <textarea name="message" rows={2} maxLength={5000} placeholder="Describe your project, budget, or best time to reach you..." className={`${inputClass} resize-none`} />
       </div>
 
       <label className="flex items-start gap-2.5 cursor-pointer">
@@ -113,7 +107,7 @@ function HeroEstimateForm() {
         <span className="text-[0.7rem] leading-relaxed text-slate-500">I agree to receive SMS/text messages from One Stop Outdoor Construction regarding my estimate. Message &amp; data rates may apply. Reply STOP to opt out.</span>
       </label>
 
-      <button type="submit" disabled={formStatus === 'sending'} className="w-full bg-[var(--onestop-red)] py-4 text-sm font-bold uppercase tracking-[0.15em] text-white transition-all hover:bg-[#a5311f] active:scale-[0.98] disabled:opacity-60">
+      <button type="submit" disabled={formStatus === 'sending'} className="w-full bg-[var(--onestop-red)] py-3 lg:py-4 text-sm font-bold uppercase tracking-[0.15em] text-white transition-all hover:bg-[#a5311f] active:scale-[0.98] disabled:opacity-60">
         {formStatus === 'sending' ? 'SENDING...' : 'GET YOUR FREE ESTIMATE'}
       </button>
 
@@ -123,9 +117,10 @@ function HeroEstimateForm() {
   );
 }
 
-/* ─── PAGE ─── */
 /* ─── REVIEWS CAROUSEL ─── */
 const REVIEWS_PER_PAGE = 6;
+const getServicePreviewImage = (service: (typeof serviceData)[number]) =>
+  service.media.find((item) => item.type === 'image')?.src ?? '/facebook/hero.jpg';
 
 function ReviewsSection() {
   const shell = 'mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10';
@@ -140,7 +135,17 @@ function ReviewsSection() {
 
   return (
     <section id="reviews" className="scroll-mt-20 relative isolate overflow-hidden py-16 sm:py-32">
-      <div className="absolute inset-0 -top-20 -bottom-20 bg-[url('/facebook/hero.jpg')] bg-cover bg-center bg-fixed" />
+      <div className="absolute inset-0 -top-20 -bottom-20">
+        <Image
+          src="/facebook/hero.jpg"
+          alt=""
+          aria-hidden
+          fill
+          sizes="100vw"
+          quality={70}
+          className="object-cover"
+        />
+      </div>
       <div className="absolute inset-0 bg-black/75" />
 
       <div className={`${shell} relative z-10`}>
@@ -149,7 +154,7 @@ function ReviewsSection() {
           <div className="mt-4 flex items-center justify-center gap-3">
             <Stars count={5} size="h-5 w-5 text-[#FBBC05]" />
             <span className="text-lg font-extrabold text-white">{siteConfig.rating.toFixed(1)}</span>
-            <span className="text-sm text-white/50">({siteConfig.reviewCount}+ verified reviews)</span>
+            <span className="text-sm text-white/50">Perfect 5.0 on Google</span>
           </div>
         </div>
 
@@ -222,38 +227,47 @@ export default function HomePageClient() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({ "@context": "https://schema.org", "@type": "HowTo", "name": "How to Get Professional Outdoor Construction in Richmond, Katy & Houston TX", "description": "Get expert outdoor construction from One Stop Outdoor Construction in 3 simple steps.", "totalTime": "PT1H", "step": [{ "@type": "HowToStep", "position": 1, "name": "Call for a Free Estimate", "text": "Contact us at (832) 945-8084. Describe your project.", "url": "https://onestopoutdoorconstruction.net/contact" }, { "@type": "HowToStep", "position": 2, "name": "On-Site Evaluation & Quote", "text": "We visit your property and provide a transparent, competitive price." }, { "@type": "HowToStep", "position": 3, "name": "Expert Build & Completion", "text": "Our licensed crew handles the project from start to finish." }] }) }} />
 
       {/* ═══ HERO ═══ */}
-      <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)]" style={{ minHeight: 'calc(100dvh - 6.5rem)' }}>
-        {/* Full-bleed background image */}
-        <div className="absolute inset-0 bg-[url('/facebook/hero.jpg')] bg-cover bg-center bg-no-repeat" />
-        {/* Natural dark overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20" />
+      <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)] lg:min-h-[calc(100dvh-6.5rem)]">
+        {/* Hero background */}
+        <div className="absolute inset-0">
+          <Image
+            src="/hero.png"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            quality={90}
+            className="object-cover object-center lg:object-[center_40%]"
+          />
+        </div>
+        {/* Overlay — heavier on mobile for stacked text readability */}
+        <div className="absolute inset-0 bg-black/60 lg:bg-transparent" />
+        <div className="absolute inset-0 hidden lg:block bg-gradient-to-r from-black/75 via-black/55 to-black/35" />
 
-        <div className={`${shell} relative z-10 flex items-center`} style={{ minHeight: 'calc(100dvh - 6.5rem)' }}>
-          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12 xl:gap-20 items-center w-full py-12 sm:py-16">
+        <div className={`${shell} relative z-10 flex items-center lg:min-h-[calc(100dvh-6.5rem)]`}>
+          <div className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:gap-10 xl:gap-16 items-center w-full py-8 sm:py-12 lg:py-16">
 
-            {/* Left — headline with staggered entrance */}
+            {/* Left — headline */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className="text-white">
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }} className="inline-flex items-center gap-2.5 rounded-full bg-white/8 border border-white/12 px-4 py-2 mb-7 backdrop-blur-sm">
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }} className="inline-flex items-center gap-2.5 rounded-full bg-white/8 border border-white/12 px-4 py-2 mb-6 backdrop-blur-sm">
                 <Stars count={5} size="h-3.5 w-3.5 text-[#FBBC05]" />
-                <span className="text-[0.75rem] font-medium text-white/80">{siteConfig.rating} Stars &bull; {siteConfig.reviewCount}+ Google Reviews</span>
+                <span className="text-[0.75rem] font-medium text-white/80">{siteConfig.rating} Star Rated &bull; Google Verified</span>
               </motion.div>
 
-              <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} className="text-[2.75rem] sm:text-[3.5rem] lg:text-[4.25rem] xl:text-[5rem] font-black leading-[0.92] tracking-[-0.03em] text-white mb-7">
-                Custom Outdoor<br />
-                Construction.<br />
-                <span className="text-[var(--onestop-red)]">Done Right.</span>
+              <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} className="text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] font-black leading-[0.95] tracking-[-0.02em] text-white mb-4 sm:mb-6">
+                Custom Outdoor Construction.<br /><span className="text-[var(--onestop-red)]">Done Right.</span>
               </motion.h1>
 
-              <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }} className="text-[1.05rem] sm:text-lg leading-[1.7] text-white/60 max-w-[480px] mb-9">
+              <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }} className="text-sm sm:text-base lg:text-lg leading-[1.6] text-white/60 max-w-[460px] mb-5 sm:mb-8">
                 Patio covers, outdoor kitchens, concrete &amp; pergolas. {siteConfig.yearsInBusiness}+ years serving Richmond, Katy &amp; Houston. Licensed &amp; insured.
               </motion.p>
 
-              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.35 }} className="flex flex-col sm:flex-row gap-3 mb-10">
-                <a href={`tel:${cleanPhone}`} className="inline-flex items-center justify-center gap-2.5 bg-[var(--onestop-red)] h-[52px] px-8 text-[0.8rem] font-bold uppercase tracking-[0.1em] text-white rounded-xl hover:bg-[#a5311f] active:scale-[0.97] transition-all duration-200 shadow-xl shadow-[var(--onestop-red)]/20">
+              <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.35 }} className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-5 sm:mb-8">
+                <a href={`tel:${cleanPhone}`} className="inline-flex items-center justify-center gap-2.5 bg-[var(--onestop-red)] h-11 sm:h-[52px] px-6 sm:px-8 text-[0.75rem] sm:text-[0.8rem] font-bold uppercase tracking-[0.1em] text-white rounded-xl hover:bg-[#a5311f] active:scale-[0.97] transition-all duration-200 shadow-xl shadow-[var(--onestop-red)]/20">
                   <Phone className="h-4 w-4" /> Call Now: {siteConfig.phone}
                 </a>
-                <Link href="/gallery" className="inline-flex items-center justify-center gap-2 bg-white/8 border border-white/15 h-[52px] px-8 text-[0.8rem] font-semibold text-white/90 rounded-xl hover:bg-white/15 active:scale-[0.97] transition-all duration-200 backdrop-blur-sm">
+                <Link href="/gallery" className="inline-flex items-center justify-center gap-2 bg-white/8 border border-white/15 h-11 sm:h-[52px] px-6 sm:px-8 text-[0.75rem] sm:text-[0.8rem] font-semibold text-white/90 rounded-xl hover:bg-white/15 active:scale-[0.97] transition-all duration-200 backdrop-blur-sm">
                   View Our Work <ArrowRight className="h-4 w-4" />
                 </Link>
               </motion.div>
@@ -267,9 +281,9 @@ export default function HomePageClient() {
 
             {/* Right — floating form card */}
             <motion.div id="hero-form" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2 }} className="scroll-mt-28">
-              <div className="bg-white p-6 sm:p-8 lg:p-10 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)]">
-                <h2 className="text-xl sm:text-2xl font-black text-[var(--onestop-navy-deep)] tracking-tight mb-1 uppercase">Get Your Free Estimate</h2>
-                <p className="text-sm text-slate-400 mb-6">No cost. No obligation. Fast response.</p>
+              <div className="bg-white p-4 sm:p-6 lg:p-10 shadow-[0_20px_60px_-10px_rgba(0,0,0,0.5)]">
+                <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-[var(--onestop-navy-deep)] tracking-tight mb-1 uppercase">Get Your Free Estimate</h2>
+                <p className="text-xs sm:text-sm text-slate-400 mb-4 lg:mb-6">No cost. No obligation. Fast response.</p>
                 <HeroEstimateForm />
               </div>
             </motion.div>
@@ -279,73 +293,74 @@ export default function HomePageClient() {
         {/* Hard bottom edge — no fade */}
       </section>
 
-      {/* ═══ TRUST LOGOS BAR ═══ */}
+      {/* ═══ TRUSTED & VERIFIED ═══ */}
       <section className="bg-[var(--onestop-cream)] border-y border-slate-200">
-        <div className={`${shell} py-8 sm:py-10`}>
-          <div className="grid grid-cols-3 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-4 items-center">
-
-            {/* Google */}
-            <div className="flex flex-col items-center text-center">
-              <svg viewBox="0 0 24 24" className="w-9 h-9 mb-2" xmlns="http://www.w3.org/2000/svg">
+        <div className={`${shell} py-12 sm:py-16`}>
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <div className="h-px flex-1 max-w-16 bg-slate-300" />
+            <p className="text-center text-[0.7rem] font-extrabold uppercase tracking-[0.25em] text-slate-500">Trusted &amp; Verified</p>
+            <div className="h-px flex-1 max-w-16 bg-slate-300" />
+          </div>
+          {/* Row 1: 4 logos */}
+          <div className="grid grid-cols-4 gap-4 sm:gap-8 items-center justify-items-center lg:hidden">
+            <div className="flex items-center justify-center">
+              <svg viewBox="0 0 24 24" className="h-10 sm:h-14 w-auto" xmlns="http://www.w3.org/2000/svg">
                 <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
                 <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
                 <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
                 <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
               </svg>
-              <div className="flex items-center gap-0.5 mb-0.5">
-                <Stars count={5} size="h-2.5 w-2.5 text-[#FBBC05]" />
-              </div>
-              <div className="text-xs font-bold text-slate-700">{siteConfig.rating}/5 Rating</div>
-              <div className="text-[0.7rem] text-slate-400">{siteConfig.reviewCount}+ Reviews</div>
             </div>
-
-            {/* BBB */}
-            <div className="flex flex-col items-center text-center">
-              <svg viewBox="0 0 100 40" className="w-20 h-auto mb-2" xmlns="http://www.w3.org/2000/svg">
-                <rect width="100" height="40" rx="4" fill="#005F89"/>
-                <rect x="2" y="2" width="96" height="36" rx="3" fill="none" stroke="#0078AB" strokeWidth="1"/>
-                <text x="50" y="14" textAnchor="middle" fill="white" fontSize="7" fontWeight="600" fontFamily="Arial, sans-serif" letterSpacing="0.5">ACCREDITED</text>
-                <text x="50" y="25" textAnchor="middle" fill="white" fontSize="9" fontWeight="900" fontFamily="Arial, sans-serif" letterSpacing="0.3">BUSINESS</text>
-                <text x="50" y="35" textAnchor="middle" fill="#FDB913" fontSize="8" fontWeight="900" fontFamily="Arial, sans-serif">BBB &bull; A+</text>
+            <div className="flex items-center justify-center">
+              <img src="/logos/bbb-aplus-rating-clean.svg" alt="BBB A+ Rating" className="h-12 sm:h-16 w-auto" />
+            </div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/Yelp-Logo-clean.svg" alt="Yelp" className="h-8 sm:h-12 w-auto" />
+            </div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/Nextdoor-logo-green-clean.svg" alt="Nextdoor" className="h-8 sm:h-12 w-auto" />
+            </div>
+          </div>
+          {/* Row 2: 3 logos centered */}
+          <div className="mt-4 sm:mt-6 grid grid-cols-3 gap-4 sm:gap-8 items-center justify-items-center lg:hidden">
+            <div className="flex items-center justify-center">
+              <img src="/logos/neighborhood-fave-2025-clean.svg" alt="Nextdoor Neighborhood Fave 2025" className="h-12 sm:h-16 w-auto" />
+            </div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/facebook-clean.svg" alt="Facebook" className="h-8 sm:h-12 w-auto" />
+            </div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/licenseinsuredbonded-clean.svg" alt="Licensed, Insured & Bonded" className="h-12 sm:h-16 w-auto" />
+            </div>
+          </div>
+          {/* Desktop: single row of 7 */}
+          <div className="hidden lg:grid grid-cols-7 gap-8 items-center justify-items-center">
+            <div className="flex items-center justify-center">
+              <svg viewBox="0 0 24 24" className="h-14 w-auto" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
               </svg>
             </div>
-
-            {/* Angi */}
-            <div className="flex flex-col items-center text-center">
-              <svg viewBox="0 0 80 40" className="w-16 h-auto mb-2" xmlns="http://www.w3.org/2000/svg">
-                <rect width="80" height="40" rx="4" fill="#FF6153"/>
-                <text x="40" y="18" textAnchor="middle" fill="white" fontSize="16" fontWeight="900" fontFamily="Arial, sans-serif">angi</text>
-                <text x="40" y="32" textAnchor="middle" fill="white" fontSize="7" fontWeight="600" fontFamily="Arial, sans-serif" letterSpacing="0.5">CERTIFIED</text>
-              </svg>
+            <div className="flex items-center justify-center">
+              <img src="/logos/bbb-aplus-rating-clean.svg" alt="BBB A+ Rating" className="h-16 w-auto" />
             </div>
-
-            {/* Facebook */}
-            <div className="flex flex-col items-center text-center">
-              <svg viewBox="0 0 24 24" className="w-9 h-9 mb-2" fill="#1877F2" xmlns="http://www.w3.org/2000/svg">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-              </svg>
-              <div className="text-xs font-bold text-slate-700">Facebook</div>
-              <div className="text-[0.7rem] text-slate-400">Business Page</div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/Yelp-Logo-clean.svg" alt="Yelp" className="h-12 w-auto" />
             </div>
-
-            {/* Licensed & Insured */}
-            <div className="flex flex-col items-center text-center">
-              <div className="w-11 h-11 bg-[var(--onestop-navy-deep)] flex items-center justify-center mb-2">
-                <Shield className="h-6 w-6 text-white" />
-              </div>
-              <div className="text-xs font-bold text-slate-700">Licensed</div>
-              <div className="text-[0.7rem] text-slate-400">&amp; Insured</div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/Nextdoor-logo-green-clean.svg" alt="Nextdoor" className="h-12 w-auto" />
             </div>
-
-            {/* Est. / Years */}
-            <div className="flex flex-col items-center text-center">
-              <div className="w-11 h-11 bg-[var(--onestop-navy-deep)] flex items-center justify-center mb-2">
-                <span className="text-white text-base font-black">{siteConfig.yearsInBusiness}+</span>
-              </div>
-              <div className="text-xs font-bold text-slate-700">Years</div>
-              <div className="text-[0.7rem] text-slate-400">Est. {new Date().getFullYear() - siteConfig.yearsInBusiness}</div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/neighborhood-fave-2025-clean.svg" alt="Nextdoor Neighborhood Fave 2025" className="h-16 w-auto" />
             </div>
-
+            <div className="flex items-center justify-center">
+              <img src="/logos/facebook-clean.svg" alt="Facebook" className="h-12 w-auto" />
+            </div>
+            <div className="flex items-center justify-center">
+              <img src="/logos/licenseinsuredbonded-clean.svg" alt="Licensed, Insured & Bonded" className="h-16 w-auto" />
+            </div>
           </div>
         </div>
       </section>
@@ -361,7 +376,7 @@ export default function HomePageClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-3">
             {serviceData.slice(0, 3).map((s) => (
               <Link key={s.slug} href={`/services#${s.slug}`} className="group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end">
-                <Image src={s.image} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" quality={85} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
+                <Image src={getServicePreviewImage(s)} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" quality={80} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="relative z-10 p-5">
                   <h3 className="text-lg font-extrabold text-white tracking-tight">{s.title}</h3>
@@ -375,7 +390,7 @@ export default function HomePageClient() {
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {serviceData.slice(3).map((s) => (
               <Link key={s.slug} href={`/services#${s.slug}`} className="group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end">
-                <Image src={s.image} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" quality={85} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
+                <Image src={getServicePreviewImage(s)} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" quality={80} sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
                 <div className="relative z-10 p-5">
                   <h3 className="text-lg font-extrabold text-white tracking-tight">{s.title}</h3>
@@ -400,7 +415,7 @@ export default function HomePageClient() {
                 {[
                   { value: `${siteConfig.yearsInBusiness}+`, label: 'Years' },
                   { value: '70%', label: 'Referrals' },
-                  { value: `${siteConfig.reviewCount}+`, label: '5-Star' },
+                  { value: '5.0', label: 'Rated' },
                 ].map((stat) => (
                   <div key={stat.label} className="rounded-xl bg-white px-2 py-3 sm:p-3 text-center shadow-lg border border-slate-100">
                     <div className="text-lg sm:text-xl font-extrabold text-[var(--onestop-navy-deep)]">{stat.value}</div>
@@ -470,7 +485,14 @@ export default function HomePageClient() {
               <Link key={project.label} href="/gallery" className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 {/* Photo view */}
                 <div className="relative bg-slate-100 overflow-hidden aspect-[4/3]">
-                  <img src={project.src} alt={`${project.service} in ${project.location} - ${project.label}`} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" />
+                  <Image
+                    src={project.src}
+                    alt={`${project.service} in ${project.location} - ${project.label}`}
+                    fill
+                    quality={78}
+                    sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--onestop-navy-deep)]/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                 </div>
                 {/* Info strip */}
@@ -535,7 +557,17 @@ export default function HomePageClient() {
 
       {/* ═══ BOTTOM CTA + SECOND FORM — Pattern 2: Dual Lead Capture ═══ */}
       <section className="relative isolate overflow-hidden bg-slate-950 py-20 sm:py-28">
-        <div className="absolute inset-0 bg-[url('/facebook/filler2.jpg')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler2.jpg"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            quality={65}
+            className="object-cover opacity-20 mix-blend-luminosity"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-slate-950/40" />
         
         <div className={`${shell} relative z-10`}>

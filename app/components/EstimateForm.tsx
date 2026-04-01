@@ -10,11 +10,6 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
   const [formError, setFormError] = useState('');
   const [formTimestamp] = useState(() => Date.now().toString());
   const [phoneValue, setPhoneValue] = useState('');
-  const [pageUrl, setPageUrl] = useState('');
-
-  if (typeof window !== 'undefined' && !pageUrl) {
-    setPageUrl(window.location.href);
-  }
 
   const formatPhone = (v: string) => {
     const d = v.replace(/\D/g, '').slice(0, 10);
@@ -30,6 +25,9 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
     setFormStatus('sending');
     const form = e.currentTarget;
     const fd = new FormData(form);
+    if (typeof window !== 'undefined') {
+      fd.set('page', window.location.href);
+    }
     if (String(fd.get('website') || '').trim()) { form.reset(); setPhoneValue(''); setFormStatus('success'); return; }
     try {
       const res = await fetch('/api/lead', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
@@ -46,7 +44,6 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
       <form className="grid gap-4 sm:gap-4.5" action="/api/lead" method="POST" onSubmit={handleSubmit}>
         <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <input type="hidden" name="_ts" value={formTimestamp} />
-        <input type="hidden" name="page" value={pageUrl} />
 
         <div className="grid gap-4 sm:gap-4.5 sm:grid-cols-2">
           <div>
@@ -131,7 +128,7 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
         <Stars count={5} size="h-3 w-3" />
         <span className="font-bold text-slate-600">{siteConfig.rating.toFixed(1)}</span>
         <span>|</span>
-        <span>{siteConfig.reviewCount}+ happy customers</span>
+        <span>5-Star Rated on Google</span>
       </div>
     </div>
   );

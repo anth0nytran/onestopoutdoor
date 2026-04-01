@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   Phone,
@@ -11,13 +12,9 @@ import {
   MapPin,
   Star,
   Truck,
-  MessageCircle,
-  Award,
-  Users,
 } from 'lucide-react';
 import { siteConfig } from '../config';
 import { EstimateForm } from '../components/EstimateForm';
-import { Stars } from '../components/Stars';
 
 const shell = 'mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10';
 
@@ -26,16 +23,23 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-const stagger = {
-  visible: { transition: { staggerChildren: 0.08 } },
-};
-
 export default function ContactPageClient({ faqs }: { faqs: { q: string; a: string }[] }) {
   return (
     <>
       {/* ═══ PAGE HEADER ═══ */}
       <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)] py-10 sm:py-14 lg:py-16">
-        <div className="absolute inset-0 bg-[url('/facebook/filler.jpg')] bg-cover bg-center bg-no-repeat opacity-20" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler.jpg"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            quality={70}
+            className="object-cover opacity-20"
+          />
+        </div>
         <div className="absolute inset-0 bg-[var(--onestop-navy-deep)]/80" />
         <div className={`${shell} relative z-10`}>
           <nav aria-label="Breadcrumb" className="mb-4">
@@ -164,7 +168,7 @@ export default function ContactPageClient({ faqs }: { faqs: { q: string; a: stri
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { icon: Shield, label: 'Licensed & Insured' },
-                  { icon: Star, label: `${siteConfig.rating} Stars — ${siteConfig.reviewCount}+ Reviews` },
+                  { icon: Star, label: `${siteConfig.rating} Star Rated` },
                   { icon: CheckCircle2, label: `${siteConfig.yearsInBusiness}+ Years Experience` },
                   { icon: Truck, label: '70% Repeat & Referral' },
                 ].map((item) => (
@@ -226,7 +230,17 @@ export default function ContactPageClient({ faqs }: { faqs: { q: string; a: stri
 
       {/* ═══ BOTTOM CTA ═══ */}
       <section className="relative isolate overflow-hidden bg-slate-950 py-16 sm:py-20">
-        <div className="absolute inset-0 bg-[url('/facebook/filler2.jpg')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler2.jpg"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            quality={65}
+            className="object-cover opacity-20 mix-blend-luminosity"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-slate-950/40" />
         <div className={`${shell} relative z-10`}>
           <motion.div

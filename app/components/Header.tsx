@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, Phone, X } from 'lucide-react';
@@ -11,17 +12,17 @@ export function Header() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => {
+      const nextScrolled = window.scrollY > 40;
+      setScrolled((current) => (current === nextScrolled ? current : nextScrolled));
+    };
     onScroll();
     window.addEventListener('scroll', onScroll);
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
-
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
 
   return (
     <>
@@ -60,10 +61,14 @@ export function Header() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.25 }}
               >
-                <div className="font-extrabold tracking-[-0.03em] text-[0.95rem] sm:text-xl text-[var(--onestop-navy-deep)]">
-                  ONE STOP <span className="text-[var(--onestop-red)]">OUTDOOR</span>
-                </div>
-                <div className="text-[0.55rem] sm:text-[0.6rem] font-bold uppercase tracking-[0.35em] text-slate-400 mt-0.5">Design &amp; Build &mdash; Richmond, TX</div>
+                <Image
+                  src="/logos/main_logo.svg"
+                  alt="One Stop Outdoor Construction"
+                  width={200}
+                  height={56}
+                  priority
+                  className="h-10 sm:h-14 w-auto"
+                />
               </motion.div>
             </Link>
 
@@ -110,7 +115,7 @@ export function Header() {
             </motion.div>
 
             {/* Mobile menu toggle */}
-            <button className="inline-flex h-11 w-11 items-center justify-center lg:hidden text-[var(--onestop-navy-deep)]" onClick={() => setMobileMenuOpen((o) => !o)} aria-label="Menu">
+            <button type="button" className="inline-flex h-11 w-11 items-center justify-center lg:hidden text-[var(--onestop-navy-deep)]" onClick={() => setMobileMenuOpen((o) => !o)} aria-label="Menu">
               <motion.div animate={{ rotate: mobileMenuOpen ? 90 : 0 }} transition={{ duration: 0.2 }}>
                 {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </motion.div>
@@ -139,6 +144,7 @@ export function Header() {
                     >
                       <Link
                         href={l.href}
+                        onClick={closeMobileMenu}
                         className="block py-3.5 text-base font-semibold text-[var(--onestop-navy-deep)] border-b border-slate-100 last:border-0 transition-colors hover:text-[var(--onestop-red)]"
                       >
                         {l.label}
@@ -150,7 +156,7 @@ export function Header() {
                   <a href={`tel:${siteConfig.cleanPhone}`} className="flex items-center justify-center gap-2 text-sm font-bold text-[var(--onestop-navy-deep)]">
                     <Phone className="h-4 w-4" /> {siteConfig.phone}
                   </a>
-                  <Link href="/contact" className="block text-center bg-[var(--onestop-red)] py-4 rounded-lg text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[var(--onestop-navy-deep)]">
+                  <Link href="/contact" onClick={closeMobileMenu} className="block text-center bg-[var(--onestop-red)] py-4 rounded-lg text-xs font-bold uppercase tracking-[0.15em] text-white transition-colors hover:bg-[var(--onestop-navy-deep)]">
                     Call Now
                   </Link>
                 </div>

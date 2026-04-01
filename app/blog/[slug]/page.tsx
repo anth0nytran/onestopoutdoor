@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowLeft, ArrowRight, Calendar, Clock, Tag } from 'lucide-react';
 import { blogPosts, getPostBySlug, getAllSlugs } from '../posts';
 import { siteConfig } from '../../config';
@@ -143,7 +144,7 @@ export default async function BlogPostPage({
               url: 'https://onestopoutdoorconstruction.net',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://onestopoutdoorconstruction.net/onestop/logo.svg',
+                url: 'https://onestopoutdoorconstruction.net/onestop/og-image.svg',
               },
             },
             mainEntityOfPage: {
@@ -286,7 +287,17 @@ export default async function BlogPostPage({
 
       {/* ── CTA ── */}
       <section className="relative isolate overflow-hidden bg-slate-950 py-16 sm:py-20">
-        <div className="absolute inset-0 bg-[url('/facebook/filler2.jpg')] bg-cover bg-center bg-no-repeat opacity-20 mix-blend-luminosity" />
+        <div className="absolute inset-0">
+          <Image
+            src="/facebook/filler2.jpg"
+            alt=""
+            aria-hidden
+            fill
+            sizes="100vw"
+            quality={65}
+            className="object-cover opacity-20 mix-blend-luminosity"
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-slate-950/40" />
         <div className={`${shell} relative z-10 text-center`}>
           <h2 className="font-[family-name:var(--font-app-display)] text-3xl sm:text-4xl font-bold text-white mb-4">

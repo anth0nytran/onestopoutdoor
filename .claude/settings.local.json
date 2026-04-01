@@ -18,7 +18,11 @@
       "Bash(find 'C:\\\\Users\\\\antho\\\\Desktop\\\\one stop outdoor construction/app' -type f \\\\\\(-name *.ts -o -name *.tsx -o -name *.js -o -name *.jsx -o -name *.css -o -name *.html \\\\\\))",
       "Bash(while read:*)",
       "Bash(do rm:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(for f:*)",
+      "Bash(do base=\"$f%.*\")",
+      "Bash(echo \"Converting $f -> $base.mp4\")",
+      "Bash(ffmpeg -i \"$f\" -c:v libx264 -preset fast -crf 23 -c:a aac -movflags +faststart \"$base.mp4\" -y)"
     ]
   },
   "enableAllProjectMcpServers": true,
