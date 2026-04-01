@@ -36,7 +36,7 @@ export default function ContactPageClient({ faqs }: { faqs: { q: string; a: stri
             fill
             priority
             sizes="100vw"
-            quality={70}
+           
             className="object-cover opacity-20"
           />
         </div>
@@ -237,7 +237,7 @@ export default function ContactPageClient({ faqs }: { faqs: { q: string; a: stri
             aria-hidden
             fill
             sizes="100vw"
-            quality={65}
+           
             className="object-cover opacity-20 mix-blend-luminosity"
           />
         </div>

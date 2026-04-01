@@ -85,9 +85,12 @@ export const metadata: Metadata = {
     images: ['/logos/main_logo.svg'],
   },
   icons: {
-    icon: '/logos/main_logo.svg',
-    shortcut: '/logos/main_logo.svg',
-    apple: '/logos/main_logo.svg',
+    icon: [
+      { url: '/favicon.ico', sizes: '48x48', type: 'image/x-icon' },
+      { url: '/logos/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/logos/main_logo.png',
   },
 };
 

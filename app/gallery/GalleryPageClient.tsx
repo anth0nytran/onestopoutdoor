@@ -92,7 +92,7 @@ function Lightbox({
             />
           ) : (
             <div className="relative w-full max-h-[75vh] aspect-[4/3]">
-              <Image key={item.src} src={item.src} alt={item.label} fill sizes="90vw" quality={90} className="object-contain rounded-lg" />
+              <Image key={item.src} src={item.src} alt={item.label} fill sizes="90vw" className="object-contain rounded-lg" />
             </div>
           )}
         </div>
@@ -125,7 +125,7 @@ export default function GalleryPageClient({ projects }: { projects: GalleryItem[
       {/* ═══ PAGE HEADER ═══ */}
       <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)] py-10 sm:py-14 lg:py-16">
         <div className="absolute inset-0">
-          <Image src="/facebook/filler.jpg" alt="" aria-hidden fill priority sizes="100vw" quality={70} className="object-cover opacity-20" />
+          <Image src="/facebook/filler.jpg" alt="" aria-hidden fill priority sizes="100vw" className="object-cover opacity-20" />
         </div>
         <div className="absolute inset-0 bg-[var(--onestop-navy-deep)]/80" />
         <div className={`${shell} relative z-10`}>
@@ -230,7 +230,7 @@ export default function GalleryPageClient({ projects }: { projects: GalleryItem[
                       src={project.src}
                       alt={`${project.service} in ${project.location} - ${project.label}`}
                       fill
-                      quality={78}
+                     
                       sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
@@ -298,7 +298,7 @@ export default function GalleryPageClient({ projects }: { projects: GalleryItem[
       {/* ═══ BOTTOM CTA ═══ */}
       <section className="relative isolate overflow-hidden bg-slate-950 py-16 sm:py-20">
         <div className="absolute inset-0">
-          <Image src="/facebook/filler2.jpg" alt="" aria-hidden fill sizes="100vw" quality={65} className="object-cover opacity-20 mix-blend-luminosity" />
+          <Image src="/facebook/filler2.jpg" alt="" aria-hidden fill sizes="100vw" className="object-cover opacity-20 mix-blend-luminosity" />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 to-slate-950/40" />
         <div className={`${shell} relative z-10`}>

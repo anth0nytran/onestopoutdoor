@@ -38,7 +38,7 @@ export default function AboutPageClient() {
             fill
             priority
             sizes="100vw"
-            quality={70}
+           
             className="object-cover opacity-20"
           />
         </div>
@@ -143,7 +143,7 @@ export default function AboutPageClient() {
             >
               {/* Photo placeholder */}
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl bg-slate-200 shadow-lg">
-                <Image src="/facebook/ourstory.jpg" alt="One Stop Outdoor Construction crew building a patio cover frame" fill className="object-cover" quality={85} />
+                <Image src="/facebook/ourstory.jpg" alt="One Stop Outdoor Construction crew building a patio cover frame" fill className="object-cover" />
               </div>
 
               <div className="flex items-center gap-3 rounded-xl bg-[var(--onestop-cream)] border border-slate-200 px-5 py-4">
@@ -316,7 +316,7 @@ export default function AboutPageClient() {
             aria-hidden
             fill
             sizes="100vw"
-            quality={65}
+           
             className="object-cover opacity-20 mix-blend-luminosity"
           />
         </div>

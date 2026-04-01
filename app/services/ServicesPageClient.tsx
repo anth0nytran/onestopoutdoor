@@ -141,7 +141,7 @@ function MediaLightbox({
                 alt={`${title} ${index + 1}`}
                 fill
                 sizes="90vw"
-                quality={90}
+               
                 className="object-contain rounded-lg"
               />
             </div>
@@ -213,7 +213,7 @@ function MediaCarouselPlayer({ service }: { service: ServiceItem }) {
             alt={`${service.title} featured`}
             fill
             sizes="(max-width: 768px) 100vw, 50vw"
-            quality={85}
+           
             className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
           />
         )}
@@ -304,7 +304,7 @@ export default function ServicesPageClient({
             fill
             priority
             sizes="100vw"
-            quality={70}
+           
             className="object-cover opacity-20"
           />
         </div>
@@ -427,7 +427,7 @@ export default function ServicesPageClient({
             aria-hidden
             fill
             sizes="100vw"
-            quality={65}
+           
             className="object-cover opacity-30 mix-blend-luminosity"
           />
         </div>
@@ -550,7 +550,7 @@ export default function ServicesPageClient({
             aria-hidden
             fill
             sizes="100vw"
-            quality={65}
+           
             className="object-cover opacity-20 mix-blend-luminosity"
           />
         </div>

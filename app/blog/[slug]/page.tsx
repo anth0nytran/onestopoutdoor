@@ -294,7 +294,7 @@ export default async function BlogPostPage({
             aria-hidden
             fill
             sizes="100vw"
-            quality={65}
+           
             className="object-cover opacity-20 mix-blend-luminosity"
           />
         </div>
