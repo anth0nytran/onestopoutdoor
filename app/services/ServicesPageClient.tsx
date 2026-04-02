@@ -134,16 +134,19 @@ function MediaLightbox({
               className="max-h-[75vh] max-w-full rounded-lg"
             />
           ) : (
-            <div className="relative w-full max-h-[75vh] aspect-[4/3]">
-              <Image
+            <div className="relative inline-block max-h-[75vh] max-w-full">
+              <img
                 key={item.src}
                 src={item.src}
                 alt={`${title} ${index + 1}`}
-                fill
-                sizes="90vw"
-               
-                className="object-contain rounded-lg"
+                className="max-h-[75vh] max-w-full rounded-lg object-contain"
+                draggable={false}
+                onContextMenu={(e) => e.preventDefault()}
               />
+              {/* Watermark */}
+              <div className="absolute bottom-2 left-2 pointer-events-none select-none opacity-25">
+                <img src="/logos/main_logo.png" alt="" aria-hidden draggable={false} className="h-5 w-auto" />
+              </div>
             </div>
           )}
         </div>
@@ -229,6 +232,10 @@ function MediaCarouselPlayer({ service }: { service: ServiceItem }) {
         <div className="absolute bottom-3 left-3 z-10 inline-flex items-center gap-1.5 rounded-full bg-[var(--onestop-navy-deep)] px-3 py-1.5 text-[0.7rem] font-bold uppercase tracking-wider text-white shadow-xl pointer-events-none">
           <Clock className="h-3 w-3 text-[var(--onestop-gold)]" />
           {service.turnaround}
+        </div>
+        {/* Watermark */}
+        <div className="absolute bottom-1.5 left-1.5 z-[1] pointer-events-none select-none opacity-30">
+          <img src="/logos/main_logo.png" alt="" aria-hidden draggable={false} className="h-[5%] min-h-[14px] max-h-[20px] w-auto" />
         </div>
       </div>
 

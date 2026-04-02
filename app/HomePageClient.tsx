@@ -260,7 +260,7 @@ export default function HomePageClient() {
               </motion.h1>
 
               <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }} className="text-sm sm:text-base lg:text-lg leading-[1.6] text-white/60 max-w-[460px] mb-5 sm:mb-8">
-                Patio covers, outdoor kitchens, concrete &amp; pergolas. {siteConfig.yearsInBusiness}+ years serving Richmond, Katy &amp; Houston. Licensed &amp; insured.
+                Patio covers, outdoor kitchens, concrete &amp; pergolas. {siteConfig.yearsInBusiness}+ years serving Richmond, Katy, Sugar Land, Houston &amp; surrounding areas. Licensed &amp; insured.
               </motion.p>
 
               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.35 }} className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-5 sm:mb-8">
@@ -370,6 +370,9 @@ export default function HomePageClient() {
         <div className={shell}>
           <div className="max-w-xl mb-8 sm:mb-12">
             <h2 className="text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">Our Services</h2>
+            <p className="mt-3 text-sm text-slate-500 leading-relaxed">
+              Custom patio covers, concrete, outdoor kitchens &amp; more — serving Richmond, Katy, Sugar Land, Houston &amp; surrounding areas.
+            </p>
           </div>
 
           {/* Top row — 3 equal cards */}
@@ -381,6 +384,9 @@ export default function HomePageClient() {
                 <div className="relative z-10 p-5">
                   <h3 className="text-lg font-extrabold text-white tracking-tight">{s.title}</h3>
                   <p className="mt-1 text-sm text-white/60 line-clamp-1">{s.summary.split(' — ')[0]}</p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-white/40 group-hover:text-[var(--onestop-gold)] transition-colors">
+                    Learn More <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
                 </div>
               </Link>
             ))}
@@ -395,6 +401,9 @@ export default function HomePageClient() {
                 <div className="relative z-10 p-5">
                   <h3 className="text-lg font-extrabold text-white tracking-tight">{s.title}</h3>
                   <p className="mt-1 text-sm text-white/60 line-clamp-1">{s.summary.split(' — ')[0]}</p>
+                  <span className="mt-2 inline-flex items-center gap-1 text-xs font-bold text-white/40 group-hover:text-[var(--onestop-gold)] transition-colors">
+                    Learn More <ArrowRight className="h-3 w-3 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
                 </div>
               </Link>
             ))}
@@ -469,44 +478,43 @@ export default function HomePageClient() {
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 sm:mb-10">
             <div>
               <h2 className="text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">Recent Work</h2>
+              <p className="mt-2 text-sm sm:text-base text-slate-500 leading-relaxed max-w-lg">
+                Real projects completed for homeowners in Richmond, Katy, Sugar Land, Houston, Rosenberg and nearby communities.
+              </p>
             </div>
             <Link href="/gallery" className="mt-3 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--onestop-navy)] hover:text-[var(--onestop-red)] transition-colors py-1">View Full Gallery <ArrowRight className="h-4 w-4" /></Link>
           </div>
 
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { service: 'Patio Cover', location: 'Richmond', label: 'Solid patio cover with concrete base', src: '/OneStopOutdoor_Photos/photo_04.jpg' },
-              { service: 'Concrete', location: 'Sugar Land', label: 'Seamless stamped concrete patio', src: '/OneStopOutdoor_Photos/photo_06.jpg' },
-              { service: 'Outdoor Kitchen', location: 'Katy', label: 'Custom grill station under cover', src: '/OneStopOutdoor_Photos/photo_10.jpg' },
-              { service: 'Pergola', location: 'Sugar Land', label: 'Two-story custom deck and pergola', src: '/OneStopOutdoor_Photos/photo_12.jpg' },
-              { service: 'Outdoor Kitchen', location: 'Rosenberg', label: 'Outdoor fireplace and TV wall', src: '/OneStopOutdoor_Photos/photo_21.jpg' },
-              { service: 'Outdoor Kitchen', location: 'Houston', label: 'Full outdoor kitchen with sink', src: '/OneStopOutdoor_Photos/photo_29.jpg' },
-            ].map((project) => (
-              <Link key={project.label} href="/gallery" className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-                {/* Photo view */}
+              { service: 'Patio Cover', location: 'Richmond', src: '/photos_new_web/patio-cover/patio-cover-1.jpg' },
+              { service: 'Concrete', location: 'Sugar Land', src: '/photos_new_web/concrete/concrete-1.jpg' },
+              { service: 'Outdoor Kitchen', location: 'Katy', src: '/photos_new_web/outdoor-kitchen/outdoor-kitchen-1.jpg' },
+              { service: 'Pergola', location: 'Sugar Land', src: '/service/IMG_6339.jpeg' },
+              { service: 'Patio Cover', location: 'Katy', src: '/photos_new_web/patio-cover/patio-cover-4.jpg' },
+              { service: 'Concrete', location: 'Houston', src: '/photos_new_web/concrete/concrete-3.jpg' },
+            ].map((project, i) => (
+              <Link key={i} href="/gallery" className="group relative flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
                 <div className="relative bg-slate-100 overflow-hidden aspect-[4/3]">
                   <Image
                     src={project.src}
-                    alt={`${project.service} in ${project.location} - ${project.label}`}
+                    alt={`${project.service} in ${project.location}, TX`}
                     fill
-                   
                     sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--onestop-navy-deep)]/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Watermark */}
+                  <div className="absolute bottom-1.5 left-1.5 pointer-events-none select-none opacity-30">
+                    <img src="/logos/main_logo.png" alt="" aria-hidden draggable={false} className="h-[5%] min-h-[14px] max-h-[20px] w-auto" />
+                  </div>
                 </div>
-                {/* Info strip */}
-                <div className="px-5 py-4 border-t border-slate-100 bg-white">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <span className="text-[0.7rem] font-bold uppercase tracking-wider text-[var(--onestop-red)]">
-                        {project.service}
-                      </span>
-                      <p className="text-sm font-bold text-[var(--onestop-navy-deep)] mt-0.5">
-                        {project.label}
-                      </p>
-                    </div>
-                    <span className="shrink-0 mt-1 flex items-center gap-1 rounded-full bg-[var(--onestop-cream)] px-2.5 py-1 text-[0.7rem] font-semibold text-slate-500">
+                <div className="px-5 py-3.5 border-t border-slate-100 bg-white">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-[0.7rem] font-bold uppercase tracking-wider text-[var(--onestop-red)]">
+                      {project.service}
+                    </span>
+                    <span className="shrink-0 flex items-center gap-1 rounded-full bg-[var(--onestop-cream)] px-2.5 py-1 text-[0.7rem] font-semibold text-slate-500">
                       <MapPin className="h-3 w-3" />
                       {project.location}, TX
                     </span>

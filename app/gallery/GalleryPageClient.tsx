@@ -19,7 +19,6 @@ import { siteConfig } from '../config';
 interface GalleryItem {
   service: string;
   location: string;
-  label: string;
   src: string;
   type: 'image' | 'video';
 }
@@ -64,7 +63,7 @@ function Lightbox({
           <span className="text-sm font-semibold text-white/60">
             {index + 1} / {items.length}
           </span>
-          <span className="ml-3 text-sm text-white/40">{item.label}</span>
+          <span className="ml-3 text-sm text-white/40">{item.service} &middot; {item.location}, TX</span>
         </div>
         <button type="button" onClick={onClose} className="flex h-10 w-10 items-center justify-center rounded-full text-white/60 hover:bg-white/10 hover:text-white transition-all">
           <X className="h-5 w-5" />
@@ -91,8 +90,12 @@ function Lightbox({
               className="max-h-[75vh] max-w-full rounded-lg"
             />
           ) : (
-            <div className="relative w-full max-h-[75vh] aspect-[4/3]">
-              <Image key={item.src} src={item.src} alt={item.label} fill sizes="90vw" className="object-contain rounded-lg" />
+            <div className="relative inline-block max-h-[75vh] max-w-full">
+              <img key={item.src} src={item.src} alt={`${item.service} in ${item.location}, TX`} className="max-h-[75vh] max-w-full rounded-lg object-contain" draggable={false} onContextMenu={(e) => e.preventDefault()} />
+              {/* Watermark */}
+              <div className="absolute bottom-2 left-2 pointer-events-none select-none opacity-25">
+                <img src="/logos/main_logo.png" alt="" aria-hidden draggable={false} className="h-5 w-auto" />
+              </div>
             </div>
           )}
         </div>
@@ -228,27 +231,28 @@ export default function GalleryPageClient({ projects }: { projects: GalleryItem[
                   ) : (
                     <Image
                       src={project.src}
-                      alt={`${project.service} in ${project.location} - ${project.label}`}
+                      alt={`${project.service} in ${project.location}, TX`}
                       fill
-                     
+
                       sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   )}
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--onestop-navy-deep)]/40 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  {/* Watermark */}
+                  <div className="absolute bottom-1.5 left-1.5 pointer-events-none select-none opacity-30">
+                    <img src="/logos/main_logo.png" alt="" aria-hidden draggable={false} className="h-[5%] min-h-[14px] max-h-[20px] w-auto" />
+                  </div>
                 </div>
 
                 {/* Info strip */}
-                <div className="px-5 py-4 border-t border-slate-100">
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <span className="text-[0.7rem] font-bold uppercase tracking-wider text-[var(--onestop-gold)]">
-                        {project.service}
-                        {project.type === 'video' && <span className="ml-1.5 text-slate-400">Video</span>}
-                      </span>
-                      <p className="text-sm font-bold text-[var(--onestop-navy-deep)] mt-0.5">{project.label}</p>
-                    </div>
-                    <span className="shrink-0 mt-1 flex items-center gap-1 rounded-full bg-[var(--onestop-cream)] px-2.5 py-1 text-[0.7rem] font-semibold text-slate-500">
+                <div className="px-5 py-3.5 border-t border-slate-100">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="text-[0.7rem] font-bold uppercase tracking-wider text-[var(--onestop-gold)]">
+                      {project.service}
+                      {project.type === 'video' && <span className="ml-1.5 text-slate-400">Video</span>}
+                    </span>
+                    <span className="shrink-0 flex items-center gap-1 rounded-full bg-[var(--onestop-cream)] px-2.5 py-1 text-[0.7rem] font-semibold text-slate-500">
                       <MapPin className="h-3 w-3" />
                       {project.location}, TX
                     </span>
