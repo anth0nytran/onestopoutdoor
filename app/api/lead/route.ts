@@ -141,10 +141,10 @@ export async function POST(req: Request) {
   // 3. Content filtering - detect spam patterns
   const combinedText = `${name} ${address} ${zipCode} ${message}`.toLowerCase();
 
-  // 3a. Check for excessive URLs (more than 2 is suspicious)
-  const urlPattern = /https?:\/\/|www\./gi;
-  const urlCount = (combinedText.match(urlPattern) || []).length;
-  if (urlCount > 2) {
+  // 3a. Check for URLs in the message body (real customers don't include links)
+  const messageUrlPattern = /https?:\/\/|www\./gi;
+  const messageUrlCount = ((message || '').match(messageUrlPattern) || []).length;
+  if (messageUrlCount > 0) {
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
@@ -157,8 +157,26 @@ export async function POST(req: Request) {
     'nigerian prince', 'lottery winner', 'congratulations you won',
     'click here now', 'act now', 'limited time',
     'work from home', 'make money fast', 'earn $$',
+    // SEO / marketing pitch spam
+    'seo strategies', 'seo –', 'seo -', 'improve rankings',
+    'boost your', 'boost their', 'online visibility',
+    'digital marketing', 'performance marketing', 'social media marketing',
+    'google marketing', 'first page of google',
+    'send you a proposal', 'send you a package', 'package/proposal',
+    'ppc/sem', '/sem', '/smo',
+    'marketing consultant', 'marketing work',
+    'attract more visitors', 'website traffic',
+    'free of charge', 'completely free',
+    'looking forward to hearing',
   ];
   if (spamKeywords.some(keyword => combinedText.includes(keyword))) {
+    return NextResponse.json({ ok: true }, { status: 200 });
+  }
+
+  // 3b2. Reject if message contains the site's own domain (common in bot pitches)
+  const ownDomainPatterns = ['onestopoutdoor', 'onestopoutdoorconstruct'];
+  const lowerMessage = (message || '').toLowerCase();
+  if (ownDomainPatterns.some(d => lowerMessage.includes(d))) {
     return NextResponse.json({ ok: true }, { status: 200 });
   }
 
@@ -171,7 +189,12 @@ export async function POST(req: Request) {
     }
   }
 
-  // 3d. Check for non-ASCII character overload (foreign spam)
+  // 3d. Suspiciously long messages — real estimate requests are brief
+  if (message && message.length > 500) {
+    return NextResponse.json({ ok: true }, { status: 200 });
+  }
+
+  // 3e. Check for non-ASCII character overload (foreign spam)
   const nonAsciiPattern = /[^\x00-\x7F]/g;
   const nonAsciiCount = (combinedText.match(nonAsciiPattern) || []).length;
   if (combinedText.length > 0 && nonAsciiCount / combinedText.length > 0.3) {
