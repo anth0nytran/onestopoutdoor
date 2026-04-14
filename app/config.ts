@@ -121,6 +121,11 @@ export const serviceData: ServiceItem[] = [
     slug: 'concrete-driveways',
     title: 'Concrete & Driveways',
     media: [
+      { type: 'image', src: '/photos_new_web/concrete/concrete-12.jpg' },
+      { type: 'image', src: '/photos_new_web/concrete/concrete-13.jpg' },
+      { type: 'image', src: '/photos_new_web/concrete/concrete-14.jpg' },
+      { type: 'image', src: '/photos_new_web/concrete/concrete-15.jpg' },
+      { type: 'image', src: '/photos_new_web/concrete/concrete-16.jpg' },
       { type: 'image', src: '/photos_new_web/concrete/concrete-1.jpg' },
       { type: 'image', src: '/photos_new_web/concrete/concrete-2.jpg' },
       { type: 'image', src: '/photos_new_web/concrete/concrete-3.jpg' },
@@ -149,6 +154,8 @@ export const serviceData: ServiceItem[] = [
     slug: 'outdoor-kitchens',
     title: 'Outdoor Kitchens',
     media: [
+      { type: 'image', src: '/photos_new_web/outdoor-kitchen/outdoor-kitchen-10.jpg' },
+      { type: 'image', src: '/photos_new_web/outdoor-kitchen/outdoor-kitchen-11.jpg' },
       { type: 'image', src: '/photos_new_web/outdoor-kitchen/outdoor-kitchen-1.jpg' },
       { type: 'image', src: '/photos_new_web/outdoor-kitchen/outdoor-kitchen-2.jpg' },
       { type: 'image', src: '/photos_new_web/outdoor-kitchen/outdoor-kitchen-3.jpg' },

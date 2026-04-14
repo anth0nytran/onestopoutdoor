@@ -24,19 +24,31 @@ export const metadata: Metadata = {
 const cities = ['Richmond', 'Katy', 'Sugar Land', 'Houston', 'Rosenberg'];
 
 const photoProjects = [
-  // Patio Cover — new photos
+  // Concrete — newest Richmond projects (shown first)
+  ...[12, 13, 14, 15, 16].map((n) => ({
+    service: 'Concrete',
+    location: 'Richmond',
+    src: `/photos_new_web/concrete/concrete-${n}.jpg`,
+  })),
+  // Outdoor Kitchen — newest Richmond projects (shown first)
+  ...[10, 11].map((n) => ({
+    service: 'Outdoor Kitchen',
+    location: 'Richmond',
+    src: `/photos_new_web/outdoor-kitchen/outdoor-kitchen-${n}.jpg`,
+  })),
+  // Patio Cover — existing photos
   ...Array.from({ length: 11 }, (_, i) => ({
     service: 'Patio Cover',
     location: cities[i % cities.length],
     src: `/photos_new_web/patio-cover/patio-cover-${i + 1}.jpg`,
   })),
-  // Concrete — new photos
+  // Concrete — existing photos
   ...Array.from({ length: 11 }, (_, i) => ({
     service: 'Concrete',
     location: cities[i % cities.length],
     src: `/photos_new_web/concrete/concrete-${i + 1}.jpg`,
   })),
-  // Outdoor Kitchen — new photos
+  // Outdoor Kitchen — existing photos
   ...Array.from({ length: 9 }, (_, i) => ({
     service: 'Outdoor Kitchen',
     location: cities[i % cities.length],
