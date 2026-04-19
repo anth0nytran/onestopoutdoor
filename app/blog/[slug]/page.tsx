@@ -26,7 +26,7 @@ export async function generateMetadata({
   }
 
   return {
-    title: post.title,
+    title: { absolute: post.title },
     description: post.description,
     keywords: post.keywords,
     alternates: { canonical: `/blog/${post.slug}` },
@@ -38,13 +38,13 @@ export async function generateMetadata({
       publishedTime: post.date,
       authors: ['One Stop Outdoor Construction'],
       siteName: 'One Stop Outdoor Construction',
-      images: [{ url: '/hero.png', width: 1200, height: 630, alt: post.title }],
+      images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: post.title }],
     },
     twitter: {
       card: 'summary_large_image',
       title: post.title,
       description: post.description,
-      images: ['/hero.png'],
+      images: ['/og-image.jpg'],
     },
   };
 }
@@ -134,7 +134,13 @@ export default async function BlogPostPage({
             headline: post.title,
             description: post.description,
             datePublished: post.date,
-            dateModified: post.date,
+            dateModified: post.lastModified || post.date,
+            image: {
+              '@type': 'ImageObject',
+              url: 'https://onestopoutdoorconstruction.com/og-image.jpg',
+              width: 1200,
+              height: 630,
+            },
             author: {
               '@type': 'Organization',
               name: 'One Stop Outdoor Construction',
@@ -146,7 +152,7 @@ export default async function BlogPostPage({
               url: 'https://onestopoutdoorconstruction.com',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://onestopoutdoorconstruction.com/hero.png',
+                url: 'https://onestopoutdoorconstruction.com/og-image.jpg',
               },
             },
             mainEntityOfPage: {

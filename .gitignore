@@ -53,3 +53,13 @@ public/images/*-upscaled-2x.png
 .playwright-mcp/
 .codex-next-dev.log
 $log
+
+# internal audit/research/strategy docs (not for public repo)
+/SEO-*.html
+/SEO-*.md
+/research/
+/value.md
+/.claude/commands/
+
+# plans directory (agency working notes)
+/.claude/plans/

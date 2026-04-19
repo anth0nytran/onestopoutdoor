@@ -3,7 +3,7 @@ import { siteConfig } from '../config';
 import ContactPageClient from './ContactPageClient';
 
 export const metadata: Metadata = {
-  title: 'Free Estimate — Contact Us in Richmond, Katy & Houston TX',
+  title: { absolute: 'Free Estimate — Richmond, Katy & Houston TX' },
   description:
     'Book a free consultation with One Stop Outdoor Construction. Patio covers, concrete & outdoor kitchens in Richmond, Katy & Houston TX. (832) 945-8084.',
   alternates: { canonical: '/contact' },
@@ -12,13 +12,13 @@ export const metadata: Metadata = {
     description:
       'Book your free consultation. Serving Richmond, Katy, Houston, Sugar Land & surrounding areas.',
     url: 'https://onestopoutdoorconstruction.com/contact',
-    images: [{ url: '/hero.png', width: 1200, height: 630, alt: 'Contact One Stop Outdoor Construction — Free Estimates' }],
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'Contact One Stop Outdoor Construction — Free Estimates' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Free Estimate — Contact Us in Richmond, Katy & Houston TX',
     description: 'Book your free consultation. Serving Richmond, Katy, Houston, Sugar Land & surrounding areas.',
-    images: ['/hero.png'],
+    images: ['/og-image.jpg'],
   },
 };
 

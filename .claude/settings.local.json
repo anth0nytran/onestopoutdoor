@@ -22,7 +22,14 @@
       "Bash(for f:*)",
       "Bash(do base=\"$f%.*\")",
       "Bash(echo \"Converting $f -> $base.mp4\")",
-      "Bash(ffmpeg -i \"$f\" -c:v libx264 -preset fast -crf 23 -c:a aac -movflags +faststart \"$base.mp4\" -y)"
+      "Bash(ffmpeg -i \"$f\" -c:v libx264 -preset fast -crf 23 -c:a aac -movflags +faststart \"$base.mp4\" -y)",
+      "Read(//c/Users/antho/.claude/**)",
+      "WebFetch(domain:onestopoutdoorconstruction.com)",
+      "WebFetch(domain:katypatio.com)",
+      "WebFetch(domain:alliedoutdoor.com)",
+      "WebFetch(domain:creekstoneoutdoor.com)",
+      "WebFetch(domain:alliedoutdoorsolutions.com)",
+      "WebFetch(domain:www.creekstoneoutdoorliving.com)"
     ]
   },
   "enableAllProjectMcpServers": true,

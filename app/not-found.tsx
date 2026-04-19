@@ -6,6 +6,7 @@ import { siteConfig } from './config';
 export const metadata = {
   title: '404 — Page Not Found',
   description: "The page you're looking for doesn't exist. Browse our outdoor construction services or contact One Stop Outdoor Construction for a free estimate.",
+  robots: 'noindex, nofollow',
 };
 
 const shell = 'mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-10';

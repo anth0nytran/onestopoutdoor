@@ -60,12 +60,12 @@ export function Footer() {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-white/50 mb-6">Our Services</h4>
             <ul className="space-y-4 text-sm text-white/50 font-medium">
-              <li><Link href="/services#patio-covers" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Patio Covers</Link></li>
-              <li><Link href="/services#concrete-driveways" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Concrete &amp; Driveways</Link></li>
-              <li><Link href="/services#outdoor-kitchens" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Outdoor Kitchens</Link></li>
-              <li><Link href="/services#pergolas" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Pergolas</Link></li>
-              <li><Link href="/services#roofing" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Roofing Services</Link></li>
-              <li><Link href="/services#walkways-pavers" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Walkways &amp; Pavers</Link></li>
+              <li><Link href="/services/patio-covers" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Patio Covers</Link></li>
+              <li><Link href="/services/concrete-driveways" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Concrete &amp; Driveways</Link></li>
+              <li><Link href="/services/outdoor-kitchens" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Outdoor Kitchens</Link></li>
+              <li><Link href="/services/pergolas" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Pergolas</Link></li>
+              <li><Link href="/services/roofing" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Roofing Services</Link></li>
+              <li><Link href="/services/walkways-pavers" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/30" />Walkways &amp; Pavers</Link></li>
             </ul>
           </div>
 
@@ -73,9 +73,23 @@ export function Footer() {
           <div>
             <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-white/50 mb-6">Service Areas</h4>
             <ul className="grid grid-cols-2 gap-x-4 gap-y-4 text-sm text-white/50 font-medium">
-              {siteConfig.allServiceAreas.map((area) => (
-                <li key={area}>{area}</li>
-              ))}
+              {siteConfig.allServiceAreas.map((area) => {
+                const citySlugMap: Record<string, string> = {
+                  'Richmond, TX': 'richmond-tx',
+                  'Katy, TX': 'katy-tx',
+                  'Houston, TX': 'houston-tx',
+                  'Sugar Land, TX': 'sugar-land-tx',
+                  'Rosenberg, TX': 'rosenberg-tx',
+                };
+                const slug = citySlugMap[area];
+                return slug ? (
+                  <li key={area}>
+                    <Link href={`/service-areas/${slug}`} className="hover:text-white transition-colors">{area}</Link>
+                  </li>
+                ) : (
+                  <li key={area}>{area}</li>
+                );
+              })}
             </ul>
             <div className="mt-8 pt-8 border-t border-white/10">
               <p className="text-xs text-white/40 leading-relaxed font-medium">

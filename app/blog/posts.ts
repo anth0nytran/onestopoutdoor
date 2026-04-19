@@ -3,6 +3,7 @@ export interface BlogPost {
   title: string;
   description: string;
   date: string;
+  lastModified?: string;
   readTime: string;
   category: string;
   keywords: string[];
@@ -16,6 +17,7 @@ export const blogPosts: BlogPost[] = [
     title: 'How Much Does a Patio Cover Cost in Houston? (2026)',
     description: 'Patio cover costs in Houston, Richmond & Katy TX by type. Real pricing per sq ft for aluminum, insulated & wood covers. 15+ years local experience.',
     date: '2026-03-28',
+    lastModified: '2026-04-18',
     readTime: '12 min read',
     category: 'Cost Guides',
     keywords: [
@@ -162,8 +164,10 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Related Articles</h3>
 <ul>
+  <li><a href="/services/patio-covers">Patio Covers &mdash; Full Service Details, Materials & Pricing</a></li>
   <li><a href="/blog/stamped-concrete-cost-houston-tx">Stamped Concrete Costs in Houston &mdash; Full 2026 Guide</a></li>
   <li><a href="/blog/pergola-vs-patio-cover-houston">Pergola vs Patio Cover in Houston: Which Is Right for You?</a></li>
+  <li><a href="/services/pergolas">Pergola Construction &mdash; Custom Builds for Houston & Richmond TX</a></li>
 </ul>
 `,
   },
@@ -172,6 +176,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Stamped Concrete in Houston, TX: Cost & Guide (2026)',
     description: 'Stamped concrete costs in Houston, Katy & Richmond TX per sq ft by project type. Patterns, maintenance tips & stamped concrete vs pavers compared.',
     date: '2026-03-15',
+    lastModified: '2026-04-18',
     readTime: '14 min read',
     category: 'Cost Guides',
     keywords: [
@@ -352,8 +357,10 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Related Articles</h3>
 <ul>
+  <li><a href="/services/concrete-driveways">Concrete & Driveways &mdash; Full Service Details & Pricing</a></li>
   <li><a href="/blog/patio-cover-cost-houston-tx">Patio Cover Costs in Houston &mdash; Full 2026 Guide</a></li>
   <li><a href="/blog/pergola-vs-patio-cover-houston">Pergola vs Patio Cover in Houston: Which Is Right for You?</a></li>
+  <li><a href="/services/walkways-pavers">Walkways & Pavers &mdash; Custom Installations</a></li>
 </ul>
 `,
   },
@@ -362,6 +369,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Pergola vs Patio Cover in Houston: Which Is Right?',
     description: 'Pergola or patio cover for your Houston, Katy or Richmond TX home? Compare costs, weather protection, maintenance & ROI. Local contractor advice.',
     date: '2026-02-28',
+    lastModified: '2026-04-18',
     readTime: '10 min read',
     category: 'Design Tips',
     keywords: [
@@ -541,6 +549,8 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Related Articles</h3>
 <ul>
+  <li><a href="/services/patio-covers">Patio Covers &mdash; Full Service Details, Materials & Pricing</a></li>
+  <li><a href="/services/pergolas">Pergola Construction &mdash; Custom Builds for Houston & Richmond TX</a></li>
   <li><a href="/blog/patio-cover-cost-houston-tx">Patio Cover Costs in Houston &mdash; Full 2026 Guide</a></li>
   <li><a href="/blog/stamped-concrete-cost-houston-tx">Stamped Concrete Costs in Houston &mdash; Full 2026 Guide</a></li>
 </ul>

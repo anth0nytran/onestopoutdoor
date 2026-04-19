@@ -16,7 +16,8 @@ export const siteConfig = {
   ],
   rating: 5.0,
   reviewCount: 32,
-  yearsInBusiness: 15,
+  foundingYear: 2011,
+  yearsInBusiness: new Date().getFullYear() - 2011,
   hours: '8am–5pm',
   slogan: 'Quality Outdoor Construction You Can Trust',
   serviceAreas: ['Richmond', 'Katy', 'Houston', 'Sugar Land', 'Rosenberg'],
@@ -244,6 +245,7 @@ export const serviceData: ServiceItem[] = [
 export const navLinks = [
   { label: 'Home', href: '/' },
   { label: 'Services', href: '/services' },
+  { label: 'Areas', href: '/service-areas' },
   { label: 'About', href: '/about' },
   { label: 'Gallery', href: '/gallery' },
   { label: 'Reviews', href: '/#reviews' },

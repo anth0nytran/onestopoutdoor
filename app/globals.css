@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #111827;
+  --foreground: #1e293b; /* Softer slate-800 for more professional contrast */
   --onestop-ink: #0f2847;
   --onestop-navy: #1a3a6b;
   --onestop-navy-deep: #0f2847;
@@ -31,7 +31,9 @@ a, button, input, select, textarea, [role="button"] {
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
+  background-image: radial-gradient(rgba(15, 40, 71, 0.045) 1px, transparent 1px);
+  background-size: 28px 28px;
   color: var(--foreground);
   font-family: var(--font-app-body), -apple-system, "Segoe UI", sans-serif;
 }
@@ -42,23 +44,39 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* Industrial construction feel — square edges, bold weight */
-.onestop-site .rounded-2xl { border-radius: 0.25rem; }
-.onestop-site .rounded-xl { border-radius: 0.25rem; }
-.onestop-site .rounded-lg { border-radius: 0.25rem; }
-.onestop-site .rounded-full { border-radius: 9999px; } /* keep pills round */
+/* Industrial construction feel — straight edges, bold weight */
+.onestop-site .rounded-2xl { border-radius: 0.25rem !important; }
+.onestop-site .rounded-xl { border-radius: 0.25rem !important; }
+.onestop-site .rounded-lg { border-radius: 0.25rem !important; }
+.onestop-site .rounded-md { border-radius: 0.25rem !important; }
+.onestop-site .rounded { border-radius: 0.25rem !important; }
+.onestop-site .rounded-full { border-radius: 9999px !important; } /* keep pills round */
 
 /* Heavier heading weight for industrial feel */
 .onestop-site h1 { font-weight: 900; }
 .onestop-site h2 { font-weight: 800; text-transform: uppercase; letter-spacing: 0.01em; }
 
-/* Buttons — squared off, industrial */
-.onestop-site button, .onestop-site a[class*="rounded"] {
-  border-radius: 0.25rem;
-}
-
 /* Dividers — thicker, more visible */
 .onestop-site hr, .onestop-site .border-t { border-color: #d1d5db; }
+
+/* ─── ARCHITECTURAL THEME UTILITIES ─── */
+.bg-texture {
+  position: relative;
+}
+.bg-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  /* Extremely faint plaster/stucco noise */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+  z-index: 0;
+}
+
+.clip-house {
+  /* Forms a pitched roof: 50% 0 is the peak, 0% 25% & 100% 25% are the eaves */
+  clip-path: polygon(50% 0%, 100% 25%, 100% 100%, 0% 100%, 0% 25%);
+}
 
 /* Form inputs — square */
 .onestop-site input, .onestop-site select, .onestop-site textarea {
@@ -178,7 +196,7 @@ body {
 /* ── Standard form fields (light sections) ── */
 .form-field {
   width: 100%;
-  border-radius: 1.25rem;
+  border-radius: 0.25rem !important;
   border: 1px solid rgba(15, 23, 42, 0.12);
   background: rgba(255, 255, 255, 0.92);
   color: #0f172a;

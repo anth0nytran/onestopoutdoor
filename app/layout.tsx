@@ -33,32 +33,6 @@ export const metadata: Metadata = {
     template: "%s | One Stop Outdoor Construction",
   },
   description: "Patio covers, concrete, outdoor kitchens & pergolas in Richmond, Katy, Houston & Sugar Land TX. 15+ years. Licensed & insured. Free estimates — (832) 945-8084.",
-  keywords: [
-    'patio cover Richmond TX',
-    'patio cover Katy TX',
-    'concrete contractor Richmond TX',
-    'outdoor kitchen Richmond TX',
-    'outdoor construction Houston TX',
-    'pergola builder Katy TX',
-    'stamped concrete Richmond TX',
-    'covered patio Houston TX',
-    'outdoor kitchen builder Katy TX',
-    'roofing contractor Richmond TX',
-    'walkway installation Katy TX',
-    'paver contractor Houston TX',
-    'concrete driveway Sugar Land TX',
-    'patio cover Sugar Land TX',
-    'outdoor construction Rosenberg TX',
-    'outdoor living Richmond TX 77407',
-    'patio cover near me Katy 77493',
-    'concrete contractor Houston 77048',
-    'outdoor kitchen Sugar Land TX',
-    'pergola installation Richmond TX',
-    'licensed contractor Richmond TX',
-    'home improvement Katy TX',
-    'backyard remodel Houston TX',
-    'outdoor renovation Sugar Land TX',
-  ],
   alternates: {
     canonical: '/',
   },
@@ -71,7 +45,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/hero.png',
+        url: '/og-image.jpg',
         width: 1200,
         height: 630,
         alt: 'One Stop Outdoor Construction — Patio Covers, Concrete & Outdoor Kitchens in Richmond, Katy & Houston TX',
@@ -82,7 +56,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: "Quality Outdoor Construction | One Stop Outdoor Construction",
     description: "Patio covers, concrete, outdoor kitchens, pergolas & roofing for Richmond, Katy, Houston, Sugar Land & Rosenberg TX. Licensed & insured. Free estimates.",
-    images: ['/hero.png'],
+    images: ['/og-image.jpg'],
   },
   icons: {
     icon: [
@@ -90,7 +64,7 @@ export const metadata: Metadata = {
       { url: '/logos/favicon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.ico',
-    apple: '/logos/main_logo.png',
+    apple: '/logos/favicon.svg',
   },
 };
 
@@ -116,8 +90,32 @@ export default function RootLayout({
               "@id": "https://onestopoutdoorconstruction.com",
               "url": "https://onestopoutdoorconstruction.com",
               "telephone": "+18329458084",
-              "email": "faridarabzadeh77@yahoo.com",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+18329458084",
+                "contactType": "sales",
+                "areaServed": ["Richmond TX", "Katy TX", "Houston TX", "Sugar Land TX", "Rosenberg TX"],
+                "availableLanguage": ["English", "Spanish"]
+              },
               "description": "Quality patio covers, concrete, outdoor kitchens, pergolas, roofing and walkways serving Richmond, Katy, Houston, Sugar Land & Rosenberg TX. 15+ years in business. Licensed & insured. Free estimates.",
+              "sameAs": [
+                "https://www.facebook.com/p/One-Stop-Outdoor-Construction-Texas-100063553814373/",
+                "https://www.instagram.com/onestopoutdoorconstruction",
+                "https://www.tiktok.com/@onestopoutdoorcons"
+              ],
+              "founder": {
+                "@type": "Person",
+                "name": "David Arabzadeh",
+                "jobTitle": "Owner & Lead Contractor",
+                "worksFor": { "@type": "Organization", "name": "One Stop Outdoor Construction" },
+                "description": "David Arabzadeh is the owner and lead contractor of One Stop Outdoor Construction. Since 2011 he has personally led 300+ patio-cover, outdoor-kitchen and concrete projects across Richmond, Katy, Sugar Land and greater Houston.",
+                "knowsAbout": ["Patio Covers", "Pergolas", "Outdoor Kitchens", "Stamped Concrete", "Residential Construction", "Fort Bend County HOA Approvals"]
+              },
+              "employee": {
+                "@type": "Person",
+                "name": "David Arabzadeh",
+                "jobTitle": "Owner & Lead Contractor"
+              },
               "address": {
                 "@type": "PostalAddress",
                 "addressLocality": "Richmond",
@@ -132,14 +130,14 @@ export default function RootLayout({
               },
               "areaServed": [
                 { "@type": "City", "name": "Richmond", "sameAs": "https://en.wikipedia.org/wiki/Richmond,_Texas" },
-                { "@type": "City", "name": "Katy" },
-                { "@type": "City", "name": "Houston" },
-                { "@type": "City", "name": "Sugar Land" },
-                { "@type": "City", "name": "Rosenberg" },
-                { "@type": "City", "name": "Missouri City" },
-                { "@type": "City", "name": "Fulshear" },
-                { "@type": "City", "name": "Stafford" },
-                { "@type": "City", "name": "Pearland" }
+                { "@type": "City", "name": "Katy", "sameAs": "https://en.wikipedia.org/wiki/Katy,_Texas" },
+                { "@type": "City", "name": "Houston", "sameAs": "https://en.wikipedia.org/wiki/Houston" },
+                { "@type": "City", "name": "Sugar Land", "sameAs": "https://en.wikipedia.org/wiki/Sugar_Land,_Texas" },
+                { "@type": "City", "name": "Rosenberg", "sameAs": "https://en.wikipedia.org/wiki/Rosenberg,_Texas" },
+                { "@type": "City", "name": "Missouri City", "sameAs": "https://en.wikipedia.org/wiki/Missouri_City,_Texas" },
+                { "@type": "City", "name": "Fulshear", "sameAs": "https://en.wikipedia.org/wiki/Fulshear,_Texas" },
+                { "@type": "City", "name": "Stafford", "sameAs": "https://en.wikipedia.org/wiki/Stafford,_Texas" },
+                { "@type": "City", "name": "Pearland", "sameAs": "https://en.wikipedia.org/wiki/Pearland,_Texas" }
               ],
               "openingHoursSpecification": {
                 "@type": "OpeningHoursSpecification",

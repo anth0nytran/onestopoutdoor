@@ -325,105 +325,71 @@ export default function ServicesPageClient({
             </ol>
           </nav>
 
-          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl leading-[1.08]">
+          <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl lg:text-5xl leading-[1.08]">
             Our Services
           </h1>
-          <p className="mt-3 text-base leading-relaxed text-white/50 max-w-xl">
-            Patio covers, concrete, outdoor kitchens, pergolas, roofing, and walkways.
-            {' '}{siteConfig.yearsInBusiness}+ years serving Richmond, Katy, Houston, Sugar Land,
-            and Rosenberg.
+          <p className="mt-4 sm:mt-5 text-base sm:text-lg leading-relaxed text-white/70 max-w-2xl">
+            Six outdoor trades, one crew, one warranty. Pick a service below for materials, pricing, photos and FAQs — or call {siteConfig.phone} for a free on-site estimate.
           </p>
-
-          {/* Quick-nav pills */}
-          <div className="mt-6 flex flex-wrap gap-2">
-            {services.map((s) => (
-              <a
-                key={s.slug}
-                href={`#${s.slug}`}
-                className="rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-xs font-bold uppercase tracking-wider text-white/60 hover:border-white/30 hover:text-white transition-all"
-              >
-                {s.title}
-              </a>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ═══ SERVICE SECTIONS ═══ */}
-      {services.map((service, idx) => {
-        const isEven = idx % 2 === 0;
-        const bgClass = isEven ? 'bg-white' : 'bg-[var(--onestop-cream)]';
-
-        return (
-          <section
-            key={service.slug}
-            id={service.slug}
-            className={`${bgClass} scroll-mt-20 py-14 sm:py-24 lg:py-28`}
-          >
-            <div className={shell}>
-              <div
-                className={`grid items-center gap-12 lg:grid-cols-2 lg:gap-20 ${
-                  idx % 2 !== 0 ? 'lg:[direction:rtl]' : ''
-                }`}
+      {/* ═══ SERVICES GRID ═══ */}
+      <section className="bg-white py-14 sm:py-20 lg:py-24">
+        <div className={shell}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {services.map((service, idx) => (
+              <motion.article
+                key={service.slug}
+                id={service.slug}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
+                variants={fadeUp}
+                transition={{ duration: 0.45, delay: idx * 0.1 }}
+                className="flex flex-col rounded-2xl bg-[var(--onestop-cream)] border border-[var(--onestop-line)] shadow-sm hover:shadow-md transition-shadow"
               >
-                {/* Media Carousel Wrapper */}
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-60px' }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.45 }}
-                  className="w-full"
-                >
+                {/* Media Player Container */}
+                <div className="p-4 sm:p-5 border-b border-[var(--onestop-line)]/50">
                   <MediaCarouselPlayer service={service} />
-                </motion.div>
+                </div>
+                
+                {/* Content Container */}
+                <div className="flex flex-col flex-1 p-5 sm:p-6 lg:p-7 pt-4 sm:pt-5">
+                  <div className="flex items-center justify-between gap-4 mb-2">
+                    <h2 className="text-xl sm:text-2xl font-extrabold tracking-tight text-[var(--onestop-navy-deep)] leading-tight">
+                      {service.title}
+                    </h2>
+                    <span className="text-[0.65rem] font-bold uppercase tracking-wider text-[var(--onestop-navy)] shrink-0 bg-[var(--onestop-navy)]/10 px-2 py-1 rounded">
+                      0{idx + 1}
+                    </span>
+                  </div>
 
-                {/* Content */}
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, margin: '-60px' }}
-                  variants={fadeUp}
-                  transition={{ duration: 0.45, delay: 0.08 }}
-                  className="lg:[direction:ltr]"
-                >
-                  <h2 className="text-2xl font-extrabold tracking-tight text-[var(--onestop-navy-deep)] sm:text-3xl lg:text-4xl">
-                    {service.title}
-                  </h2>
-
-                  <p className="mt-5 text-base leading-relaxed text-slate-600 sm:text-[1.05rem]">
-                    {service.longDescription}
+                  <p className="mt-2 text-sm sm:text-base leading-relaxed text-slate-600 line-clamp-3">
+                    {service.summary}
                   </p>
 
-                  <ul className="mt-7 space-y-3">
-                    {service.details.map((detail) => (
-                      <li key={detail} className="flex items-start gap-3 text-sm text-slate-500 sm:text-base">
-                        <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--onestop-navy)]" />
+                  <ul className="mt-5 space-y-2.5 flex-1">
+                    {service.details.slice(0, 3).map((detail) => (
+                      <li key={detail} className="flex items-start gap-2.5 text-sm text-slate-600 leading-snug">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--onestop-navy)]" />
                         <span>{detail}</span>
                       </li>
                     ))}
                   </ul>
 
-                  <div className="mt-7 sm:mt-9 flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-2.5 sm:gap-3">
-                    <Link
-                      href="/contact"
-                      className="inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--onestop-red)] px-5 sm:px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white shadow-lg hover:brightness-110 transition-all active:scale-[0.98] whitespace-nowrap"
-                    >
-                      Free Estimate <ArrowRight className="h-4 w-4" />
-                    </Link>
-                    <a
-                      href={`tel:${siteConfig.cleanPhone}`}
-                      className="inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--onestop-navy-deep)]/15 px-5 sm:px-6 py-3 text-xs sm:text-sm font-bold text-[var(--onestop-navy-deep)] hover:bg-[var(--onestop-navy-deep)]/5 transition-all whitespace-nowrap"
-                    >
-                      <Phone className="h-4 w-4" /> Call Now
-                    </a>
-                  </div>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-        );
-      })}
+                  <Link
+                    href={`/services/${service.slug}`}
+                    className="mt-7 w-full inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--onestop-navy-deep)] hover:bg-[var(--onestop-navy)] px-6 py-3.5 text-sm font-bold uppercase tracking-wider text-white shadow-md hover:shadow-lg transition-all active:scale-[0.98]"
+                  >
+                    View Pricing &amp; Photos <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ═══ MID-PAGE CTA ═══ */}
       <section className="relative isolate overflow-hidden bg-[var(--onestop-navy-deep)] py-16 sm:py-20">

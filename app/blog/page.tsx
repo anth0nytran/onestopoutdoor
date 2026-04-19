@@ -14,6 +14,13 @@ export const metadata: Metadata = {
     title: 'Blog — Outdoor Construction Tips & Cost Guides',
     description: 'Cost guides, design tips & outdoor construction advice for Richmond, Katy & Houston TX homeowners.',
     url: 'https://onestopoutdoorconstruction.com/blog',
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'One Stop Outdoor Construction Blog — Tips & Cost Guides' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Blog — Outdoor Construction Tips & Cost Guides',
+    description: 'Cost guides, design tips & outdoor construction advice for Richmond, Katy & Houston TX homeowners.',
+    images: ['/og-image.jpg'],
   },
 };
 
