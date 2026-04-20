@@ -23,6 +23,8 @@ import {
 import { siteConfig, serviceData } from './config';
 import { areaCities } from './service-areas/data';
 import { Stars } from './components/Stars';
+import { Reveal } from './components/Reveal';
+import { TextReveal } from './components/TextReveal';
 
 /* ─── COMPACT HERO FORM ─── */
 function HeroEstimateForm() {
@@ -111,7 +113,7 @@ function HeroEstimateForm() {
         <span className="text-[0.7rem] leading-relaxed text-slate-500">I agree to receive SMS/text messages from One Stop Outdoor Construction regarding my estimate. Message &amp; data rates may apply. Reply STOP to opt out.</span>
       </label>
 
-      <button type="submit" disabled={formStatus === 'sending'} className="w-full bg-[var(--onestop-red)] py-3 lg:py-4 text-sm font-bold uppercase tracking-[0.15em] text-white transition-all hover:bg-[#a5311f] active:scale-[0.98] disabled:opacity-60">
+      <button type="submit" disabled={formStatus === 'sending'} className="btn-sheen w-full bg-[var(--onestop-red)] py-3 lg:py-4 text-sm font-bold uppercase tracking-[0.15em] text-white hover:bg-[#a5311f] active:scale-[0.98] disabled:opacity-60">
         {formStatus === 'sending' ? 'SENDING...' : 'GET YOUR FREE ESTIMATE'}
       </button>
 
@@ -129,16 +131,18 @@ type Testimonial = (typeof siteConfig.testimonials)[number];
 
 function ReviewCard({ t }: { t: Testimonial }) {
   return (
-    <div className="bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 p-6 sm:p-7 relative overflow-hidden group h-full flex flex-col">
+    <div className="bg-white rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 p-6 sm:p-7 relative overflow-hidden group h-full w-full flex flex-col">
       <div className="absolute top-0 left-0 right-0 h-1 bg-[var(--onestop-navy)]/10 group-hover:bg-[var(--onestop-navy)] transition-colors" />
 
       <div className="flex items-center gap-1 mb-3">
         <Stars count={t.stars} size="h-4 w-4 text-[#FBBC05]" />
       </div>
 
-      <p className="text-[0.95rem] leading-relaxed text-slate-600 italic font-medium line-clamp-5 flex-1">
-        &ldquo;{t.quote}&rdquo;
-      </p>
+      <div className="flex-1 min-h-0">
+        <p className="text-[0.95rem] leading-relaxed text-slate-600 italic font-medium line-clamp-5">
+          &ldquo;{t.quote}&rdquo;
+        </p>
+      </div>
 
       <div className="mt-5 pt-4 border-t border-slate-100 flex items-center gap-4">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--onestop-navy)] text-sm font-bold text-white shadow-md">
@@ -168,10 +172,20 @@ function ReviewsSection() {
 
   const visibleDesktop = allReviews.slice(page * PER_PAGE_DESKTOP, (page + 1) * PER_PAGE_DESKTOP);
 
+  const getStep = (el: HTMLDivElement) => {
+    const first = el.firstElementChild as HTMLElement | null;
+    const second = el.children[1] as HTMLElement | null;
+    if (first && second) return second.offsetLeft - first.offsetLeft;
+    if (first) return first.getBoundingClientRect().width;
+    return el.clientWidth;
+  };
+
   const handleMobileScroll = useCallback(() => {
     const el = scrollRef.current;
     if (!el) return;
-    const idx = Math.round(el.scrollLeft / el.clientWidth);
+    const step = getStep(el);
+    if (step <= 0) return;
+    const idx = Math.round(el.scrollLeft / step);
     setMobileIndex((prev) => (prev === idx ? prev : idx));
   }, []);
 
@@ -179,14 +193,16 @@ function ReviewsSection() {
     const el = scrollRef.current;
     if (!el) return;
     const clamped = Math.max(0, Math.min(idx, allReviews.length - 1));
-    el.scrollTo({ left: clamped * el.clientWidth, behavior: 'smooth' });
+    const step = getStep(el);
+    el.scrollTo({ left: clamped * step, behavior: 'smooth' });
   }, [allReviews.length]);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     const onResize = () => {
-      el.scrollTo({ left: mobileIndex * el.clientWidth, behavior: 'auto' });
+      const step = getStep(el);
+      el.scrollTo({ left: mobileIndex * step, behavior: 'auto' });
     };
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
@@ -212,7 +228,7 @@ function ReviewsSection() {
 
       <div className="grid lg:grid-cols-[40%_60%] relative z-10">
         {/* Left Dark Side with Background Image */}
-        <div className="relative bg-[var(--onestop-navy-deep)] py-12 sm:py-16 px-6 sm:px-12 lg:px-20 flex flex-col justify-center z-10 isolate">
+        <div className="relative bg-[var(--onestop-navy-deep)] py-12 sm:py-16 px-6 sm:px-12 lg:px-20 flex flex-col justify-center z-10 isolate min-w-0">
           <Image src="/facebook/builton.jpg" alt="" aria-hidden fill className="object-cover opacity-20 pointer-events-none z-[-2]" />
           <div className="absolute inset-0 bg-[var(--onestop-navy-deep)]/80 z-[-1]" />
 
@@ -226,7 +242,7 @@ function ReviewsSection() {
 
           <div className="hidden lg:block absolute top-0 bottom-0 right-0 w-32 translate-x-[99%] bg-[var(--onestop-navy-deep)] z-[-1]" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
 
-          <div className="relative z-20 max-w-md ml-auto lg:mr-0">
+          <div className="relative z-20 lg:max-w-md lg:ml-auto lg:mr-0">
             <h2 className="text-xs font-bold tracking-widest text-[var(--onestop-gold)] uppercase mb-3">Testimonials</h2>
             <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
               What Our <br/>
@@ -256,7 +272,7 @@ function ReviewsSection() {
         </div>
 
         {/* Right Light Side */}
-        <div className="relative py-12 sm:py-16 lg:py-20 flex flex-col justify-center z-0 px-4 sm:px-8 lg:pl-24 lg:pr-12 xl:pl-28 xl:pr-20">
+        <div className="relative py-12 sm:py-16 lg:py-20 flex flex-col justify-center z-0 px-4 sm:px-8 lg:pl-24 lg:pr-12 xl:pl-28 xl:pr-20 min-w-0">
           {/* Huge Quote Watermark */}
           <div className="absolute top-4 left-8 lg:left-16 text-[12rem] sm:text-[16rem] lg:text-[18rem] leading-none text-slate-300 opacity-20 font-serif select-none pointer-events-none z-[-1]">
             &ldquo;
@@ -306,39 +322,42 @@ function ReviewsSection() {
             )}
           </div>
 
-          {/* ─── MOBILE: native swipe carousel with fixed viewport ─── */}
-          <div className="relative z-10 lg:hidden w-full">
+          {/* ─── MOBILE + TABLET: native swipe carousel with fixed viewport ─── */}
+          <div className="relative z-10 lg:hidden min-w-0">
             <div
               ref={scrollRef}
               onScroll={handleMobileScroll}
-              className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-4 sm:-mx-8 px-4 sm:px-8 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-              style={{ scrollBehavior: 'smooth', WebkitOverflowScrolling: 'touch' }}
+              className="flex overflow-x-auto snap-x snap-mandatory -mx-4 sm:-mx-8 px-4 sm:px-8 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              style={{ WebkitOverflowScrolling: 'touch', scrollSnapType: 'x mandatory', scrollPaddingLeft: '1rem', scrollPaddingRight: '1rem' }}
             >
-              {allReviews.map((t) => (
-                <div key={t.name} className="snap-center shrink-0 w-full min-h-[320px] flex">
+              {allReviews.map((t, i) => (
+                <div
+                  key={t.name}
+                  className={`snap-start shrink-0 w-[calc(100vw-2rem)] sm:w-[calc(100vw-4rem)] min-h-[320px] flex ${i < allReviews.length - 1 ? 'pr-4' : ''}`}
+                >
                   <ReviewCard t={t} />
                 </div>
               ))}
             </div>
 
-            {/* Big legible counter + progress bar (replaces the line of tiny dots) */}
-            <div className="mt-6 flex items-center gap-4">
-              <div className="flex items-baseline gap-1.5 font-black tracking-tight select-none shrink-0">
-                <span className="text-2xl text-[var(--onestop-navy-deep)] tabular-nums">{pad2(mobileIndex + 1)}</span>
-                <span className="text-[0.65rem] text-slate-500 uppercase tracking-widest">/ {pad2(allReviews.length)}</span>
+            {/* Controls row — compact counter, bar, and arrows */}
+            <div className="mt-5 flex items-center gap-3 sm:gap-4">
+              <div className="flex items-baseline gap-1 font-black tracking-tight select-none shrink-0">
+                <span className="text-xl text-[var(--onestop-navy-deep)] tabular-nums">{pad2(mobileIndex + 1)}</span>
+                <span className="text-[0.6rem] text-slate-500 uppercase tracking-widest">/ {pad2(allReviews.length)}</span>
               </div>
-              <div className="flex-1 h-[3px] bg-slate-200 rounded-full overflow-hidden">
+              <div className="flex-1 h-[3px] bg-slate-200 rounded-full overflow-hidden min-w-0">
                 <div
                   className="h-full bg-[var(--onestop-navy-deep)] rounded-full transition-all duration-300 ease-out"
                   style={{ width: `${((mobileIndex + 1) / allReviews.length) * 100}%` }}
                 />
               </div>
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   onClick={() => goMobile(mobileIndex - 1)}
                   disabled={mobileIndex === 0}
                   aria-label="Previous review"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-[var(--onestop-navy-deep)] hover:text-white hover:border-[var(--onestop-navy-deep)] disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-slate-600 disabled:hover:border-slate-300 transition-colors shadow-sm"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 active:bg-[var(--onestop-navy-deep)] active:text-white disabled:opacity-40 transition-colors shadow-sm"
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </button>
@@ -346,14 +365,14 @@ function ReviewsSection() {
                   onClick={() => goMobile(mobileIndex + 1)}
                   disabled={mobileIndex === allReviews.length - 1}
                   aria-label="Next review"
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 hover:bg-[var(--onestop-navy-deep)] hover:text-white hover:border-[var(--onestop-navy-deep)] disabled:opacity-40 disabled:hover:bg-white disabled:hover:text-slate-600 disabled:hover:border-slate-300 transition-colors shadow-sm"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 active:bg-[var(--onestop-navy-deep)] active:text-white disabled:opacity-40 transition-colors shadow-sm"
                 >
                   <ChevronRight className="h-4 w-4" />
                 </button>
               </div>
             </div>
 
-            <p className="mt-3 text-center text-[0.65rem] font-bold uppercase tracking-[0.2em] text-slate-500">
+            <p className="mt-3 text-center text-[0.65rem] font-bold uppercase tracking-[0.2em] text-slate-400">
               &larr; Swipe to read more &rarr;
             </p>
           </div>
@@ -401,16 +420,21 @@ export default function HomePageClient() {
                 <span className="text-[0.75rem] font-medium text-white/80">{siteConfig.rating} Star Rated &bull; Google Verified</span>
               </motion.div>
 
-              <motion.h1 initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.15 }} className="text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] font-black leading-[0.95] tracking-[-0.02em] text-white mb-4 sm:mb-6">
-                Custom Outdoor Construction.<br /><span className="text-[var(--onestop-red)]">Done Right.</span>
-              </motion.h1>
+              <h1 className="text-[2rem] sm:text-[2.75rem] lg:text-[3.25rem] xl:text-[3.75rem] font-black leading-[0.95] tracking-[-0.02em] text-white mb-4 sm:mb-6">
+                <TextReveal as="span" className="block" stagger={0.04} delay={0.1}>
+                  Custom Outdoor Construction.
+                </TextReveal>
+                <TextReveal as="span" className="block text-[var(--onestop-red)]" stagger={0.05} delay={0.35}>
+                  Done Right.
+                </TextReveal>
+              </h1>
 
               <motion.p initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.25 }} className="text-sm sm:text-base lg:text-lg leading-[1.6] text-white/60 max-w-[460px] mb-5 sm:mb-8">
                 Patio covers, outdoor kitchens, concrete &amp; pergolas. {siteConfig.yearsInBusiness}+ years serving Richmond, Katy, Sugar Land, Houston &amp; surrounding areas. Licensed &amp; insured.
               </motion.p>
 
               <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.35 }} className="flex flex-col sm:flex-row gap-2.5 sm:gap-3 mb-5 sm:mb-8">
-                <a href={`tel:${cleanPhone}`} className="inline-flex items-center justify-center gap-2.5 bg-[var(--onestop-red)] h-11 sm:h-[52px] px-6 sm:px-8 text-[0.75rem] sm:text-[0.8rem] font-bold uppercase tracking-[0.1em] text-white rounded-xl hover:bg-[#a5311f] active:scale-[0.97] transition-all duration-200 shadow-xl shadow-[var(--onestop-red)]/20">
+                <a href={`tel:${cleanPhone}`} className="btn-sheen inline-flex items-center justify-center gap-2.5 bg-[var(--onestop-red)] h-11 sm:h-[52px] px-6 sm:px-8 text-[0.75rem] sm:text-[0.8rem] font-bold uppercase tracking-[0.1em] text-white rounded-xl hover:bg-[#a5311f] active:scale-[0.97] shadow-xl shadow-[var(--onestop-red)]/20">
                   <Phone className="h-4 w-4" /> Call Now: {siteConfig.phone}
                 </a>
                 <Link href="/gallery" className="inline-flex items-center justify-center gap-2 bg-white/8 border border-white/15 h-11 sm:h-[52px] px-6 sm:px-8 text-[0.75rem] sm:text-[0.8rem] font-semibold text-white/90 rounded-xl hover:bg-white/15 active:scale-[0.97] transition-all duration-200 backdrop-blur-sm">
@@ -492,16 +516,16 @@ export default function HomePageClient() {
         </div>
 
         <div className={shell}>
-          <div className="max-w-xl mb-10 sm:mb-14 relative z-10">
-            <h2 className="text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">Our Services</h2>
+          <Reveal className="max-w-xl mb-10 sm:mb-14 relative z-10">
+            <TextReveal as="h2" className="block text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">Our Services</TextReveal>
             <p className="mt-3 sm:mt-4 text-[0.95rem] leading-relaxed text-slate-500">
               We design and build custom outdoor living spaces. From structurally engineered patio covers to foundation-grade concrete, every project is built to last.
             </p>
-          </div>
+          </Reveal>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-3">
+          <Reveal className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-3" delay={0.1}>
             {serviceData.slice(0, 3).map((s) => (
-              <Link key={s.slug} href={`/services/${s.slug}`} className="group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end border border-transparent hover:border-[var(--onestop-gold)] transition-colors duration-300 shadow-md">
+              <Link key={s.slug} href={`/services/${s.slug}`} className="hover-lift media-zoom icon-nudge group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end border border-transparent hover:border-[var(--onestop-gold)] shadow-md">
                 <Image src={getServicePreviewImage(s)} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="relative z-10 p-5">
@@ -513,11 +537,11 @@ export default function HomePageClient() {
                 </div>
               </Link>
             ))}
-          </div>
+          </Reveal>
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <Reveal className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" delay={0.15}>
             {serviceData.slice(3, 6).map((s) => (
-              <Link key={s.slug} href={`/services/${s.slug}`} className="group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end border border-transparent hover:border-[var(--onestop-gold)] transition-colors duration-300 shadow-md">
+              <Link key={s.slug} href={`/services/${s.slug}`} className="hover-lift media-zoom icon-nudge group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end border border-transparent hover:border-[var(--onestop-gold)] shadow-md">
                 <Image src={getServicePreviewImage(s)} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="relative z-10 p-5">
@@ -529,13 +553,13 @@ export default function HomePageClient() {
                 </div>
               </Link>
             ))}
-          </div>
+          </Reveal>
 
-          <div className="mt-8 flex justify-center">
-            <Link href="/services" className="inline-flex items-center gap-2 bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-[var(--onestop-navy-deep)] rounded-lg hover:bg-slate-50 transition-colors shadow-sm border border-slate-200">
+          <Reveal className="mt-8 flex justify-center" delay={0.2}>
+            <Link href="/services" className="icon-nudge inline-flex items-center gap-2 bg-white px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-[var(--onestop-navy-deep)] rounded-lg hover:bg-slate-50 hover:border-[var(--onestop-navy)]/30 shadow-sm border border-slate-200">
               View All Services <ArrowRight className="h-3.5 w-3.5" />
             </Link>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -544,7 +568,7 @@ export default function HomePageClient() {
         <div className={shell}>
           <div className="grid gap-10 lg:grid-cols-2 lg:gap-14 lg:items-center">
             {/* Left — company photo + stats (House Shape Mask) */}
-            <div className="relative pt-4 sm:pt-6 pl-3 sm:pl-5">
+            <Reveal direction="right" className="relative pt-4 sm:pt-6 pl-3 sm:pl-5">
               {/* Blue Roof Outline Background */}
               <div className="absolute top-0 left-0 w-[calc(100%-0.75rem)] sm:w-[calc(100%-1.25rem)] aspect-[4/3] pointer-events-none z-0">
                 <svg viewBox="0 0 400 300" preserveAspectRatio="none" className="w-full h-full drop-shadow-lg" style={{ overflow: 'visible' }}>
@@ -568,11 +592,11 @@ export default function HomePageClient() {
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
 
             {/* Right */}
-            <div className="pt-8 lg:pt-0">
-              <h2 className="text-3xl font-extrabold leading-tight text-[var(--onestop-navy-deep)] sm:text-4xl">Built on trust. Driven by craftsmanship.</h2>
+            <Reveal direction="left" delay={0.1} className="pt-8 lg:pt-0">
+              <TextReveal as="h2" className="block text-3xl font-extrabold leading-tight text-[var(--onestop-navy-deep)] sm:text-4xl">Built on trust. Driven by craftsmanship.</TextReveal>
               <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-600">
                 David and the One Stop Outdoor team have been building patios, outdoor kitchens, and concrete projects across Richmond, Katy, and Houston for over {siteConfig.yearsInBusiness} years. We show up on time, use quality materials, and we don&apos;t leave until the job is done right.
               </p>
@@ -603,10 +627,10 @@ export default function HomePageClient() {
               </div>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <Link href="/about" className="inline-flex items-center justify-center gap-2 bg-[var(--onestop-red)] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white rounded-lg hover:bg-[#a5311f] transition-colors shadow-md">Our Story <ArrowRight className="h-3.5 w-3.5" /></Link>
-                <a href={`tel:${cleanPhone}`} className="inline-flex items-center justify-center gap-2 border border-[var(--onestop-line)] bg-white px-6 py-3 text-xs font-bold text-[var(--onestop-navy-deep)] rounded-lg hover:bg-slate-50 transition-colors shadow-sm"><Phone className="h-3.5 w-3.5" /> {siteConfig.phone}</a>
+                <Link href="/about" className="btn-sheen icon-nudge inline-flex items-center justify-center gap-2 bg-[var(--onestop-red)] px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-white rounded-lg hover:bg-[#a5311f] shadow-md">Our Story <ArrowRight className="h-3.5 w-3.5" /></Link>
+                <a href={`tel:${cleanPhone}`} className="inline-flex items-center justify-center gap-2 border border-[var(--onestop-line)] bg-white px-6 py-3 text-xs font-bold text-[var(--onestop-navy-deep)] rounded-lg hover:bg-slate-50 hover:border-[var(--onestop-navy)]/30 shadow-sm"><Phone className="h-3.5 w-3.5" /> {siteConfig.phone}</a>
               </div>
-            </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -624,17 +648,17 @@ export default function HomePageClient() {
         </div>
 
         <div className={`${shell} relative z-10`}>
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 sm:mb-10">
+          <Reveal className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-8 sm:mb-10">
             <div>
-              <h2 className="text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">Recent Work</h2>
+              <TextReveal as="h2" className="block text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">Recent Work</TextReveal>
               <p className="mt-2 text-sm sm:text-base text-slate-500 leading-relaxed max-w-lg">
                 Real projects completed for homeowners in Richmond, Katy, Sugar Land, Houston, Rosenberg and nearby communities.
               </p>
             </div>
-            <Link href="/gallery" className="mt-3 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--onestop-navy)] hover:text-[var(--onestop-red)] transition-colors py-1">View Full Gallery <ArrowRight className="h-4 w-4" /></Link>
-          </div>
+            <Link href="/gallery" className="icon-nudge mt-3 sm:mt-0 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--onestop-navy)] hover:text-[var(--onestop-red)] py-1">View Full Gallery <ArrowRight className="h-4 w-4" /></Link>
+          </Reveal>
 
-          <div className="grid gap-6 sm:gap-8 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 pt-2">
+          <Reveal className="grid gap-6 sm:gap-8 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3 pt-2" delay={0.1}>
             {[
               { service: 'Patio Cover', location: 'Richmond', src: '/photos_new_web/patio-cover/patio-cover-1.jpg' },
               { service: 'Concrete', location: 'Sugar Land', src: '/photos_new_web/concrete/concrete-1.jpg' },
@@ -645,13 +669,13 @@ export default function HomePageClient() {
             ].map((project, i) => (
               <Link key={i} href="/gallery" className="group flex flex-col">
                 {/* Image Base */}
-                <div className="relative bg-slate-100 overflow-hidden aspect-[4/3] rounded-2xl shadow-sm border border-slate-200">
+                <div className="media-zoom relative bg-slate-100 aspect-[4/3] rounded-2xl shadow-sm border border-slate-200 transition-[box-shadow,border-color] duration-300 group-hover:shadow-[var(--shadow-lift)] group-hover:border-[var(--onestop-navy)]/30">
                   <Image
                     src={project.src}
                     alt={`${project.service} in ${project.location}, TX`}
                     fill
                     sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--onestop-navy-deep)]/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
                   {/* Watermark */}
@@ -674,18 +698,18 @@ export default function HomePageClient() {
                 </div>
               </Link>
             ))}
-          </div>
+          </Reveal>
 
-          <div className="mt-12 flex justify-center">
-            <a 
-              href="https://www.facebook.com/profile.php?id=100063553814373&sk=photos_by" 
+          <Reveal className="mt-12 flex justify-center" delay={0.15}>
+            <a
+              href="https://www.facebook.com/profile.php?id=100063553814373&sk=photos_by"
               target="_blank" 
               rel="noopener noreferrer" 
               className="inline-flex items-center gap-2 rounded-lg bg-[#1877F2] px-7 py-3.5 text-xs font-bold uppercase tracking-wider text-white shadow-lg hover:bg-[#1877F2]/90 transition-colors"
             >
               See More Photos on Facebook <ArrowRight className="h-4 w-4" />
             </a>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -695,11 +719,9 @@ export default function HomePageClient() {
       {/* ═══ AREAS WE SERVE ═══ */}
       <section id="areas" className="scroll-mt-20 bg-[var(--onestop-cream)] bg-texture py-14 sm:py-20 lg:py-24">
         <div className={shell}>
-          <div className="flex items-end justify-between gap-4 flex-wrap">
+          <Reveal className="flex items-end justify-between gap-4 flex-wrap">
             <div className="max-w-2xl">
-              <h2 className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-[var(--onestop-navy-deep)] uppercase tracking-tight leading-tight">
-                Areas We Serve
-              </h2>
+              <TextReveal as="h2" className="block text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-[var(--onestop-navy-deep)] uppercase tracking-tight leading-tight">Areas We Serve</TextReveal>
               <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-slate-600">
                 Patio covers, outdoor kitchens, pergolas and concrete across five core Texas markets. Pick your city for local pricing, neighborhoods and HOA notes.
               </p>
@@ -710,9 +732,9 @@ export default function HomePageClient() {
             >
               View all areas →
             </Link>
-          </div>
+          </Reveal>
 
-          <div className="mt-8 sm:mt-10 grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 auto-rows-fr">
+          <Reveal className="mt-8 sm:mt-10 grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 auto-rows-fr" delay={0.1}>
             {areaCities.map((c) => (
               <Link
                 key={c.slug}
@@ -760,7 +782,7 @@ export default function HomePageClient() {
                 </div>
               </Link>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -778,13 +800,13 @@ export default function HomePageClient() {
         </div>
 
         <div className={`${shell} grid gap-10 lg:grid-cols-[1fr_1.5fr] lg:gap-14 relative z-10`}>
-          <div>
-            <h2 className="text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">FAQ</h2>
+          <Reveal direction="right">
+            <TextReveal as="h2" className="block text-2xl font-extrabold text-[var(--onestop-navy-deep)] sm:text-3xl uppercase tracking-tight">FAQ</TextReveal>
             <p className="mt-3 text-sm text-slate-500">Don&apos;t see yours? Call us — we&apos;re happy to help.</p>
             <a href={`tel:${cleanPhone}`} className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[var(--onestop-navy)]"><Phone className="h-4 w-4" /> {siteConfig.phone}</a>
-          </div>
+          </Reveal>
 
-          <div className="space-y-3 sm:space-y-4">
+          <Reveal direction="left" delay={0.1} className="space-y-3 sm:space-y-4">
             {siteConfig.faqs.map((faq, i) => (
               <details key={faq.q} className="group bg-white rounded-xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] border border-slate-100 overflow-hidden [&_summary::-webkit-details-marker]:hidden" open={i === 0}>
                 <summary className="flex cursor-pointer items-center justify-between gap-4 p-5 sm:p-6 text-[0.95rem] font-bold text-[var(--onestop-navy-deep)] relative select-none">
@@ -801,7 +823,7 @@ export default function HomePageClient() {
                 </div>
               </details>
             ))}
-          </div>
+          </Reveal>
         </div>
       </section>
 

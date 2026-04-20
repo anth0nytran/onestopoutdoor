@@ -59,14 +59,14 @@ export function MobileCTA() {
             <div className="flex gap-2 p-2">
               <a
                 href={`tel:${siteConfig.cleanPhone}`}
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-[var(--onestop-red)] h-12 text-[0.8rem] font-bold uppercase tracking-[0.08em] text-white rounded-xl active:scale-[0.96] transition-transform duration-150"
+                className="btn-sheen flex-1 inline-flex items-center justify-center gap-2 bg-[var(--onestop-red)] h-12 text-[0.8rem] font-bold uppercase tracking-[0.08em] text-white rounded-xl active:scale-[0.96]"
               >
                 <Phone className="h-[15px] w-[15px]" strokeWidth={2.5} />
                 Call Now
               </a>
               <Link
                 href="/contact"
-                className="flex-1 inline-flex items-center justify-center gap-2 bg-[var(--onestop-navy-deep)] h-12 text-[0.8rem] font-bold uppercase tracking-[0.08em] text-white rounded-xl active:scale-[0.96] transition-transform duration-150"
+                className="btn-sheen icon-nudge flex-1 inline-flex items-center justify-center gap-2 bg-[var(--onestop-navy-deep)] h-12 text-[0.8rem] font-bold uppercase tracking-[0.08em] text-white rounded-xl active:scale-[0.96]"
               >
                 Free Quote
                 <ArrowRight className="h-[15px] w-[15px]" strokeWidth={2.5} />

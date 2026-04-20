@@ -103,7 +103,7 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
         </div>
 
         <div className="pt-2">
-          <button type="submit" disabled={formStatus === 'sending'} className="relative w-full overflow-hidden rounded-lg bg-[var(--onestop-red)] py-4 text-[0.85rem] font-bold uppercase tracking-[0.15em] text-white shadow-lg transition-all hover:bg-[var(--onestop-navy-deep)] active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100 group">
+          <button type="submit" disabled={formStatus === 'sending'} className="btn-sheen relative w-full overflow-hidden rounded-lg bg-[var(--onestop-red)] py-4 text-[0.85rem] font-bold uppercase tracking-[0.15em] text-white shadow-lg hover:bg-[var(--onestop-navy-deep)] active:scale-[0.98] disabled:opacity-60 disabled:active:scale-100 group">
             <span className="relative z-10 flex items-center justify-center gap-2">
               {formStatus === 'sending' ? 'Processing...' : 'Get Your Free Estimate'}
               {formStatus !== 'sending' && <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />}

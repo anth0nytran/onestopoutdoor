@@ -379,3 +379,147 @@ details[open] > *:not(summary) {
   color: #64748b;
   font-style: italic;
 }
+
+/* ─── SITEWIDE MOTION SYSTEM ─────────────────────────────────────
+   Tokens — every transition uses these so the whole site feels one piece.
+   --ease-out: smooth deceleration (UI reveals, hovers)
+   --ease-spring: gentle overshoot (card lifts, buttons)
+   --dur-*: three speeds — fast for micro, base for hovers, slow for entrances
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.35, 0.64, 1);
+  --ease-soft: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 180ms;
+  --dur-base: 260ms;
+  --dur-slow: 480ms;
+  --shadow-rest: 0 1px 2px rgba(15, 40, 71, 0.04), 0 2px 8px rgba(15, 40, 71, 0.04);
+  --shadow-lift: 0 4px 12px -2px rgba(15, 40, 71, 0.08), 0 18px 36px -12px rgba(15, 40, 71, 0.18);
+  --shadow-press: 0 1px 2px rgba(15, 40, 71, 0.06);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* ─ Universal interaction transition ─────────────────────────── */
+  .onestop-site a,
+  .onestop-site button,
+  .onestop-site [role="button"],
+  .onestop-site summary,
+  .onestop-site input,
+  .onestop-site textarea,
+  .onestop-site select {
+    transition-property: color, background-color, border-color, box-shadow, transform, opacity, filter;
+    transition-duration: var(--dur-base);
+    transition-timing-function: var(--ease-out);
+  }
+
+  /* ─ Primary card lift ────────────────────────────────────────── */
+  .hover-lift {
+    transition: transform var(--dur-base) var(--ease-spring),
+                box-shadow var(--dur-base) var(--ease-out),
+                border-color var(--dur-fast) var(--ease-out);
+    will-change: transform;
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lift);
+  }
+  .hover-lift:active {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-press);
+    transition-duration: 80ms;
+  }
+
+  /* ─ Media zoom — for image cards (portfolio, services, gallery) ─ */
+  .media-zoom { overflow: hidden; }
+  .media-zoom > img,
+  .media-zoom > [data-img],
+  .media-zoom img {
+    transition: transform 700ms var(--ease-out), filter 400ms var(--ease-out);
+    will-change: transform;
+  }
+  .media-zoom:hover img { transform: scale(1.06); filter: brightness(1.04); }
+
+  /* ─ Subtle press on every interactive element ────────────────── */
+  .onestop-site button:active:not(:disabled),
+  .onestop-site a:active,
+  .onestop-site [role="button"]:active {
+    transform: translateY(1px);
+    transition-duration: 80ms;
+  }
+
+  /* ─ Image paint reveal ───────────────────────────────────────── */
+  .media-reveal { animation: mediaReveal var(--dur-slow) var(--ease-out) both; }
+  @keyframes mediaReveal {
+    from { opacity: 0; transform: scale(1.02); }
+    to   { opacity: 1; transform: scale(1); }
+  }
+
+  /* ─ Sliding underline for inline links ───────────────────────── */
+  .link-underline {
+    position: relative;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1.5px;
+    transition: background-size var(--dur-base) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  }
+  .link-underline:hover { background-size: 100% 1.5px; }
+
+  /* ─ Button sheen — subtle moving highlight on primary CTAs ───── */
+  .btn-sheen {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .btn-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 20%, rgba(255,255,255,0.22) 50%, transparent 80%);
+    transform: translateX(-120%);
+    transition: transform 700ms var(--ease-out);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .btn-sheen:hover::after { transform: translateX(120%); }
+  .btn-sheen > * { position: relative; z-index: 2; }
+
+  /* ─ Icon nudge — pairs with arrow/chevron icons inside links ─── */
+  .icon-nudge :is(svg, [data-lucide]) {
+    transition: transform var(--dur-base) var(--ease-spring);
+  }
+  .icon-nudge:hover :is(svg, [data-lucide]) {
+    transform: translateX(3px);
+  }
+
+  /* ─ Focus rings — clean, modern, accessible ──────────────────── */
+  .onestop-site :is(a, button, [role="button"], input, textarea, select):focus-visible {
+    outline: 2px solid var(--onestop-navy);
+    outline-offset: 3px;
+    border-radius: 2px;
+    transition: outline-offset var(--dur-fast) var(--ease-out);
+  }
+
+  /* ─ Input focus polish ───────────────────────────────────────── */
+  .onestop-site input:focus,
+  .onestop-site textarea:focus,
+  .onestop-site select:focus {
+    box-shadow: 0 0 0 3px rgba(26, 58, 107, 0.12);
+  }
+}
+
+@media (hover: none) {
+  .hover-lift:hover { transform: none; box-shadow: var(--shadow-rest); }
+  .media-zoom:hover img { transform: none; filter: none; }
+  .btn-sheen::after { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+

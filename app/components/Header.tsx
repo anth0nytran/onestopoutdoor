@@ -187,7 +187,7 @@ export function Header() {
                 </div>
                 {siteConfig.phone}
               </a>
-              <Link href="/contact" className="relative bg-[var(--onestop-red)] px-6 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white rounded-lg overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[var(--onestop-red)]/15 hover:-translate-y-px active:translate-y-0 group">
+              <Link href="/contact" className="btn-sheen relative bg-[var(--onestop-red)] px-6 py-2.5 text-xs font-bold uppercase tracking-[0.18em] text-white rounded-lg overflow-hidden hover:shadow-lg hover:shadow-[var(--onestop-red)]/15 hover:-translate-y-px active:translate-y-0 group">
                 <span className="relative z-10">Call Now</span>
                 <span className="absolute inset-0 bg-[var(--onestop-navy-deep)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </Link>

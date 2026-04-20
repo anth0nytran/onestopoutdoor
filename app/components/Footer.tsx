@@ -38,7 +38,7 @@ export function Footer() {
                 <div className="text-[0.7rem] font-bold uppercase tracking-[0.2em] text-white/40 mb-1">Fast Response &amp; Quick Scheduling</div>
                 <a href={`tel:${siteConfig.cleanPhone}`} className="text-xl font-extrabold text-white hover:text-white transition-colors">{siteConfig.phone}</a>
               </div>
-              <Link href="/contact" className="inline-flex items-center justify-center bg-[var(--onestop-red)] px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white hover:brightness-110 transition-all rounded-lg">
+              <Link href="/contact" className="btn-sheen inline-flex items-center justify-center bg-[var(--onestop-red)] px-6 py-3 text-xs font-bold uppercase tracking-[0.15em] text-white hover:brightness-110 rounded-lg">
                 Get Free Estimate
               </Link>
             </div>
