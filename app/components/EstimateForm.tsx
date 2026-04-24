@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, type FormEvent } from 'react';
+import { track } from '@vercel/analytics';
 import { ArrowRight, Phone, User, MapPin, ClipboardList, Lock, Calendar } from 'lucide-react';
 import { siteConfig } from '../config';
 import { Stars } from './Stars';
@@ -25,6 +26,17 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
     setFormStatus('sending');
     const form = e.currentTarget;
     const fd = new FormData(form);
+    const path = typeof window !== 'undefined' ? window.location.pathname : 'unknown';
+    const service = String(fd.get('service') || 'Not selected');
+    const timeline = String(fd.get('timeline') || 'Not selected');
+
+    track('Estimate Form Submitted', {
+      variant,
+      path,
+      service,
+      timeline,
+    });
+
     if (typeof window !== 'undefined') {
       fd.set('page', window.location.href);
     }
@@ -32,9 +44,36 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
     try {
       const res = await fetch('/api/lead', { method: 'POST', body: fd, headers: { Accept: 'application/json' } });
       const data = await res.json().catch(() => null);
-      if (!res.ok || !data?.ok) { setFormStatus('error'); setFormError(data?.error || 'Something went wrong.'); return; }
+      if (!res.ok || !data?.ok) {
+        track('Estimate Form Failed', {
+          variant,
+          path,
+          service,
+          timeline,
+          status: res.status,
+        });
+        setFormStatus('error');
+        setFormError(data?.error || 'Something went wrong.');
+        return;
+      }
+      track('Estimate Lead Captured', {
+        variant,
+        path,
+        service,
+        timeline,
+      });
       form.reset(); setPhoneValue(''); setFormStatus('success');
-    } catch { setFormStatus('error'); setFormError('Something went wrong. Please try again.'); }
+    } catch {
+      track('Estimate Form Failed', {
+        variant,
+        path,
+        service,
+        timeline,
+        status: 'network',
+      });
+      setFormStatus('error');
+      setFormError('Something went wrong. Please try again.');
+    }
   };
 
   const isDark = variant === 'dark';

@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { MarketingAnalytics } from "./components/MarketingAnalytics";
 import { MobileCTA } from "./components/MobileCTA";
 import "./globals.css";
 
@@ -260,6 +263,9 @@ export default function RootLayout({
           <Footer />
           <MobileCTA />
         </div>
+        <MarketingAnalytics />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
