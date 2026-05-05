@@ -74,7 +74,7 @@ export default function ServicePillarClient({
             {/* INTRO */}
             <div className="space-y-5 sm:space-y-6">
               {pillar.intro.map((p, i) => (
-                <p key={i} className={bodyLg}>{p}</p>
+                <p key={i} className={bodyLg} dangerouslySetInnerHTML={{ __html: p }} />
               ))}
             </div>
 
@@ -180,7 +180,7 @@ export default function ServicePillarClient({
                       <span>{f.q}</span>
                       <span className="shrink-0 text-[var(--onestop-red)] text-2xl leading-none font-light group-open:rotate-45 transition-transform duration-200">+</span>
                     </summary>
-                    <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-[var(--onestop-ink)]/80 pr-8">{f.a}</p>
+                    <p className="mt-3 sm:mt-4 text-sm sm:text-base leading-relaxed text-[var(--onestop-ink)]/80 pr-8" dangerouslySetInnerHTML={{ __html: f.a }} />
                   </details>
                 ))}
               </div>

@@ -42,15 +42,15 @@ export interface PillarContent {
 // ──────────────────────────────────────────────────────────────────
 const patioCovers: PillarContent = {
   slug: 'patio-covers',
-  titleTag: 'Patio Covers — Richmond, Katy & Houston TX',
+  titleTag: 'Patio Cover Installation Richmond, Katy & Houston TX | 5★ Builder',
   metaDescription:
-    'Custom patio covers — aluminum, insulated solid, wood & steel — installed across Richmond, Katy, Sugar Land, Rosenberg & Houston TX. Licensed, insured, 15+ years. (832) 945-8084.',
+    'Aluminum, insulated solid panel, wood & lattice patio covers installed across Fort Bend & west Harris County. 300+ builds, 15+ yrs, free estimates. Call (832) 945-8084.',
   h1: 'Patio Covers — Aluminum, Insulated Solid, Wood & Custom',
   answerFirst:
     'One Stop Outdoor Construction installs custom patio covers across Richmond, Katy, Sugar Land, Rosenberg and Houston, TX. We build aluminum, insulated solid-panel, wood and steel covers — with ceiling fans, lighting, skylights and HOA-approved finishes. Free on-site estimates: (832) 945-8084.',
   intro: [
-    'A good patio cover does three things at once — it shades the slab so you can actually use your backyard in August, it ties into the existing roofline so it reads as original construction, and it adds measurable home value. Done poorly, a cover traps heat, drips rust, and fails the HOA review. Done well, it stays cool, sheds water, and lasts 25+ years.',
-    'We\'ve built 300+ patio covers across Fort Bend and west Harris County since 2011. Every build starts with an on-site measurement, a written itemized quote, and — if needed — the HOA ARC packet and Fort Bend County or City of Houston permit submission. One crew, one warranty, no subcontractor runaround.',
+    'A good patio cover does three things at once — it shades the slab so you can actually use your backyard in August, it ties into the existing roofline so it reads as original construction, and it adds measurable home value. Done poorly, a cover traps heat, drips rust, and fails the HOA review. Done well, it stays cool, sheds water, and lasts 25+ years. For a full pricing breakdown, see our <a href="/blog/patio-cover-cost-houston-tx">2026 patio cover cost guide for Houston</a>.',
+    'We\'ve built 300+ patio covers across Fort Bend and west Harris County since 2011. Every build starts with an on-site measurement, a written itemized quote, and — if needed — the HOA ARC packet and Fort Bend County or City of Houston permit submission. One crew, one warranty, no subcontractor runaround. Still deciding between a solid cover and an open structure? Read <a href="/blog/pergola-vs-patio-cover-houston">pergola vs patio cover in Houston</a>, and if your home is in a deed-restricted community, our <a href="/blog/patio-cover-hoa-approval-fort-bend-county">Fort Bend County HOA approval walkthrough</a> covers Cinco Ranch, Riverstone, Telfair and more.',
   ],
   materials: [
     {
@@ -126,14 +126,14 @@ const patioCovers: PillarContent = {
 // ──────────────────────────────────────────────────────────────────
 const outdoorKitchens: PillarContent = {
   slug: 'outdoor-kitchens',
-  titleTag: 'Outdoor Kitchens — Richmond, Katy & Houston TX',
+  titleTag: 'Outdoor Kitchen Builder Houston, Katy & Richmond TX | 5★ Custom',
   metaDescription:
-    'Custom outdoor kitchens built in Richmond, Katy, Sugar Land & Houston TX. Built-in grills, stone counters, full utility hookups. Licensed, insured, 15+ years. (832) 945-8084.',
+    'Custom outdoor kitchens — built-in grills, stone counters, plumbing, lighting. 15+ years building Houston backyards. 5.0 ★ × 32. Free design estimate — (832) 945-8084.',
   h1: 'Custom Outdoor Kitchens — Built-In Grills, Stone Counters & Full Utilities',
   answerFirst:
     'One Stop Outdoor Construction designs and builds custom outdoor kitchens across Richmond, Katy, Sugar Land and Houston, TX. Masonry or steel-frame bases, stainless built-in appliances, natural-stone countertops, and full gas/water/electrical integration. Free estimates: (832) 945-8084.',
   intro: [
-    'A real outdoor kitchen is not a grill on a cart. It\'s a permanent, weatherproof, utility-connected space that works as hard as your indoor kitchen — in August heat, in spring storms, and for twenty years of family cookouts. Building one right means getting the base, the ventilation, the utility lines and the finish all correct the first time.',
+    'A real outdoor kitchen is not a grill on a cart. It\'s a permanent, weatherproof, utility-connected space that works as hard as your indoor kitchen — in August heat, in spring storms, and for twenty years of family cookouts. Building one right means getting the base, the ventilation, the utility lines and the finish all correct the first time. For real-world budget ranges from projects we\'ve actually built, see our <a href="/blog/outdoor-kitchen-cost-houston-tx">2026 outdoor kitchen cost guide for Houston</a>.',
     'We design every outdoor kitchen around how you actually cook. Grill master who wants a 36" built-in and a side burner? Smoker enthusiast with a Big Green Egg? Pizza-oven family? We spec the layout, build the masonry or steel-frame base, run gas and water, drop in the appliances and finish with stone or tile. Everything under one warranty.',
   ],
   materials: [
@@ -203,15 +203,15 @@ const outdoorKitchens: PillarContent = {
 // ──────────────────────────────────────────────────────────────────
 const pergolas: PillarContent = {
   slug: 'pergolas',
-  titleTag: 'Custom Pergolas — Richmond, Katy & Houston TX',
+  titleTag: 'Pergola Builder Richmond, Katy & Houston TX | Cedar, Aluminum',
   metaDescription:
-    'Custom wood, aluminum and steel pergolas built across Richmond, Katy, Sugar Land & Houston TX. Attached, freestanding, motorized louvered. Licensed, insured. (832) 945-8084.',
+    'Custom pergolas — cedar, aluminum, attached or freestanding. Built across Fort Bend County for 15+ years. 5.0 ★ × 32 reviews. Free estimate — (832) 945-8084.',
   h1: 'Custom Pergolas — Wood, Aluminum, Steel & Motorized Louvered',
   answerFirst:
     'One Stop Outdoor Construction builds custom pergolas — wood, aluminum, steel and motorized louvered — across Richmond, Katy, Sugar Land and Houston, TX. Attached or freestanding, with integrated lighting and fans. Free on-site estimates: (832) 945-8084.',
   intro: [
-    'A pergola is the most versatile outdoor structure you can build. It defines a space, filters sun, anchors a seating area, and can carry lighting, fans, privacy panels and climbing plants. Done in the right material and scale, it transforms a featureless yard into an outdoor room — without the cost of a full patio cover.',
-    'We build pergolas in four structural materials (cedar, pressure-treated pine, aluminum and powder-coated steel) and every common style — attached to the house, freestanding over a patio, freestanding over a kitchen, or motorized louvered for programmable shade. Every build is engineered for Gulf-coast wind loads and permitted through your local jurisdiction.',
+    'A pergola is the most versatile outdoor structure you can build. It defines a space, filters sun, anchors a seating area, and can carry lighting, fans, privacy panels and climbing plants. Done in the right material and scale, it transforms a featureless yard into an outdoor room — without the cost of a full patio cover. Not sure which structure fits your yard? Our <a href="/blog/pergola-vs-patio-cover-houston">pergola vs patio cover comparison for Houston homeowners</a> walks through cost, shade and rain trade-offs.',
+    'We build pergolas in four structural materials (cedar, pressure-treated pine, aluminum and powder-coated steel) and every common style — attached to the house, freestanding over a patio, freestanding over a kitchen, or motorized louvered for programmable shade. Every build is engineered for Gulf-coast wind loads and permitted through your local jurisdiction. If you live in a Fort Bend HOA community, see our <a href="/blog/patio-cover-hoa-approval-fort-bend-county">step-by-step HOA approval guide for Fort Bend County</a> — most of the same ARC rules apply to pergolas.',
   ],
   materials: [
     {
@@ -279,15 +279,15 @@ const pergolas: PillarContent = {
 // ──────────────────────────────────────────────────────────────────
 const concreteDriveways: PillarContent = {
   slug: 'concrete-driveways',
-  titleTag: 'Concrete & Stamped Concrete | Richmond, Katy & Houston TX',
+  titleTag: 'Concrete Driveway & Patio Installation Houston TX | 15+ Yrs',
   metaDescription:
-    'Concrete patios, driveways, stamped and decorative concrete across Richmond, Katy, Sugar Land & Houston TX. Built for Fort Bend clay soils. Licensed, 15+ years. (832) 945-8084.',
+    'Concrete driveways, patios, stamped & decorative concrete in Richmond, Katy, Sugar Land & Houston. Licensed, insured, free estimate. 5.0 ★ Google.',
   h1: 'Concrete Patios, Driveways & Stamped Concrete',
   answerFirst:
     'One Stop Outdoor Construction installs concrete driveways, patios, walkways and stamped decorative concrete across Richmond, Katy, Sugar Land and Houston, TX. Every slab is prepped for Fort Bend\'s expansive clay soils so it doesn\'t crack. Free estimates: (832) 945-8084.',
   intro: [
-    'Concrete in Fort Bend and west Houston is harder than most contractors treat it. Expansive clay soil swells when wet and shrinks when dry, which is why poorly-prepped driveways and patios develop hairline cracks in year one and structural cracks by year three. The fix is not a better mix — it\'s a better sub-base, proper expansion joints and fiber reinforcement.',
-    'We\'ve poured concrete across Fort Bend County for 15+ years. Every slab we install starts with proper sub-base compaction, fiber-reinforced 3,500-psi mix, and expansion joints on a correct grid. For stamped or decorative work, we offer dozens of pattern and color combinations — ashlar slate, random stone, wood plank, running bond and more.',
+    'Concrete in Fort Bend and west Houston is harder than most contractors treat it. Expansive clay soil swells when wet and shrinks when dry, which is why poorly-prepped driveways and patios develop hairline cracks in year one and structural cracks by year three. The fix is not a better mix — it\'s a better sub-base, proper expansion joints and fiber reinforcement. For typical driveway pricing in our market, see our <a href="/blog/concrete-driveway-cost-houston-tx">2026 concrete driveway cost guide for Houston</a>.',
+    'We\'ve poured concrete across Fort Bend County for 15+ years. Every slab we install starts with proper sub-base compaction, fiber-reinforced 3,500-psi mix, and expansion joints on a correct grid. For stamped or decorative work, we offer dozens of pattern and color combinations — ashlar slate, random stone, wood plank, running bond and more — and our <a href="/blog/stamped-concrete-cost-houston-tx">stamped concrete cost guide</a> breaks down per-square-foot pricing by pattern.',
   ],
   materials: [
     {
@@ -355,14 +355,14 @@ const concreteDriveways: PillarContent = {
 // ──────────────────────────────────────────────────────────────────
 const walkwaysPavers: PillarContent = {
   slug: 'walkways-pavers',
-  titleTag: 'Paver Walkways — Richmond, Katy & Houston TX',
+  titleTag: 'Paver & Stone Walkway Installation Richmond, Katy & Houston TX',
   metaDescription:
-    'Paver stone walkways, flagstone pathways and natural-stone installations across Richmond, Katy, Sugar Land & Houston TX. Licensed, insured, 15+ years. (832) 945-8084.',
+    'Custom paver walkways, flagstone paths & stone borders across Fort Bend County. 15+ years, licensed, insured, 5.0 ★ × 32 reviews. Free estimate — (832) 945-8084.',
   h1: 'Paver Walkways & Natural Stone Pathways',
   answerFirst:
     'One Stop Outdoor Construction installs paver walkways, flagstone pathways and natural-stone installations across Richmond, Katy, Sugar Land and Houston, TX. Durable, HOA-friendly, properly-prepped for clay soils. Free estimates: (832) 945-8084.',
   intro: [
-    'A paver walkway does more than replace a muddy path — it defines the flow of your yard, adds curb appeal the day it\'s installed, and flexes with ground movement in ways that concrete can\'t. When we install pavers over a properly-prepped base, they stay level and crack-free for decades.',
+    'A paver walkway does more than replace a muddy path — it defines the flow of your yard, adds curb appeal the day it\'s installed, and flexes with ground movement in ways that concrete can\'t. When we install pavers over a properly-prepped base, they stay level and crack-free for decades. If you\'re weighing pavers against a poured option, our <a href="/blog/stamped-concrete-cost-houston-tx">stamped concrete cost guide for Houston</a> compares per-square-foot pricing and lifespan side-by-side.',
     'We build walkways in concrete pavers, natural flagstone, slate and stamped brick. Each installation includes excavation, compacted base, bedding sand, and polymeric joint sand that locks everything in place without getting washed out by summer rain.',
   ],
   process: [
@@ -393,9 +393,9 @@ const walkwaysPavers: PillarContent = {
 // ──────────────────────────────────────────────────────────────────
 const roofing: PillarContent = {
   slug: 'roofing',
-  titleTag: 'Residential Roofing — Richmond, Katy & Houston TX',
+  titleTag: 'Residential Roofing Contractor Richmond & Katy TX | Shingle, Metal',
   metaDescription:
-    'Residential roofing installation and replacement across Richmond, Katy, Sugar Land & Houston TX. Shingle, metal, flat and green roofing. Licensed, insured, 15+ years. (832) 945-8084.',
+    'Residential roofing — shingle, metal, flat & green roofing across Houston, Richmond, Katy, Sugar Land. Licensed, insured, free estimate. (832) 945-8084.',
   h1: 'Residential Roofing — Shingle, Metal, Flat & Green',
   answerFirst:
     'One Stop Outdoor Construction installs and replaces residential roofs across Richmond, Katy, Sugar Land and Houston, TX — shingle, metal, flat and green roofing systems. Licensed, insured, manufacturer-certified. Free inspection: (832) 945-8084.',
