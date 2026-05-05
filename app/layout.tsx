@@ -32,16 +32,16 @@ const monoFont = JetBrains_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL('https://onestopoutdoorconstruction.com'),
   title: {
-    default: "Patio Covers & Outdoor Construction | Richmond TX",
+    default: "Patio Covers Richmond & Katy TX · 5★ × 32 · Free Estimate | One Stop Outdoor",
     template: "%s | One Stop Outdoor Construction",
   },
-  description: "Patio covers, concrete, outdoor kitchens & pergolas in Richmond, Katy, Houston & Sugar Land TX. 15+ years. Licensed & insured. Free estimates — (832) 945-8084.",
+  description: "Custom patio covers, pergolas, outdoor kitchens & stamped concrete in Richmond, Katy, Sugar Land & Houston TX. 15+ years, licensed, insured, 5.0 ★ Google. Free estimate — (832) 945-8084.",
   alternates: {
     canonical: '/',
   },
   openGraph: {
-    title: "Patio Covers & Outdoor Construction in Richmond TX | One Stop Outdoor Construction",
-    description: "Patio covers, concrete, outdoor kitchens & pergolas in Richmond, Katy, Houston & Sugar Land TX. 15+ years. Licensed & insured. Free estimates — (832) 945-8084.",
+    title: "Patio Covers Richmond & Katy TX · 5★ × 32 · Free Estimate | One Stop Outdoor",
+    description: "Custom patio covers, pergolas, outdoor kitchens & stamped concrete in Richmond, Katy, Sugar Land & Houston TX. 15+ years, licensed, insured, 5.0 ★ Google. Free estimate — (832) 945-8084.",
     url: 'https://onestopoutdoorconstruction.com',
     siteName: 'One Stop Outdoor Construction',
     locale: 'en_US',
@@ -103,8 +103,12 @@ export default function RootLayout({
               "description": "Quality patio covers, concrete, outdoor kitchens, pergolas, roofing and walkways serving Richmond, Katy, Houston, Sugar Land & Rosenberg TX. 15+ years in business. Licensed & insured. Free estimates.",
               "sameAs": [
                 "https://www.facebook.com/p/One-Stop-Outdoor-Construction-Texas-100063553814373/",
-                "https://www.instagram.com/onestopoutdoorconstruction",
-                "https://www.tiktok.com/@onestopoutdoorcons"
+                "https://www.instagram.com/onestopoutdoorconstruction/",
+                "https://www.tiktok.com/@onestopoutdoorcons",
+                "https://share.google/s3NCIpoxVJm2d3HBt",
+                "https://www.bbb.org/us/tx/richmond/profile/patio-covers/one-stop-outdoor-construction-llc-0915-90051414",
+                "https://nextdoor.com/pages/one-stop-construction-houston-tx/",
+                "https://www.buildzoom.com/contractor/one-stop-outdoor-construction-llc"
               ],
               "founder": {
                 "@type": "Person",
@@ -218,6 +222,25 @@ export default function RootLayout({
                   { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Stamped Concrete", "description": "Decorative stamped concrete for driveways, patios, pool decks and walkways" } }
                 ]
               }
+            })
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              "name": "David Arabzadeh",
+              "jobTitle": "Owner & Lead Builder",
+              "worksFor": { "@type": "LocalBusiness", "name": "One Stop Outdoor Construction" },
+              "knowsAbout": ["Patio Covers", "Outdoor Kitchens", "Pergolas", "Stamped Concrete", "Concrete Driveways", "Roofing"],
+              "url": "https://onestopoutdoorconstruction.com/about",
+              "sameAs": [
+                "https://www.facebook.com/p/One-Stop-Outdoor-Construction-Texas-100063553814373/",
+                "https://www.instagram.com/onestopoutdoorconstruction/",
+                "https://www.tiktok.com/@onestopoutdoorcons"
+              ]
             })
           }}
         />
