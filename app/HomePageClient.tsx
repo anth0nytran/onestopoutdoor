@@ -85,14 +85,14 @@ function HeroEstimateForm() {
       <div className="grid gap-3 lg:gap-4 sm:grid-cols-2">
         <div>
           <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Service Needed <span className="text-[var(--onestop-red)]">*</span></label>
-          <select required name="service" defaultValue="" className={`${inputClass} appearance-none`}>
+          <select required name="service" aria-label="Service Needed" defaultValue="" className={`${inputClass} appearance-none`}>
             <option value="" disabled>Select a service</option>
             {[siteConfig.primaryService, ...siteConfig.services].map((s) => <option key={s} value={s}>{s}</option>)}
           </select>
         </div>
         <div>
           <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Timeline</label>
-          <select name="timeline" defaultValue="" className={`${inputClass} appearance-none`}>
+          <select name="timeline" aria-label="Project Timeline" defaultValue="" className={`${inputClass} appearance-none`}>
             <option value="" disabled>How soon?</option>
             <option value="ASAP">ASAP</option>
             <option value="Within 2 weeks">Within 2 weeks</option>
@@ -104,7 +104,7 @@ function HeroEstimateForm() {
       </div>
 
       <div>
-        <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Project Details <span className="text-slate-400 normal-case font-normal">(optional)</span></label>
+        <label className="block text-xs font-bold text-slate-600 mb-1 lg:mb-1.5 uppercase tracking-wide">Project Details <span className="text-slate-600 normal-case font-normal">(optional)</span></label>
         <textarea name="message" rows={2} maxLength={5000} placeholder="Describe your project, budget, or best time to reach you..." className={`${inputClass} resize-none`} />
       </div>
 
@@ -243,14 +243,14 @@ function ReviewsSection() {
           <div className="hidden lg:block absolute top-0 bottom-0 right-0 w-32 translate-x-[99%] bg-[var(--onestop-navy-deep)] z-[-1]" style={{ clipPath: 'polygon(0 0, 100% 0, 0 100%)' }} />
 
           <div className="relative z-20 lg:max-w-md lg:ml-auto lg:mr-0">
-            <h2 className="text-xs font-bold tracking-widest text-[var(--onestop-gold)] uppercase mb-3">Testimonials</h2>
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
+            <p className="text-xs font-bold tracking-widest text-[var(--onestop-gold)] uppercase mb-3">Testimonials</p>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
               What Our <br/>
               <span className="relative whitespace-nowrap inline-block mt-2">
                 <span className="relative z-10">Clients Say</span>
                 <span className="absolute bottom-1 left-0 right-0 h-2.5 bg-[var(--onestop-gold)] z-0 -rotate-1" />
               </span>
-            </h3>
+            </h2>
             <p className="mt-6 sm:mt-8 text-white/80 leading-relaxed text-[0.95rem]">
               We are passionate about exceeding expectations. Here is what our previous clients have to say about our service and craftsmanship.
             </p>
@@ -402,6 +402,7 @@ export default function HomePageClient() {
             aria-hidden
             fill
             priority
+            fetchPriority="high"
             sizes="100vw"
             className="object-cover object-center lg:object-[center_40%]"
           />
@@ -456,7 +457,7 @@ export default function HomePageClient() {
                 <div className="absolute top-0 right-0 w-16 h-16 bg-[var(--onestop-navy)]/5 rotate-45 transform translate-x-8 -translate-y-8 pointer-events-none" />
                 
                 <h2 className="text-lg sm:text-xl lg:text-2xl font-black text-[var(--onestop-navy-deep)] tracking-tight mb-1 uppercase">Get Your Free Estimate</h2>
-                <p className="text-xs sm:text-sm text-slate-400 mb-4 lg:mb-6">No cost. No obligation. Fast response.</p>
+                <p className="text-xs sm:text-sm text-slate-600 mb-4 lg:mb-6">No cost. No obligation. Fast response.</p>
                 <HeroEstimateForm />
               </div>
             </motion.div>

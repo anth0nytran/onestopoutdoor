@@ -125,7 +125,7 @@ export function Footer() {
       <div className="border-t border-white/10 bg-black/20">
         <div className={`${shell} py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left text-xs text-white/30 font-medium tracking-wide`}>
           <p>&copy; {new Date().getFullYear()} One Stop Outdoor Construction &mdash; Richmond, TX. All rights reserved.</p>
-          <p>Quality Outdoor Construction since {new Date().getFullYear() - siteConfig.yearsInBusiness}. Website by <a href="https://quicklaunchweb.us" target="_blank" rel="noopener noreferrer" className="text-white/50 hover:text-white transition-colors">QuickLaunchWeb</a></p>
+          <p>Quality Outdoor Construction since {new Date().getFullYear() - siteConfig.yearsInBusiness}. Website by <a href="https://quicklaunchweb.us" target="_blank" rel="noopener noreferrer" className="text-white/70 underline underline-offset-2 hover:text-white transition-colors">QuickLaunchWeb</a></p>
         </div>
       </div>
 

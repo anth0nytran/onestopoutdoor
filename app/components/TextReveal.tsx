@@ -60,6 +60,10 @@ export function TextReveal({
   const tokens = split === 'char' ? Array.from(children) : children.split(/(\s+)/);
 
   const MotionTag = motion(Tag);
+  // aria-label is prohibited on generic <span>; only expose it on semantic tags
+  // (headings, paragraphs, etc.) where implicit role supports labelling.
+  const tagName = typeof Tag === 'string' ? Tag : '';
+  const isHeading = /^h[1-6]$/i.test(tagName);
 
   return (
     <MotionTag
@@ -69,18 +73,18 @@ export function TextReveal({
       viewport={{ once, amount, margin: '0px 0px -80px 0px' }}
       variants={container}
       custom={{ stagger, delay }}
-      aria-label={children}
+      {...(isHeading ? { 'aria-label': children } : {})}
     >
       {tokens.map((token, i) => {
         if (/^\s+$/.test(token)) {
           return (
-            <span key={`s-${i}`} aria-hidden style={{ whiteSpace: 'pre' }}>{token}</span>
+            <span key={`s-${i}`} aria-hidden={isHeading || undefined} style={{ whiteSpace: 'pre' }}>{token}</span>
           );
         }
         return (
           <span
             key={`${token}-${i}`}
-            aria-hidden
+            aria-hidden={isHeading || undefined}
             className="inline-block overflow-hidden align-baseline"
             style={{ lineHeight: 'inherit' }}
           >
