@@ -30,7 +30,7 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://onestopoutdoorconstruction.com'),
+  metadataBase: new URL('https://www.onestopoutdoorconstruction.com'),
   title: {
     default: "Patio Covers Richmond & Katy TX · 5★ × 32 · Free Estimate | One Stop Outdoor",
     template: "%s | One Stop Outdoor Construction",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Patio Covers Richmond & Katy TX · 5★ × 32 · Free Estimate | One Stop Outdoor",
     description: "Custom patio covers, pergolas, outdoor kitchens & stamped concrete in Richmond, Katy, Sugar Land & Houston TX. 15+ years, licensed, insured, 5.0 ★ Google. Free estimate — (832) 945-8084.",
-    url: 'https://onestopoutdoorconstruction.com',
+    url: 'https://www.onestopoutdoorconstruction.com',
     siteName: 'One Stop Outdoor Construction',
     locale: 'en_US',
     type: 'website',
@@ -89,9 +89,9 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
               "name": "One Stop Outdoor Construction",
-              "image": "https://onestopoutdoorconstruction.com/facebook/hero.jpg",
-              "@id": "https://onestopoutdoorconstruction.com",
-              "url": "https://onestopoutdoorconstruction.com",
+              "image": "https://www.onestopoutdoorconstruction.com/facebook/hero.jpg",
+              "@id": "https://www.onestopoutdoorconstruction.com",
+              "url": "https://www.onestopoutdoorconstruction.com",
               "telephone": "+18329458084",
               "contactPoint": {
                 "@type": "ContactPoint",
@@ -235,7 +235,7 @@ export default function RootLayout({
               "jobTitle": "Owner & Lead Builder",
               "worksFor": { "@type": "LocalBusiness", "name": "One Stop Outdoor Construction" },
               "knowsAbout": ["Patio Covers", "Outdoor Kitchens", "Pergolas", "Stamped Concrete", "Concrete Driveways", "Roofing"],
-              "url": "https://onestopoutdoorconstruction.com/about",
+              "url": "https://www.onestopoutdoorconstruction.com/about",
               "sameAs": [
                 "https://www.facebook.com/p/One-Stop-Outdoor-Construction-Texas-100063553814373/",
                 "https://www.instagram.com/onestopoutdoorconstruction/",
@@ -252,7 +252,7 @@ export default function RootLayout({
               "@type": "WebSite",
               "name": "One Stop Outdoor Construction",
               "alternateName": ["One Stop Outdoor", "OSOC", "One Stop Outdoor Construction LLC"],
-              "url": "https://onestopoutdoorconstruction.com"
+              "url": "https://www.onestopoutdoorconstruction.com"
             })
           }}
         />

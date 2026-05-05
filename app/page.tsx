@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Patio Covers Richmond & Katy TX · 5★ × 32 · Free Estimate | One Stop Outdoor',
     description: 'Custom patio covers, pergolas, outdoor kitchens & stamped concrete in Richmond, Katy, Sugar Land & Houston TX. 15+ years, licensed, insured, 5.0 ★ Google.',
-    url: 'https://onestopoutdoorconstruction.com',
+    url: 'https://www.onestopoutdoorconstruction.com',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'One Stop Outdoor Construction — Patio Covers & Outdoor Construction in Richmond TX' }],
   },
 };

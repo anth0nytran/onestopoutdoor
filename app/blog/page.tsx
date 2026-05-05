@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Blog — Outdoor Construction Tips & Cost Guides',
     description: 'Cost guides, design tips & outdoor construction advice for Richmond, Katy & Houston TX homeowners.',
-    url: 'https://onestopoutdoorconstruction.com/blog',
+    url: 'https://www.onestopoutdoorconstruction.com/blog',
     images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'One Stop Outdoor Construction Blog — Tips & Cost Guides' }],
   },
   twitter: {
@@ -41,13 +41,13 @@ export default function BlogPage() {
                 '@type': 'ListItem',
                 position: 1,
                 name: 'Home',
-                item: 'https://onestopoutdoorconstruction.com',
+                item: 'https://www.onestopoutdoorconstruction.com',
               },
               {
                 '@type': 'ListItem',
                 position: 2,
                 name: 'Blog',
-                item: 'https://onestopoutdoorconstruction.com/blog',
+                item: 'https://www.onestopoutdoorconstruction.com/blog',
               },
             ],
           }),
@@ -63,13 +63,13 @@ export default function BlogPage() {
             '@type': 'CollectionPage',
             'name': 'Outdoor Construction Blog — Richmond, Katy, Houston & Beyond',
             'description': 'Expert outdoor construction tips, cost guides, and design advice for homeowners in Richmond, Katy, Houston & surrounding areas.',
-            'url': 'https://onestopoutdoorconstruction.com/blog',
+            'url': 'https://www.onestopoutdoorconstruction.com/blog',
             'mainEntity': {
               '@type': 'ItemList',
               'itemListElement': blogPosts.map((post, i) => ({
                 '@type': 'ListItem',
                 'position': i + 1,
-                'url': `https://onestopoutdoorconstruction.com/blog/${post.slug}`,
+                'url': `https://www.onestopoutdoorconstruction.com/blog/${post.slug}`,
                 'name': post.title,
               })),
             },

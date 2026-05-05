@@ -86,7 +86,7 @@ export default async function AreaPage({ params }: PageProps) {
     sameAs: `https://en.wikipedia.org/wiki/${city.city.replace(/ /g, '_')},_Texas`,
     parentOrganization: {
       '@type': 'LocalBusiness',
-      '@id': 'https://onestopoutdoorconstruction.com',
+      '@id': 'https://www.onestopoutdoorconstruction.com',
       name: siteConfig.businessName,
     },
     areaServed: [

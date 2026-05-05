@@ -3,7 +3,7 @@ import { getAllSlugs, getPostBySlug } from './blog/posts';
 import { areaCities } from './service-areas/data';
 import { pillarContent } from './services/pillar-data';
 
-const BASE_URL = 'https://onestopoutdoorconstruction.com';
+const BASE_URL = 'https://www.onestopoutdoorconstruction.com';
 
 // Use the last known content update date instead of new Date() every crawl.
 // Update this when major content changes are deployed.

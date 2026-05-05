@@ -28,19 +28,9 @@ const nextConfig: NextConfig = {
       { source: '/api/:path*', headers: [...securityHeaders, { key: 'X-Robots-Tag', value: 'noindex' }] },
     ];
   },
-  // Canonical host: onestopoutdoorconstruction.com (no www).
-  // 301-redirect www -> apex to consolidate Google Search Console signals
-  // and eliminate duplicate-canonical bleed between www and non-www variants.
-  async redirects() {
-    return [
-      {
-        source: '/:path*',
-        has: [{ type: 'host', value: 'www.onestopoutdoorconstruction.com' }],
-        destination: 'https://onestopoutdoorconstruction.com/:path*',
-        permanent: true,
-      },
-    ];
-  },
+  // Canonical host: www.onestopoutdoorconstruction.com.
+  // Vercel platform-level redirect already enforces apex -> www,
+  // so we do NOT add a redirects() block here (would create a loop).
 };
 
 export default nextConfig;
