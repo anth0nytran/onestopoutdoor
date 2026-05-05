@@ -1,0 +1,788 @@
+{
+  "url": "https://pagespeed.web.dev/analysis/https-onestopoutdoorconstruction-com/nm9yly65j2?form_factor=desktop",
+  "formFactor": "desktop",
+  "captured": "2026-05-05T17:54:24.309Z",
+  "categories": {},
+  "labMetrics": {
+    "First Contentful Paint": "0.4 s",
+    "Largest Contentful Paint": "1.3 s",
+    "Total Blocking Time": "0 ms",
+    "Cumulative Layout Shift": "0.002",
+    "Speed Index": "1.7 s"
+  },
+  "audits": [
+    {
+      "title": "Improve image delivery",
+      "status": "fail",
+      "display": "Est savings of 1,959 KiB",
+      "desc": "Reducing the download time of images can improve the perceived load time of the page and LCP. Learn more about optimizing image sizeLCPFCPUnscored"
+    },
+    {
+      "title": "Forced reflow",
+      "status": "fail",
+      "display": "",
+      "desc": "A forced reflow occurs when JavaScript queries geometric properties (such as offsetWidth) after styles have been invalidated by a change to the DOM state. This can result in poor performance. Learn mo"
+    },
+    {
+      "title": "LCP request discovery",
+      "status": "fail",
+      "display": "",
+      "desc": "Optimize LCP by making the LCP image discoverable from the HTML immediately, and avoiding lazy-loadingLCPUnscored"
+    },
+    {
+      "title": "Network dependency tree",
+      "status": "fail",
+      "display": "",
+      "desc": "Avoid chaining critical requests by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.LCPUnscored"
+    },
+    {
+      "title": "Render blocking requests",
+      "status": "warn",
+      "display": "Est savings of 10 ms",
+      "desc": "Requests are blocking the page's initial render, which may delay LCP. Deferring or inlining can move these network requests out of the critical path.LCPFCPUnscored"
+    },
+    {
+      "title": "Legacy JavaScript",
+      "status": "warn",
+      "display": "Est savings of 14 KiB",
+      "desc": "Polyfills and transforms enable older browsers to use new JavaScript features. However, many aren't necessary for modern browsers. Consider modifying your JavaScript build process to not transpile Bas"
+    },
+    {
+      "title": "Layout shift culprits",
+      "status": "info",
+      "display": "",
+      "desc": "Layout shifts occur when elements move absent any user interaction. Investigate the causes of layout shifts, such as elements being added, removed, or their fonts changing as the page loads.CLSUnscore"
+    },
+    {
+      "title": "Optimize DOM size",
+      "status": "info",
+      "display": "",
+      "desc": "A large DOM can increase the duration of style calculations and layout reflows, impacting page responsiveness. A large DOM will also increase memory usage. Learn how to avoid an excessive DOM size.Uns"
+    },
+    {
+      "title": "LCP breakdown",
+      "status": "info",
+      "display": "",
+      "desc": "Each subpart has specific improvement strategies. Ideally, most of the LCP time should be spent on loading the resources, not within delays.LCPUnscored"
+    },
+    {
+      "title": "Image elements do not have explicit width and height",
+      "status": "warn",
+      "display": "",
+      "desc": "Set an explicit width and height on image elements to reduce layout shifts and improve CLS. Learn how to set image dimensionsCLSUnscored"
+    },
+    {
+      "title": "Reduce unused JavaScript",
+      "status": "warn",
+      "display": "Est savings of 46 KiB",
+      "desc": "Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. Learn how to reduce unused JavaScript.LCPFCPUnscored"
+    },
+    {
+      "title": "Avoid enormous network payloads",
+      "status": "warn",
+      "display": "Total size was 3,201 KiB",
+      "desc": "Large network payloads cost users real money and are highly correlated with long load times. Learn how to reduce payload sizes.Unscored"
+    },
+    {
+      "title": "Avoid long main-thread tasks",
+      "status": "info",
+      "display": "1 long task found",
+      "desc": "Lists the longest tasks on the main thread, useful for identifying worst contributors to input delay. Learn how to avoid long main-thread tasksTBTUnscored"
+    },
+    {
+      "title": "Use efficient cache lifetimes",
+      "status": "pass",
+      "display": "",
+      "desc": "A long cache lifetime can speed up repeat visits to your page. Learn more about caching.LCPFCPUnscored"
+    },
+    {
+      "title": "Document request latency",
+      "status": "pass",
+      "display": "",
+      "desc": "Your first network request is the most important. Reduce its latency by avoiding redirects, ensuring a fast server response, and enabling text compression.LCPFCPUnscored"
+    },
+    {
+      "title": "Duplicated JavaScript",
+      "status": "pass",
+      "display": "",
+      "desc": "Remove large, duplicate JavaScript modules from bundles to reduce unnecessary bytes consumed by network activity.LCPFCPUnscored"
+    },
+    {
+      "title": "Font display",
+      "status": "pass",
+      "display": "",
+      "desc": "Consider setting font-display to swap or optional to ensure text is consistently visible. swap can be further optimized to mitigate layout shifts with font metric overrides.Unscored"
+    },
+    {
+      "title": "INP breakdown",
+      "status": "pass",
+      "display": "",
+      "desc": "Start investigating how to improve INP by looking at the longest subpart.Unscored"
+    },
+    {
+      "title": "3rd parties",
+      "status": "pass",
+      "display": "",
+      "desc": "3rd party code can significantly impact load performance. Reduce and defer loading of 3rd party code to prioritize your page's content.Unscored"
+    },
+    {
+      "title": "Optimize viewport for mobile",
+      "status": "pass",
+      "display": "",
+      "desc": "Tap interactions may be delayed by up to 300 ms if the viewport is not optimized for mobile.Unscored"
+    },
+    {
+      "title": "Minify CSS",
+      "status": "pass",
+      "display": "",
+      "desc": "Minifying CSS files can reduce network payload sizes. Learn how to minify CSS.LCPFCPUnscored"
+    },
+    {
+      "title": "Minify JavaScript",
+      "status": "pass",
+      "display": "",
+      "desc": "Minifying JavaScript files can reduce payload sizes and script parse time. Learn how to minify JavaScript.LCPFCPUnscored"
+    },
+    {
+      "title": "Reduce unused CSS",
+      "status": "pass",
+      "display": "",
+      "desc": "Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. Learn how to reduce unused CSS.LCPFCPUnscored"
+    },
+    {
+      "title": "User Timing marks and measures",
+      "status": "pass",
+      "display": "",
+      "desc": "Consider instrumenting your app with the User Timing API to measure your app's real-world performance during key user experiences. Learn more about User Timing marks.Unscored"
+    },
+    {
+      "title": "JavaScript execution time",
+      "status": "pass",
+      "display": "0.6 s",
+      "desc": "Consider reducing the time spent parsing, compiling, and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to reduce Javascript execution time.TBTUnscored"
+    },
+    {
+      "title": "Minimizes main-thread work",
+      "status": "pass",
+      "display": "1.7 s",
+      "desc": "Consider reducing the time spent parsing, compiling and executing JS. You may find delivering smaller JS payloads helps with this. Learn how to minimize main-thread workTBTUnscored"
+    },
+    {
+      "title": "Avoid non-composited animations",
+      "status": "pass",
+      "display": "",
+      "desc": "Animations which are not composited can be janky and increase CLS. Learn how to avoid non-composited animationsCLSUnscored"
+    },
+    {
+      "title": "Select elements do not have associated label elements.",
+      "status": "fail",
+      "display": "",
+      "desc": "Form elements without effective labels can create frustrating experiences for screen reader users. Learn more about the select element."
+    },
+    {
+      "title": "Elements use prohibited ARIA attributes",
+      "status": "fail",
+      "display": "",
+      "desc": "Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. Learn more about prohibited ARIA roles."
+    },
+    {
+      "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+      "status": "fail",
+      "display": "",
+      "desc": "Low-contrast text is difficult or impossible for many users to read. Learn how to provide sufficient color contrast."
+    },
+    {
+      "title": "Links rely on color to be distinguishable.",
+      "status": "fail",
+      "display": "",
+      "desc": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. Learn how to make links distinguishable."
+    },
+    {
+      "title": "Heading elements are not in a sequentially-descending order",
+      "status": "fail",
+      "display": "",
+      "desc": "Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. Learn more about heading ord"
+    },
+    {
+      "title": "Interactive controls are keyboard focusable",
+      "status": "pass",
+      "display": "",
+      "desc": "Custom interactive controls are keyboard focusable and display a focus indicator. Learn how to make custom controls focusable.Unscored"
+    },
+    {
+      "title": "Interactive elements indicate their purpose and state",
+      "status": "pass",
+      "display": "",
+      "desc": "Interactive elements, such as links and buttons, should indicate their state and be distinguishable from non-interactive elements. Learn how to decorate interactive elements with affordance hints.Unsc"
+    },
+    {
+      "title": "The page has a logical tab order",
+      "status": "pass",
+      "display": "",
+      "desc": "Tabbing through the page follows the visual layout. Users cannot focus elements that are offscreen. Learn more about logical tab ordering.Unscored"
+    },
+    {
+      "title": "Visual order on the page follows DOM order",
+      "status": "pass",
+      "display": "",
+      "desc": "DOM order matches the visual order, improving navigation for assistive technology. Learn more about DOM and visual ordering.Unscored"
+    },
+    {
+      "title": "User focus is not accidentally trapped in a region",
+      "status": "pass",
+      "display": "",
+      "desc": "A user can tab into and out of any control or region without accidentally trapping their focus. Learn how to avoid focus traps.Unscored"
+    },
+    {
+      "title": "The user's focus is directed to new content added to the page",
+      "status": "pass",
+      "display": "",
+      "desc": "If new content, such as a dialog, is added to the page, the user's focus is directed to it. Learn how to direct focus to new content.Unscored"
+    },
+    {
+      "title": "HTML5 landmark elements are used to improve navigation",
+      "status": "pass",
+      "display": "",
+      "desc": "Landmark elements (<main>, <nav>, etc.) are used to improve the keyboard navigation of the page for assistive technology. Learn more about landmark elements.Unscored"
+    },
+    {
+      "title": "Offscreen content is hidden from assistive technology",
+      "status": "pass",
+      "display": "",
+      "desc": "Offscreen content is hidden with display: none or aria-hidden=true. Learn how to properly hide offscreen content.Unscored"
+    },
+    {
+      "title": "Custom controls have associated labels",
+      "status": "pass",
+      "display": "",
+      "desc": "Custom interactive controls have associated labels, provided by aria-label or aria-labelledby. Learn more about custom controls and labels.Unscored"
+    },
+    {
+      "title": "Custom controls have ARIA roles",
+      "status": "pass",
+      "display": "",
+      "desc": "Custom interactive controls have appropriate ARIA roles. Learn how to add roles to custom controls.Unscored"
+    },
+    {
+      "title": "[aria-*] attributes match their roles",
+      "status": "pass",
+      "display": "",
+      "desc": "Each ARIA role supports a specific subset of aria-* attributes. Mismatching these invalidates the aria-* attributes. Learn how to match ARIA attributes to their roles."
+    },
+    {
+      "title": "[aria-hidden=\"true\"] is not present on the document <body>",
+      "status": "pass",
+      "display": "",
+      "desc": "Assistive technologies, like screen readers, work inconsistently when aria-hidden=\"true\" is set on the document <body>. Learn how aria-hidden affects the document body."
+    },
+    {
+      "title": "[role]s have all required [aria-*] attributes",
+      "status": "pass",
+      "display": "",
+      "desc": "Some ARIA roles have required attributes that describe the state of the element to screen readers. Learn more about roles and required attributes."
+    },
+    {
+      "title": "[role] values are valid",
+      "status": "pass",
+      "display": "",
+      "desc": "ARIA roles must have valid values in order to perform their intended accessibility functions. Learn more about valid ARIA roles."
+    },
+    {
+      "title": "[aria-*] attributes have valid values",
+      "status": "pass",
+      "display": "",
+      "desc": "Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid values. Learn more about valid values for ARIA attributes."
+    },
+    {
+      "title": "[aria-*] attributes are valid and not misspelled",
+      "status": "pass",
+      "display": "",
+      "desc": "Assistive technologies, like screen readers, can't interpret ARIA attributes with invalid names. Learn more about valid ARIA attributes."
+    },
+    {
+      "title": "Buttons have an accessible name",
+      "status": "pass",
+      "display": "",
+      "desc": "When a button doesn't have an accessible name, screen readers announce it as \"button\", making it unusable for users who rely on screen readers. Learn how to make buttons more accessible."
+    },
+    {
+      "title": "Image elements have [alt] attributes",
+      "status": "pass",
+      "display": "",
+      "desc": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. Learn more about the alt attribute."
+    },
+    {
+      "title": "Form elements have associated labels",
+      "status": "pass",
+      "display": "",
+      "desc": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. Learn more about form element labels."
+    },
+    {
+      "title": "[user-scalable=\"no\"] is not used in the <meta name=\"viewport\"> element and the [maximum-scale] attribute is not less than 5.",
+      "status": "pass",
+      "display": "",
+      "desc": "Disabling zooming is problematic for users with low vision who rely on screen magnification to properly see the contents of a web page. Learn more about the viewport meta tag."
+    },
+    {
+      "title": "ARIA attributes are used as specified for the element's role",
+      "status": "pass",
+      "display": "",
+      "desc": "Some ARIA attributes are only allowed on an element under certain conditions. Learn more about conditional ARIA attributes."
+    },
+    {
+      "title": "[aria-hidden=\"true\"] elements do not contain focusable descendents",
+      "status": "pass",
+      "display": "",
+      "desc": "Focusable descendents within an [aria-hidden=\"true\"] element prevent those interactive elements from being available to users of assistive technologies like screen readers. Learn how aria-hidden affec"
+    },
+    {
+      "title": "Document has a <title> element",
+      "status": "pass",
+      "display": "",
+      "desc": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. Learn more about document titles."
+    },
+    {
+      "title": "<html> element has a [lang] attribute",
+      "status": "pass",
+      "display": "",
+      "desc": "If a page doesn't specify a lang attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the de"
+    },
+    {
+      "title": "<html> element has a valid value for its [lang] attribute",
+      "status": "pass",
+      "display": "",
+      "desc": "Specifying a valid BCP 47 language helps screen readers announce text properly. Learn how to use the lang attribute."
+    },
+    {
+      "title": "Links have a discernible name",
+      "status": "pass",
+      "display": "",
+      "desc": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. Learn how to make links accessible."
+    },
+    {
+      "title": "Lists contain only <li> elements and script supporting elements (<script> and <template>).",
+      "status": "pass",
+      "display": "",
+      "desc": "Screen readers have a specific way of announcing lists. Ensuring proper list structure aids screen reader output. Learn more about proper list structure."
+    },
+    {
+      "title": "List items (<li>) are contained within <ul>, <ol> or <menu> parent elements",
+      "status": "pass",
+      "display": "",
+      "desc": "Screen readers require list items (<li>) to be contained within a parent <ul>, <ol> or <menu> to be announced properly. Learn more about proper list structure."
+    },
+    {
+      "title": "Touch targets have sufficient size and spacing.",
+      "status": "pass",
+      "display": "",
+      "desc": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. Learn more about touch targets."
+    },
+    {
+      "title": "Document has a main landmark.",
+      "status": "pass",
+      "display": "",
+      "desc": "One main landmark helps screen reader users navigate a web page. Learn more about landmarks."
+    },
+    {
+      "title": "Deprecated ARIA roles were not used",
+      "status": "pass",
+      "display": "",
+      "desc": "Deprecated ARIA roles may not be processed correctly by assistive technology. Learn more about deprecated ARIA roles."
+    },
+    {
+      "title": "[accesskey] values are unique",
+      "status": "pass",
+      "display": "",
+      "desc": "Access keys let users quickly focus a part of the page. For proper navigation, each access key must be unique. Learn more about access keys.Unscored"
+    },
+    {
+      "title": "button, link, and menuitem elements have accessible names",
+      "status": "pass",
+      "display": "",
+      "desc": "When an element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to make command elements more access"
+    },
+    {
+      "title": "Elements with role=\"dialog\" or role=\"alertdialog\" have accessible names.",
+      "status": "pass",
+      "display": "",
+      "desc": "ARIA dialog elements without accessible names may prevent screen readers users from discerning the purpose of these elements. Learn how to make ARIA dialog elements more accessible.Unscored"
+    },
+    {
+      "title": "ARIA input fields have accessible names",
+      "status": "pass",
+      "display": "",
+      "desc": "When an input field doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn more about input field labels.Unscor"
+    },
+    {
+      "title": "ARIA meter elements have accessible names",
+      "status": "pass",
+      "display": "",
+      "desc": "When a meter element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to name meter elements.Unscored"
+    },
+    {
+      "title": "ARIA progressbar elements have accessible names",
+      "status": "pass",
+      "display": "",
+      "desc": "When a progressbar element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to label progressbar elem"
+    },
+    {
+      "title": "Elements with an ARIA [role] that require children to contain a specific [role] have all required children.",
+      "status": "pass",
+      "display": "",
+      "desc": "Some ARIA parent roles must contain specific child roles to perform their intended accessibility functions. Learn more about roles and required children elements.Unscored"
+    },
+    {
+      "title": "[role]s are contained by their required parent element",
+      "status": "pass",
+      "display": "",
+      "desc": "Some ARIA child roles must be contained by specific parent roles to properly perform their intended accessibility functions. Learn more about ARIA roles and required parent element.Unscored"
+    },
+    {
+      "title": "Elements with the role=text attribute do not have focusable descendents.",
+      "status": "pass",
+      "display": "",
+      "desc": "Adding role=text around a text node split by markup enables VoiceOver to treat it as one phrase, but the element's focusable descendents will not be announced. Learn more about the role=text attribute"
+    },
+    {
+      "title": "ARIA toggle fields have accessible names",
+      "status": "pass",
+      "display": "",
+      "desc": "When a toggle field doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn more about toggle fields.Unscored"
+    },
+    {
+      "title": "ARIA tooltip elements have accessible names",
+      "status": "pass",
+      "display": "",
+      "desc": "When a tooltip element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn how to name tooltip elements.Unsc"
+    },
+    {
+      "title": "ARIA treeitem elements have accessible names",
+      "status": "pass",
+      "display": "",
+      "desc": "When a treeitem element doesn't have an accessible name, screen readers announce it with a generic name, making it unusable for users who rely on screen readers. Learn more about labeling treeitem ele"
+    },
+    {
+      "title": "The page contains a heading, skip link, or landmark region",
+      "status": "pass",
+      "display": "",
+      "desc": "Adding ways to bypass repetitive content lets keyboard users navigate the page more efficiently. Learn more about bypass blocks.Unscored"
+    },
+    {
+      "title": "<dl>'s contain only properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements.",
+      "status": "pass",
+      "display": "",
+      "desc": "When definition lists are not properly marked up, screen readers may produce confusing or inaccurate output. Learn how to structure definition lists correctly.Unscored"
+    },
+    {
+      "title": "Definition list items are wrapped in <dl> elements",
+      "status": "pass",
+      "display": "",
+      "desc": "Definition list items (<dt> and <dd>) must be wrapped in a parent <dl> element to ensure that screen readers can properly announce them. Learn how to structure definition lists correctly.Unscored"
+    },
+    {
+      "title": "ARIA IDs are unique",
+      "status": "pass",
+      "display": "",
+      "desc": "The value of an ARIA ID must be unique to prevent other instances from being overlooked by assistive technologies. Learn how to fix duplicate ARIA IDs.Unscored"
+    },
+    {
+      "title": "No form fields have multiple labels",
+      "status": "pass",
+      "display": "",
+      "desc": "Form fields with multiple labels can be confusingly announced by assistive technologies like screen readers which use either the first, the last, or all of the labels. Learn how to use form labels.Uns"
+    },
+    {
+      "title": "<frame> or <iframe> elements have a title",
+      "status": "pass",
+      "display": "",
+      "desc": "Screen reader users rely on frame titles to describe the contents of frames. Learn more about frame titles.Unscored"
+    },
+    {
+      "title": "<html> element has an [xml:lang] attribute with the same base language as the [lang] attribute.",
+      "status": "pass",
+      "display": "",
+      "desc": "If the webpage does not specify a consistent language, then the screen reader might not announce the page's text correctly. Learn more about the lang attribute.Unscored"
+    },
+    {
+      "title": "Input buttons have discernible text.",
+      "status": "pass",
+      "display": "",
+      "desc": "Adding discernable and accessible text to input buttons may help screen reader users understand the purpose of the input button. Learn more about input buttons.Unscored"
+    },
+    {
+      "title": "<input type=\"image\"> elements have [alt] text",
+      "status": "pass",
+      "display": "",
+      "desc": "When an image is being used as an <input> button, providing alternative text can help screen reader users understand the purpose of the button. Learn about input image alt text.Unscored"
+    },
+    {
+      "title": "The document does not use <meta http-equiv=\"refresh\">",
+      "status": "pass",
+      "display": "",
+      "desc": "Users do not expect a page to refresh automatically, and doing so will move focus back to the top of the page. This may create a frustrating or confusing experience. Learn more about the refresh meta "
+    },
+    {
+      "title": "<object> elements have alternate text",
+      "status": "pass",
+      "display": "",
+      "desc": "Screen readers cannot translate non-text content. Adding alternate text to <object> elements helps screen readers convey meaning to users. Learn more about alt text for object elements.Unscored"
+    },
+    {
+      "title": "Skip links are focusable.",
+      "status": "pass",
+      "display": "",
+      "desc": "Including a skip link can help users skip to the main content to save time. Learn more about skip links.Unscored"
+    },
+    {
+      "title": "No element has a [tabindex] value greater than 0",
+      "status": "pass",
+      "display": "",
+      "desc": "A value greater than 0 implies an explicit navigation ordering. Although technically valid, this often creates frustrating experiences for users who rely on assistive technologies. Learn more about th"
+    },
+    {
+      "title": "Cells in a <table> element that use the [headers] attribute refer to table cells within the same table.",
+      "status": "pass",
+      "display": "",
+      "desc": "Screen readers have features to make navigating tables easier. Ensuring <td> cells using the [headers] attribute only refer to other cells in the same table may improve the experience for screen reade"
+    },
+    {
+      "title": "<th> elements and elements with [role=\"columnheader\"/\"rowheader\"] have data cells they describe.",
+      "status": "pass",
+      "display": "",
+      "desc": "Screen readers have features to make navigating tables easier. Ensuring table headers always refer to some set of cells may improve the experience for screen reader users. Learn more about table heade"
+    },
+    {
+      "title": "[lang] attributes have a valid value",
+      "status": "pass",
+      "display": "",
+      "desc": "Specifying a valid BCP 47 language on elements helps ensure that text is pronounced correctly by a screen reader. Learn how to use the lang attribute.Unscored"
+    },
+    {
+      "title": "<video> elements contain a <track> element with [kind=\"captions\"]",
+      "status": "pass",
+      "display": "",
+      "desc": "When a video provides a caption it is easier for deaf and hearing impaired users to access its information. Learn more about video captions.Unscored"
+    },
+    {
+      "title": "Tables have different content in the summary attribute and <caption>.",
+      "status": "pass",
+      "display": "",
+      "desc": "The summary attribute should describe the table structure, while <caption> should have the onscreen title. Accurate table mark-up helps users of screen readers. Learn more about summary and caption.Un"
+    },
+    {
+      "title": "All heading elements contain content.",
+      "status": "pass",
+      "display": "",
+      "desc": "A heading with no content or inaccessible text prevent screen reader users from accessing information on the page's structure. Learn more about headings.Unscored"
+    },
+    {
+      "title": "Uses ARIA roles only on compatible elements",
+      "status": "pass",
+      "display": "",
+      "desc": "Many HTML elements can only be assigned certain ARIA roles. Using ARIA roles where they are not allowed can interfere with the accessibility of the web page. Learn more about ARIA roles.Unscored"
+    },
+    {
+      "title": "Image elements do not have [alt] attributes that are redundant text.",
+      "status": "pass",
+      "display": "",
+      "desc": "Informative elements should aim for short, descriptive alternative text. Alternative text that is exactly the same as the text adjacent to the link or image is potentially confusing for screen reader "
+    },
+    {
+      "title": "Identical links have the same purpose.",
+      "status": "pass",
+      "display": "",
+      "desc": "Links with the same destination should have the same description, to help users understand the link's purpose and decide whether to follow it. Learn more about identical links.Unscored"
+    },
+    {
+      "title": "Ensure CSP is effective against XSS attacks",
+      "status": "info",
+      "display": "",
+      "desc": "A strong Content Security Policy (CSP) significantly reduces the risk of cross-site scripting (XSS) attacks. Learn how to use a CSP to prevent XSSUnscored"
+    },
+    {
+      "title": "Ensure proper origin isolation with COOP",
+      "status": "info",
+      "display": "",
+      "desc": "The Cross-Origin-Opener-Policy (COOP) can be used to isolate the top-level window from other documents such as pop-ups. Learn more about deploying the COOP header.Unscored"
+    },
+    {
+      "title": "Mitigate DOM-based XSS with Trusted Types",
+      "status": "info",
+      "display": "",
+      "desc": "The require-trusted-types-for directive in the Content-Security-Policy (CSP) header instructs user agents to control the data passed to DOM XSS sink functions. Learn more about mitigating DOM-based XS"
+    },
+    {
+      "title": "Uses HTTPS",
+      "status": "pass",
+      "display": "",
+      "desc": "All sites should be protected with HTTPS, even ones that don't handle sensitive data. This includes avoiding mixed content, where some resources are loaded over HTTP despite the initial request being "
+    },
+    {
+      "title": "Avoids deprecated APIs",
+      "status": "pass",
+      "display": "",
+      "desc": "Deprecated APIs will eventually be removed from the browser. Learn more about deprecated APIs."
+    },
+    {
+      "title": "Avoids third-party cookies",
+      "status": "pass",
+      "display": "",
+      "desc": "Third-party cookies may be blocked in some contexts. Learn more about preparing for third-party cookie restrictions."
+    },
+    {
+      "title": "Allows users to paste into input fields",
+      "status": "pass",
+      "display": "",
+      "desc": "Preventing input pasting is a bad practice for the UX, and weakens security by blocking password managers.Learn more about user-friendly input fields."
+    },
+    {
+      "title": "Avoids requesting the geolocation permission on page load",
+      "status": "pass",
+      "display": "",
+      "desc": "Users are mistrustful of or confused by sites that request their location without context. Consider tying the request to a user action instead. Learn more about the geolocation permission."
+    },
+    {
+      "title": "Avoids requesting the notification permission on page load",
+      "status": "pass",
+      "display": "",
+      "desc": "Users are mistrustful of or confused by sites that request to send notifications without context. Consider tying the request to user gestures instead. Learn more about responsibly getting permission f"
+    },
+    {
+      "title": "Displays images with correct aspect ratio",
+      "status": "pass",
+      "display": "",
+      "desc": "Image display dimensions should match natural aspect ratio. Learn more about image aspect ratio."
+    },
+    {
+      "title": "Serves images with appropriate resolution",
+      "status": "pass",
+      "display": "",
+      "desc": "Image natural dimensions should be proportional to the display size and the pixel ratio to maximize image clarity. Learn how to provide responsive images."
+    },
+    {
+      "title": "Page has the HTML doctype",
+      "status": "pass",
+      "display": "",
+      "desc": "Specifying a doctype prevents the browser from switching to quirks-mode. Learn more about the doctype declaration."
+    },
+    {
+      "title": "Properly defines charset",
+      "status": "pass",
+      "display": "",
+      "desc": "A character encoding declaration is required. It can be done with a <meta> tag in the first 1024 bytes of the HTML or in the Content-Type HTTP response header. Learn more about declaring the character"
+    },
+    {
+      "title": "No browser errors logged to the console",
+      "status": "pass",
+      "display": "",
+      "desc": "Errors logged to the console indicate unresolved problems. They can come from network request failures and other browser concerns. Learn more about this errors in console diagnostic audit"
+    },
+    {
+      "title": "No issues in the Issues panel in Chrome Devtools",
+      "status": "pass",
+      "display": "",
+      "desc": "Issues logged to the Issues panel in Chrome Devtools indicate unresolved problems. They can come from network request failures, insufficient security controls, and other browser concerns. Open up the "
+    },
+    {
+      "title": "Page has valid source maps",
+      "status": "pass",
+      "display": "",
+      "desc": "Source maps translate minified code to the original source code. This helps developers debug in production. In addition, Lighthouse is able to provide further insights. Consider deploying source maps "
+    },
+    {
+      "title": "Redirects HTTP traffic to HTTPS",
+      "status": "pass",
+      "display": "",
+      "desc": "Make sure that you redirect all HTTP traffic to HTTPS in order to enable secure web features for all your users. Learn more.Unscored"
+    },
+    {
+      "title": "Use a strong HSTS policy",
+      "status": "pass",
+      "display": "",
+      "desc": "Deployment of the HSTS header significantly reduces the risk of downgrading HTTP connections and eavesdropping attacks. A rollout in stages, starting with a low max-age is recommended. Learn more abou"
+    },
+    {
+      "title": "Mitigate clickjacking with XFO or CSP",
+      "status": "pass",
+      "display": "",
+      "desc": "The X-Frame-Options (XFO) header or the frame-ancestors directive in the Content-Security-Policy (CSP) header control where a page can be embedded. These can mitigate clickjacking attacks by blocking "
+    },
+    {
+      "title": "Detected JavaScript libraries",
+      "status": "pass",
+      "display": "",
+      "desc": "All front-end JavaScript libraries detected on the page. Learn more about this JavaScript library detection diagnostic audit.Unscored"
+    },
+    {
+      "title": "Structured data is valid",
+      "status": "pass",
+      "display": "",
+      "desc": "Run the Structured Data Testing Tool to validate structured data. Learn more about Structured Data.Unscored"
+    },
+    {
+      "title": "Page isn’t blocked from indexing",
+      "status": "pass",
+      "display": "",
+      "desc": "Search engines are unable to include your pages in search results if they don't have permission to crawl them. Learn more about crawler directives."
+    },
+    {
+      "title": "Document has a <title> element",
+      "status": "pass",
+      "display": "",
+      "desc": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. Learn more about document titles."
+    },
+    {
+      "title": "Document has a meta description",
+      "status": "pass",
+      "display": "",
+      "desc": "Meta descriptions may be included in search results to concisely summarize page content. Learn more about the meta description."
+    },
+    {
+      "title": "Page has successful HTTP status code",
+      "status": "pass",
+      "display": "",
+      "desc": "Pages with unsuccessful HTTP status codes may not be indexed properly. Learn more about HTTP status codes."
+    },
+    {
+      "title": "Links have descriptive text",
+      "status": "pass",
+      "display": "",
+      "desc": "Descriptive link text helps search engines understand your content. Learn how to make links more accessible."
+    },
+    {
+      "title": "Links are crawlable",
+      "status": "pass",
+      "display": "",
+      "desc": "Search engines may use href attributes on links to crawl websites. Ensure that the href attribute of anchor elements links to an appropriate destination, so more pages of the site can be discovered. L"
+    },
+    {
+      "title": "robots.txt is valid",
+      "status": "pass",
+      "display": "",
+      "desc": "If your robots.txt file is malformed, crawlers may not be able to understand how you want your website to be crawled or indexed. Learn more about robots.txt."
+    },
+    {
+      "title": "Image elements have [alt] attributes",
+      "status": "pass",
+      "display": "",
+      "desc": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. Learn more about the alt attribute."
+    },
+    {
+      "title": "Document has a valid hreflang",
+      "status": "pass",
+      "display": "",
+      "desc": "hreflang links tell search engines what version of a page they should list in search results for a given language or region. Learn more about hreflang."
+    },
+    {
+      "title": "Document has a valid rel=canonical",
+      "status": "pass",
+      "display": "",
+      "desc": "Canonical links suggest which URL to show in search results. Learn more about canonical links."
+    }
+  ],
+  "summary": {
+    "fail": 9,
+    "warn": 5,
+    "pass": 107
+  }
+}

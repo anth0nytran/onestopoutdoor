@@ -21,36 +21,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/services`,
       lastModified: LAST_DEPLOY,
       changeFrequency: 'monthly',
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${BASE_URL}/service-areas`,
       lastModified: LAST_DEPLOY,
       changeFrequency: 'monthly',
-      priority: 0.9,
+      priority: 0.8,
     },
     {
       url: `${BASE_URL}/about`,
       lastModified: LAST_DEPLOY,
       changeFrequency: 'monthly',
-      priority: 0.8,
+      priority: 0.5,
     },
     {
       url: `${BASE_URL}/gallery`,
       lastModified: LAST_DEPLOY,
-      changeFrequency: 'weekly',
-      priority: 0.8,
+      changeFrequency: 'monthly',
+      priority: 0.5,
     },
     {
       url: `${BASE_URL}/contact`,
       lastModified: LAST_DEPLOY,
       changeFrequency: 'monthly',
-      priority: 0.9,
+      priority: 0.5,
     },
     {
       url: `${BASE_URL}/blog`,
       lastModified: LAST_DEPLOY,
-      changeFrequency: 'weekly',
+      changeFrequency: 'monthly',
       priority: 0.8,
     },
   ];
@@ -59,14 +59,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${BASE_URL}/service-areas/${c.slug}`,
     lastModified: LAST_DEPLOY,
     changeFrequency: 'monthly' as const,
-    priority: c.priority === 'primary' ? 0.9 : 0.75,
+    priority: 0.8,
   }));
 
   const pillarPages: MetadataRoute.Sitemap = Object.keys(pillarContent).map((slug) => ({
     url: `${BASE_URL}/services/${slug}`,
     lastModified: LAST_DEPLOY,
     changeFrequency: 'monthly' as const,
-    priority: 0.85,
+    priority: 0.8,
   }));
 
   const blogPages: MetadataRoute.Sitemap = getAllSlugs().map((slug) => {
