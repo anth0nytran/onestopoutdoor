@@ -1,4 +1,4 @@
-# Master Ranking Plan — One Stop Outdoor Construction
+do # Master Ranking Plan — One Stop Outdoor Construction
 **Date:** 2026-05-05
 **Domain:** https://onestopoutdoorconstruction.com
 **Owner:** David Arabzadeh (15+ yrs, 5.0 ★ × 32 reviews)

@@ -98,6 +98,43 @@ export async function POST(req: Request) {
   const timeline = pickField(data, ['timeline', 'projectTimeline', 'project_timeline']);
   const page = pickField(data, ['page', 'pageUrl', 'page_url']);
   const site = pickField(data, ['site', 'siteUrl', 'site_url']);
+  const source = pickField(data, ['source', 'leadSource', 'hearAboutUs']);
+  const referrer = pickField(data, ['referrer', 'referer']);
+  const utmSource = pickField(data, ['utm_source', 'utmSource']);
+  const utmMedium = pickField(data, ['utm_medium', 'utmMedium']);
+  const utmCampaign = pickField(data, ['utm_campaign', 'utmCampaign']);
+  const utmTerm = pickField(data, ['utm_term', 'utmTerm']);
+  const utmContent = pickField(data, ['utm_content', 'utmContent']);
+  const gclid = pickField(data, ['gclid']);
+  const fbclid = pickField(data, ['fbclid']);
+  const landingPage = pickField(data, ['landing_page', 'landingPage']);
+
+  const inferredChannel = (() => {
+    if (gclid) return 'Google Ads (gclid)';
+    if (fbclid) return 'Facebook / Meta Ads (fbclid)';
+    if (utmSource || utmMedium || utmCampaign) {
+      const parts = [utmSource, utmMedium, utmCampaign].filter(Boolean).join(' / ');
+      return `UTM: ${parts}`;
+    }
+    if (referrer) {
+      try {
+        const host = new URL(referrer).hostname.replace(/^www\./, '');
+        if (/google\./.test(host)) return 'Google (organic)';
+        if (/bing\./.test(host)) return 'Bing (organic)';
+        if (/duckduckgo\./.test(host)) return 'DuckDuckGo (organic)';
+        if (/yelp\./.test(host)) return 'Yelp';
+        if (/facebook\.|fb\./.test(host)) return 'Facebook';
+        if (/instagram\./.test(host)) return 'Instagram';
+        if (/tiktok\./.test(host)) return 'TikTok';
+        if (/nextdoor\./.test(host)) return 'Nextdoor';
+        if (/youtube\./.test(host)) return 'YouTube';
+        return host;
+      } catch {
+        return referrer;
+      }
+    }
+    return 'Direct / Unknown';
+  })();
 
   if (!name || !phone || !address || !service) {
     return NextResponse.json(
@@ -223,7 +260,8 @@ export async function POST(req: Request) {
   const brandPrimary = '#1a3a6b';
   const brandAccent = '#c0392b';
   const fromEmail = process.env.LEAD_FROM_EMAIL || 'One Stop Outdoor Construction <leads@onestopoutdoorconstruction.com>';
-  const subject = `New Lead: ${safeService} | ${safeName}`;
+  const sourceTag = source ? ` [${source}]` : '';
+  const subject = `New Lead: ${safeService} | ${safeName}${sourceTag}`;
 
   const pageUrlIsDev =
     !!page &&
@@ -250,6 +288,17 @@ export async function POST(req: Request) {
     company ? `Company: ${company}` : '',
     service ? `Service: ${service}` : '',
     timeline ? `Timeline: ${timeline}` : '',
+    source ? `How They Heard: ${source}` : '',
+    `Detected Channel: ${inferredChannel}`,
+    referrer ? `Referrer: ${referrer}` : '',
+    landingPage ? `Landing Page: ${landingPage}` : '',
+    utmSource ? `UTM Source: ${utmSource}` : '',
+    utmMedium ? `UTM Medium: ${utmMedium}` : '',
+    utmCampaign ? `UTM Campaign: ${utmCampaign}` : '',
+    utmTerm ? `UTM Term: ${utmTerm}` : '',
+    utmContent ? `UTM Content: ${utmContent}` : '',
+    gclid ? `Google Click ID: ${gclid}` : '',
+    fbclid ? `Facebook Click ID: ${fbclid}` : '',
     pageUrlDisplay ? `Page: ${pageUrlDisplay}` : '',
     site ? `Site: ${site}` : '',
     `Message:\n${message || '(none)'}`,
@@ -318,6 +367,7 @@ export async function POST(req: Request) {
                   ${zipCode ? `<tr><td style="padding:10px 0;color:#64748b;">Zip Code</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(zipCode)}</td></tr>` : ''}
                   <tr><td style="padding:10px 0;color:#64748b;">Service</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(safeService)}</td></tr>
                   ${timeline ? `<tr><td style="padding:10px 0;color:#64748b;">Timeline</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(timeline)}</td></tr>` : ''}
+                  ${source ? `<tr><td style="padding:10px 0;color:#64748b;">Heard Via</td><td style="padding:10px 0;color:#0f172a;font-weight:700;"><span style="display:inline-block;background:${brandPrimary};color:#ffffff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:999px;letter-spacing:0.5px;text-transform:uppercase;">${escapeHtml(source)}</span></td></tr>` : ''}
                   ${pageUrlDisplay ? `<tr><td style="padding:10px 0;color:#64748b;">Page URL</td><td style="padding:10px 0;"><a href="${escapeHtml(page)}" style="color:${brandAccent};text-decoration:none;">${escapeHtml(pageUrlDisplay)}</a></td></tr>` : ''}
                   ${site ? `<tr><td style="padding:10px 0;color:#64748b;">Site</td><td style="padding:10px 0;"><a href="${escapeHtml(site)}" style="color:${brandAccent};text-decoration:none;">${escapeHtml(site)}</a></td></tr>` : ''}
                   ${company ? `<tr><td style="padding:10px 0;color:#64748b;">Company</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(company)}</td></tr>` : ''}
@@ -327,6 +377,32 @@ export async function POST(req: Request) {
                       ${escapedMessage ? `<div style="font-weight:500;">${escapedMessage}</div>` : `<div style="font-style:italic;color:#64748b;">No message provided.</div>`}
                     </td>
                   </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0 20px 20px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border:1px solid #dbe5f3;border-radius:12px;overflow:hidden;">
+            <tr>
+              <td style="background:#eff6ff;padding:14px 16px;font-weight:800;border-bottom:1px solid #dbe5f3;color:${brandPrimary};">Attribution &amp; Tracking</td>
+            </tr>
+            <tr>
+              <td style="padding:0 16px;">
+                <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="font-size:13px;">
+                  <tr><td style="padding:10px 0;color:#64748b;width:140px;">Detected Channel</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(inferredChannel)}</td></tr>
+                  ${referrer ? `<tr><td style="padding:10px 0;color:#64748b;vertical-align:top;">Referrer</td><td style="padding:10px 0;word-break:break-all;"><a href="${escapeHtml(referrer)}" style="color:${brandAccent};text-decoration:none;">${escapeHtml(referrer)}</a></td></tr>` : ''}
+                  ${landingPage ? `<tr><td style="padding:10px 0;color:#64748b;vertical-align:top;">Landing Page</td><td style="padding:10px 0;word-break:break-all;"><a href="${escapeHtml(landingPage)}" style="color:${brandAccent};text-decoration:none;">${escapeHtml(landingPage)}</a></td></tr>` : ''}
+                  ${utmSource ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Source</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmSource)}</td></tr>` : ''}
+                  ${utmMedium ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Medium</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmMedium)}</td></tr>` : ''}
+                  ${utmCampaign ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Campaign</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmCampaign)}</td></tr>` : ''}
+                  ${utmTerm ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Term</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmTerm)}</td></tr>` : ''}
+                  ${utmContent ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Content</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmContent)}</td></tr>` : ''}
+                  ${gclid ? `<tr><td style="padding:10px 0;color:#64748b;">Google Click ID</td><td style="padding:10px 0;color:#0f172a;font-family:'Courier New',monospace;font-size:11px;word-break:break-all;">${escapeHtml(gclid)}</td></tr>` : ''}
+                  ${fbclid ? `<tr><td style="padding:10px 0;color:#64748b;">Facebook Click ID</td><td style="padding:10px 0;color:#0f172a;font-family:'Courier New',monospace;font-size:11px;word-break:break-all;">${escapeHtml(fbclid)}</td></tr>` : ''}
+                  ${!referrer && !utmSource && !utmMedium && !utmCampaign && !gclid && !fbclid ? `<tr><td colspan="2" style="padding:10px 0;color:#64748b;font-style:italic;">No tracking parameters captured — likely direct visit, bookmark, or typed-in URL.</td></tr>` : ''}
                 </table>
               </td>
             </tr>

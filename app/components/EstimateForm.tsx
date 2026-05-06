@@ -1,16 +1,75 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { track } from '@vercel/analytics';
-import { ArrowRight, Phone, User, MapPin, ClipboardList, Lock, Calendar } from 'lucide-react';
+import { ArrowRight, Phone, User, MapPin, ClipboardList, Lock, Calendar, Megaphone } from 'lucide-react';
 import { siteConfig } from '../config';
 import { Stars } from './Stars';
+
+type Attribution = {
+  referrer: string;
+  utm_source: string;
+  utm_medium: string;
+  utm_campaign: string;
+  utm_term: string;
+  utm_content: string;
+  gclid: string;
+  fbclid: string;
+  landing_page: string;
+};
+
+const EMPTY_ATTRIBUTION: Attribution = {
+  referrer: '',
+  utm_source: '',
+  utm_medium: '',
+  utm_campaign: '',
+  utm_term: '',
+  utm_content: '',
+  gclid: '',
+  fbclid: '',
+  landing_page: '',
+};
+
+const ATTRIBUTION_STORAGE_KEY = 'osoc_attribution_v1';
 
 export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [formError, setFormError] = useState('');
   const [formTimestamp] = useState(() => Date.now().toString());
   const [phoneValue, setPhoneValue] = useState('');
+  const [attribution, setAttribution] = useState<Attribution>(EMPTY_ATTRIBUTION);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const stored = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY);
+      if (stored) {
+        const parsed = JSON.parse(stored) as Partial<Attribution>;
+        setAttribution({ ...EMPTY_ATTRIBUTION, ...parsed });
+        return;
+      }
+      const params = new URLSearchParams(window.location.search);
+      const referrer = document.referrer || '';
+      const internal = referrer && (() => {
+        try { return new URL(referrer).hostname === window.location.hostname; } catch { return false; }
+      })();
+      const captured: Attribution = {
+        referrer: internal ? '' : referrer,
+        utm_source: params.get('utm_source') || '',
+        utm_medium: params.get('utm_medium') || '',
+        utm_campaign: params.get('utm_campaign') || '',
+        utm_term: params.get('utm_term') || '',
+        utm_content: params.get('utm_content') || '',
+        gclid: params.get('gclid') || '',
+        fbclid: params.get('fbclid') || '',
+        landing_page: window.location.href,
+      };
+      setAttribution(captured);
+      window.sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(captured));
+    } catch {
+      // sessionStorage unavailable — fall back to per-page capture only
+    }
+  }, []);
 
   const formatPhone = (v: string) => {
     const d = v.replace(/\D/g, '').slice(0, 10);
@@ -29,12 +88,17 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
     const path = typeof window !== 'undefined' ? window.location.pathname : 'unknown';
     const service = String(fd.get('service') || 'Not selected');
     const timeline = String(fd.get('timeline') || 'Not selected');
+    const source = String(fd.get('source') || 'Not specified');
 
     track('Estimate Form Submitted', {
       variant,
       path,
       service,
       timeline,
+      source,
+      utm_source: attribution.utm_source || 'none',
+      utm_medium: attribution.utm_medium || 'none',
+      utm_campaign: attribution.utm_campaign || 'none',
     });
 
     if (typeof window !== 'undefined') {
@@ -50,6 +114,7 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
           path,
           service,
           timeline,
+          source,
           status: res.status,
         });
         setFormStatus('error');
@@ -61,6 +126,10 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
         path,
         service,
         timeline,
+        source,
+        utm_source: attribution.utm_source || 'none',
+        utm_medium: attribution.utm_medium || 'none',
+        utm_campaign: attribution.utm_campaign || 'none',
       });
       form.reset(); setPhoneValue(''); setFormStatus('success');
     } catch {
@@ -69,6 +138,7 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
         path,
         service,
         timeline,
+        source,
         status: 'network',
       });
       setFormStatus('error');
@@ -83,6 +153,15 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
       <form className="grid gap-4 sm:gap-4.5" action="/api/lead" method="POST" onSubmit={handleSubmit}>
         <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <input type="hidden" name="_ts" value={formTimestamp} />
+        <input type="hidden" name="referrer" value={attribution.referrer} />
+        <input type="hidden" name="utm_source" value={attribution.utm_source} />
+        <input type="hidden" name="utm_medium" value={attribution.utm_medium} />
+        <input type="hidden" name="utm_campaign" value={attribution.utm_campaign} />
+        <input type="hidden" name="utm_term" value={attribution.utm_term} />
+        <input type="hidden" name="utm_content" value={attribution.utm_content} />
+        <input type="hidden" name="gclid" value={attribution.gclid} />
+        <input type="hidden" name="fbclid" value={attribution.fbclid} />
+        <input type="hidden" name="landing_page" value={attribution.landing_page} />
 
         <div className="grid gap-4 sm:gap-4.5 sm:grid-cols-2">
           <div>
@@ -132,6 +211,27 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
             <select required name="service" defaultValue="" className="w-full rounded-lg border border-slate-300 bg-slate-50 pl-10 pr-4 py-3 text-base text-slate-900 outline-none transition-all focus:bg-white focus:border-[var(--onestop-navy)] focus:ring-2 focus:ring-[var(--onestop-navy)]/20 shadow-sm appearance-none">
               <option value="" disabled>Select a service...</option>
               {[siteConfig.primaryService, ...siteConfig.services].map((s) => <option key={s} value={s}>{s}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label className={`block text-xs font-bold mb-1.5 uppercase tracking-wide ${isDark ? 'text-white/60' : 'text-slate-700'}`}>How Did You Hear About Us? <span className="text-red-500">*</span></label>
+          <div className="relative">
+            <Megaphone className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400 pointer-events-none" />
+            <select required name="source" defaultValue="" className="w-full rounded-lg border border-slate-300 bg-slate-50 pl-10 pr-4 py-3 text-base text-slate-900 outline-none transition-all focus:bg-white focus:border-[var(--onestop-navy)] focus:ring-2 focus:ring-[var(--onestop-navy)]/20 shadow-sm appearance-none">
+              <option value="" disabled>Select source...</option>
+              <option value="Google Search">Google Search</option>
+              <option value="Google Maps">Google Maps</option>
+              <option value="Yelp">Yelp</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Instagram">Instagram</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Nextdoor">Nextdoor</option>
+              <option value="Referral (Friend / Family)">Referral (Friend / Family)</option>
+              <option value="Yard Sign / Truck">Yard Sign / Truck</option>
+              <option value="Repeat Customer">Repeat Customer</option>
+              <option value="Other">Other / Not Sure</option>
             </select>
           </div>
         </div>
