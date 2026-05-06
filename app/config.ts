@@ -90,6 +90,8 @@ export const serviceData: ServiceItem[] = [
     slug: 'patio-covers',
     title: 'Patio Covers',
     media: [
+      { type: 'image', src: '/photos_new_web/patio-cover/covered-patio-concrete-fulshear-1.jpg' },
+      { type: 'image', src: '/photos_new_web/patio-cover/covered-patio-concrete-fulshear-2.jpg' },
       { type: 'image', src: '/photos_new_web/patio-cover/patio-cover-1.jpg' },
       { type: 'image', src: '/photos_new_web/patio-cover/patio-cover-2.jpg' },
       { type: 'image', src: '/photos_new_web/patio-cover/patio-cover-3.jpg' },
@@ -122,6 +124,8 @@ export const serviceData: ServiceItem[] = [
     slug: 'concrete-driveways',
     title: 'Concrete & Driveways',
     media: [
+      { type: 'image', src: '/photos_new_web/concrete/pool-rose-garden-richmond-1.jpg' },
+      { type: 'image', src: '/photos_new_web/concrete/pool-rose-garden-richmond-2.jpg' },
       { type: 'image', src: '/photos_new_web/concrete/concrete-12.jpg' },
       { type: 'image', src: '/photos_new_web/concrete/concrete-13.jpg' },
       { type: 'image', src: '/photos_new_web/concrete/concrete-14.jpg' },

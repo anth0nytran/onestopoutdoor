@@ -42,9 +42,9 @@ export interface PillarContent {
 // ──────────────────────────────────────────────────────────────────
 const patioCovers: PillarContent = {
   slug: 'patio-covers',
-  titleTag: 'Patio Cover Installation Richmond, Katy & Houston TX | 5★ Builder',
+  titleTag: 'Patio Cover Installation Richmond, Katy, Fulshear & Houston TX | 5★ Builder',
   metaDescription:
-    'Aluminum, insulated solid panel, wood & lattice patio covers installed across Fort Bend & west Harris County. 300+ builds, 15+ yrs, free estimates. Call (832) 945-8084.',
+    'Aluminum, insulated solid panel, wood & lattice patio covers installed across Richmond, Katy, Fulshear, Sugar Land & Houston. 300+ builds, 15+ yrs, free estimates. Call (832) 945-8084.',
   h1: 'Patio Covers — Aluminum, Insulated Solid, Wood & Custom',
   answerFirst:
     'One Stop Outdoor Construction installs custom patio covers across Richmond, Katy, Sugar Land, Rosenberg and Houston, TX. We build aluminum, insulated solid-panel, wood and steel covers — with ceiling fans, lighting, skylights and HOA-approved finishes. Free on-site estimates: (832) 945-8084.',
@@ -279,9 +279,9 @@ const pergolas: PillarContent = {
 // ──────────────────────────────────────────────────────────────────
 const concreteDriveways: PillarContent = {
   slug: 'concrete-driveways',
-  titleTag: 'Concrete Driveway & Patio Installation Houston TX | 15+ Yrs',
+  titleTag: 'Concrete Driveways, Pool Decks & Stamped Concrete Richmond, Katy & Houston TX | 15+ Yrs',
   metaDescription:
-    'Concrete driveways, patios, stamped & decorative concrete in Richmond, Katy, Sugar Land & Houston. Licensed, insured, free estimate. 5.0 ★ Google.',
+    'Concrete driveways, pool decks, patios, stamped & decorative concrete across Richmond, Katy, Sugar Land, Fulshear & Houston. Licensed, insured, free estimate. 5.0 ★ Google.',
   h1: 'Concrete Patios, Driveways & Stamped Concrete',
   answerFirst:
     'One Stop Outdoor Construction installs concrete driveways, patios, walkways and stamped decorative concrete across Richmond, Katy, Sugar Land and Houston, TX. Every slab is prepped for Fort Bend\'s expansive clay soils so it doesn\'t crack. Free estimates: (832) 945-8084.',

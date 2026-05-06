@@ -3,20 +3,20 @@ import { siteConfig, serviceData } from '../config';
 import GalleryPageClient from './GalleryPageClient';
 
 export const metadata: Metadata = {
-  title: 'Our Work — Patio Covers, Concrete & More in Richmond TX',
+  title: 'Project Gallery — Patio Covers, Pool Decks & Concrete | Richmond, Katy & Fulshear TX',
   description:
-    'Real patio cover, concrete, outdoor kitchen & pergola projects by One Stop Outdoor Construction in Richmond, Katy, Houston & Sugar Land TX.',
+    'Real 2026 projects: covered patios in Fulshear, pool decks in Richmond, outdoor kitchens, pergolas & stamped concrete. Built by One Stop Outdoor Construction across Richmond, Katy, Houston & Sugar Land TX.',
   alternates: { canonical: '/gallery' },
   openGraph: {
-    title: 'Our Work — Patio Covers, Concrete & More in Richmond TX',
-    description: 'Real outdoor construction projects from Richmond, Katy, Houston, Sugar Land & surrounding areas.',
+    title: 'Project Gallery — Patio Covers, Pool Decks & Concrete | Richmond, Katy & Fulshear TX',
+    description: 'Real 2026 projects: covered patios in Fulshear, pool decks in Richmond, outdoor kitchens, pergolas & stamped concrete across Fort Bend & west Harris County.',
     url: 'https://www.onestopoutdoorconstruction.com/gallery',
-    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'One Stop Outdoor Construction Project Gallery — Richmond TX' }],
+    images: [{ url: '/og-image.jpg', width: 1200, height: 630, alt: 'One Stop Outdoor Construction Project Gallery — Richmond, Katy & Fulshear TX' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Our Work — Patio Covers, Concrete & More in Richmond TX',
-    description: 'Real outdoor construction projects from Richmond, Katy, Houston, Sugar Land & surrounding areas.',
+    title: 'Project Gallery — Patio Covers, Pool Decks & Concrete | Richmond, Katy & Fulshear TX',
+    description: 'Real 2026 projects: covered patios in Fulshear, pool decks in Richmond, outdoor kitchens & stamped concrete across Fort Bend & west Harris County.',
     images: ['/og-image.jpg'],
   },
 };
@@ -24,6 +24,27 @@ export const metadata: Metadata = {
 const cities = ['Richmond', 'Katy', 'Sugar Land', 'Houston', 'Rosenberg'];
 
 const photoProjects = [
+  // Newest 2026 projects — featured at the top
+  {
+    service: 'Patio Cover',
+    location: 'Fulshear',
+    src: '/photos_new_web/patio-cover/covered-patio-concrete-fulshear-1.jpg',
+  },
+  {
+    service: 'Patio Cover',
+    location: 'Fulshear',
+    src: '/photos_new_web/patio-cover/covered-patio-concrete-fulshear-2.jpg',
+  },
+  {
+    service: 'Concrete',
+    location: 'Richmond',
+    src: '/photos_new_web/concrete/pool-rose-garden-richmond-1.jpg',
+  },
+  {
+    service: 'Concrete',
+    location: 'Richmond',
+    src: '/photos_new_web/concrete/pool-rose-garden-richmond-2.jpg',
+  },
   // Concrete — newest Richmond projects (shown first)
   ...[12, 13, 14, 15, 16].map((n) => ({
     service: 'Concrete',

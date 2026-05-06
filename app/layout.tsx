@@ -67,7 +67,6 @@ export const metadata: Metadata = {
       { url: '/logos/favicon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicon.ico',
-    apple: '/logos/favicon.svg',
   },
 };
 
@@ -90,6 +89,12 @@ export default function RootLayout({
               "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
               "name": "One Stop Outdoor Construction",
               "image": "https://www.onestopoutdoorconstruction.com/facebook/hero.jpg",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.onestopoutdoorconstruction.com/logo-512.png",
+                "width": 1024,
+                "height": 1024
+              },
               "@id": "https://www.onestopoutdoorconstruction.com",
               "url": "https://www.onestopoutdoorconstruction.com",
               "telephone": "+18329458084",

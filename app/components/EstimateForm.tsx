@@ -16,6 +16,7 @@ type Attribution = {
   gclid: string;
   fbclid: string;
   landing_page: string;
+  captured_at: string;
 };
 
 const EMPTY_ATTRIBUTION: Attribution = {
@@ -28,32 +29,48 @@ const EMPTY_ATTRIBUTION: Attribution = {
   gclid: '',
   fbclid: '',
   landing_page: '',
+  captured_at: '',
 };
 
-const ATTRIBUTION_STORAGE_KEY = 'osoc_attribution_v1';
+const FIRST_TOUCH_KEY = 'osoc_first_touch_v1';
+const LAST_TOUCH_KEY = 'osoc_last_touch_v1';
+const ATTRIBUTION_TTL_MS = 90 * 24 * 60 * 60 * 1000; // 90 days
+
+const isMeaningful = (a: Attribution) =>
+  !!(a.utm_source || a.utm_medium || a.utm_campaign || a.gclid || a.fbclid || a.referrer);
+
+const readStored = (key: string): Attribution | null => {
+  try {
+    const raw = window.localStorage.getItem(key);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<Attribution>;
+    if (parsed.captured_at) {
+      const ts = parseInt(parsed.captured_at, 10);
+      if (!isNaN(ts) && Date.now() - ts > ATTRIBUTION_TTL_MS) return null;
+    }
+    return { ...EMPTY_ATTRIBUTION, ...parsed };
+  } catch {
+    return null;
+  }
+};
 
 export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark' }) {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [formError, setFormError] = useState('');
   const [formTimestamp] = useState(() => Date.now().toString());
   const [phoneValue, setPhoneValue] = useState('');
-  const [attribution, setAttribution] = useState<Attribution>(EMPTY_ATTRIBUTION);
+  const [firstTouch, setFirstTouch] = useState<Attribution>(EMPTY_ATTRIBUTION);
+  const [lastTouch, setLastTouch] = useState<Attribution>(EMPTY_ATTRIBUTION);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
-      const stored = window.sessionStorage.getItem(ATTRIBUTION_STORAGE_KEY);
-      if (stored) {
-        const parsed = JSON.parse(stored) as Partial<Attribution>;
-        setAttribution({ ...EMPTY_ATTRIBUTION, ...parsed });
-        return;
-      }
       const params = new URLSearchParams(window.location.search);
       const referrer = document.referrer || '';
       const internal = referrer && (() => {
         try { return new URL(referrer).hostname === window.location.hostname; } catch { return false; }
       })();
-      const captured: Attribution = {
+      const currentVisit: Attribution = {
         referrer: internal ? '' : referrer,
         utm_source: params.get('utm_source') || '',
         utm_medium: params.get('utm_medium') || '',
@@ -63,11 +80,29 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
         gclid: params.get('gclid') || '',
         fbclid: params.get('fbclid') || '',
         landing_page: window.location.href,
+        captured_at: Date.now().toString(),
       };
-      setAttribution(captured);
-      window.sessionStorage.setItem(ATTRIBUTION_STORAGE_KEY, JSON.stringify(captured));
+
+      const storedFirst = readStored(FIRST_TOUCH_KEY);
+      const storedLast = readStored(LAST_TOUCH_KEY);
+
+      // First touch: only set once. Never overwrite — the original ad click is gold.
+      const finalFirst = storedFirst ?? (isMeaningful(currentVisit) ? currentVisit : currentVisit);
+      if (!storedFirst) {
+        try { window.localStorage.setItem(FIRST_TOUCH_KEY, JSON.stringify(finalFirst)); } catch {}
+      }
+
+      // Last touch: refresh whenever the current visit has meaningful attribution.
+      // Otherwise, keep the prior last-touch (so an ad click → bookmark return doesn't downgrade to "direct").
+      const finalLast = isMeaningful(currentVisit)
+        ? currentVisit
+        : (storedLast ?? currentVisit);
+      try { window.localStorage.setItem(LAST_TOUCH_KEY, JSON.stringify(finalLast)); } catch {}
+
+      setFirstTouch(finalFirst);
+      setLastTouch(finalLast);
     } catch {
-      // sessionStorage unavailable — fall back to per-page capture only
+      // localStorage unavailable — fall back to per-page capture only
     }
   }, []);
 
@@ -96,9 +131,9 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
       service,
       timeline,
       source,
-      utm_source: attribution.utm_source || 'none',
-      utm_medium: attribution.utm_medium || 'none',
-      utm_campaign: attribution.utm_campaign || 'none',
+      utm_source: lastTouch.utm_source || firstTouch.utm_source || 'none',
+      utm_medium: lastTouch.utm_medium || firstTouch.utm_medium || 'none',
+      utm_campaign: lastTouch.utm_campaign || firstTouch.utm_campaign || 'none',
     });
 
     if (typeof window !== 'undefined') {
@@ -127,9 +162,9 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
         service,
         timeline,
         source,
-        utm_source: attribution.utm_source || 'none',
-        utm_medium: attribution.utm_medium || 'none',
-        utm_campaign: attribution.utm_campaign || 'none',
+        utm_source: lastTouch.utm_source || firstTouch.utm_source || 'none',
+        utm_medium: lastTouch.utm_medium || firstTouch.utm_medium || 'none',
+        utm_campaign: lastTouch.utm_campaign || firstTouch.utm_campaign || 'none',
       });
       form.reset(); setPhoneValue(''); setFormStatus('success');
     } catch {
@@ -153,15 +188,23 @@ export function EstimateForm({ variant = 'light' }: { variant?: 'light' | 'dark'
       <form className="grid gap-4 sm:gap-4.5" action="/api/lead" method="POST" onSubmit={handleSubmit}>
         <input type="text" name="website" className="hidden" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <input type="hidden" name="_ts" value={formTimestamp} />
-        <input type="hidden" name="referrer" value={attribution.referrer} />
-        <input type="hidden" name="utm_source" value={attribution.utm_source} />
-        <input type="hidden" name="utm_medium" value={attribution.utm_medium} />
-        <input type="hidden" name="utm_campaign" value={attribution.utm_campaign} />
-        <input type="hidden" name="utm_term" value={attribution.utm_term} />
-        <input type="hidden" name="utm_content" value={attribution.utm_content} />
-        <input type="hidden" name="gclid" value={attribution.gclid} />
-        <input type="hidden" name="fbclid" value={attribution.fbclid} />
-        <input type="hidden" name="landing_page" value={attribution.landing_page} />
+        <input type="hidden" name="referrer" value={lastTouch.referrer || firstTouch.referrer} />
+        <input type="hidden" name="utm_source" value={lastTouch.utm_source || firstTouch.utm_source} />
+        <input type="hidden" name="utm_medium" value={lastTouch.utm_medium || firstTouch.utm_medium} />
+        <input type="hidden" name="utm_campaign" value={lastTouch.utm_campaign || firstTouch.utm_campaign} />
+        <input type="hidden" name="utm_term" value={lastTouch.utm_term || firstTouch.utm_term} />
+        <input type="hidden" name="utm_content" value={lastTouch.utm_content || firstTouch.utm_content} />
+        <input type="hidden" name="gclid" value={lastTouch.gclid || firstTouch.gclid} />
+        <input type="hidden" name="fbclid" value={lastTouch.fbclid || firstTouch.fbclid} />
+        <input type="hidden" name="landing_page" value={lastTouch.landing_page || firstTouch.landing_page} />
+        <input type="hidden" name="first_touch_utm_source" value={firstTouch.utm_source} />
+        <input type="hidden" name="first_touch_utm_medium" value={firstTouch.utm_medium} />
+        <input type="hidden" name="first_touch_utm_campaign" value={firstTouch.utm_campaign} />
+        <input type="hidden" name="first_touch_gclid" value={firstTouch.gclid} />
+        <input type="hidden" name="first_touch_fbclid" value={firstTouch.fbclid} />
+        <input type="hidden" name="first_touch_referrer" value={firstTouch.referrer} />
+        <input type="hidden" name="first_touch_landing_page" value={firstTouch.landing_page} />
+        <input type="hidden" name="first_touch_at" value={firstTouch.captured_at} />
 
         <div className="grid gap-4 sm:gap-4.5 sm:grid-cols-2">
           <div>

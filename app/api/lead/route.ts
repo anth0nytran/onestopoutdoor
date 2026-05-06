@@ -109,16 +109,68 @@ export async function POST(req: Request) {
   const fbclid = pickField(data, ['fbclid']);
   const landingPage = pickField(data, ['landing_page', 'landingPage']);
 
-  const inferredChannel = (() => {
-    if (gclid) return 'Google Ads (gclid)';
-    if (fbclid) return 'Facebook / Meta Ads (fbclid)';
-    if (utmSource || utmMedium || utmCampaign) {
-      const parts = [utmSource, utmMedium, utmCampaign].filter(Boolean).join(' / ');
-      return `UTM: ${parts}`;
+  const firstTouchUtmSource = pickField(data, ['first_touch_utm_source']);
+  const firstTouchUtmMedium = pickField(data, ['first_touch_utm_medium']);
+  const firstTouchUtmCampaign = pickField(data, ['first_touch_utm_campaign']);
+  const firstTouchGclid = pickField(data, ['first_touch_gclid']);
+  const firstTouchFbclid = pickField(data, ['first_touch_fbclid']);
+  const firstTouchReferrer = pickField(data, ['first_touch_referrer']);
+  const firstTouchLandingPage = pickField(data, ['first_touch_landing_page']);
+  const firstTouchAt = pickField(data, ['first_touch_at']);
+
+  // Server-side geolocation (Vercel Edge / Next.js geo headers — no PII, just region)
+  const headers = req.headers;
+  const ipCity = decodeURIComponent(headers.get('x-vercel-ip-city') || '');
+  const ipRegion = headers.get('x-vercel-ip-country-region') || '';
+  const ipCountry = headers.get('x-vercel-ip-country') || '';
+  const userAgent = headers.get('user-agent') || '';
+
+  const deviceHint = (() => {
+    if (!userAgent) return '';
+    const ua = userAgent.toLowerCase();
+    if (/iphone|ipod/.test(ua)) return 'iPhone';
+    if (/ipad/.test(ua)) return 'iPad';
+    if (/android/.test(ua) && /mobile/.test(ua)) return 'Android phone';
+    if (/android/.test(ua)) return 'Android tablet';
+    if (/macintosh/.test(ua)) return 'Mac';
+    if (/windows/.test(ua)) return 'Windows';
+    if (/linux/.test(ua)) return 'Linux';
+    return 'Other';
+  })();
+
+  const geoLine = [ipCity, ipRegion, ipCountry].filter(Boolean).join(', ');
+
+  const firstTouchAtFormatted = (() => {
+    if (!firstTouchAt) return '';
+    const ts = parseInt(firstTouchAt, 10);
+    if (isNaN(ts)) return '';
+    return new Intl.DateTimeFormat('en-US', {
+      timeZone: 'America/Chicago',
+      year: 'numeric',
+      month: 'short',
+      day: '2-digit',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true,
+    }).format(new Date(ts));
+  })();
+
+  const formatTouch = (
+    src: string,
+    med: string,
+    camp: string,
+    g: string,
+    f: string,
+    ref: string
+  ): string => {
+    if (g) return `Google Ads (gclid)`;
+    if (f) return `Facebook / Meta Ads (fbclid)`;
+    if (src || med || camp) {
+      return `UTM: ${[src, med, camp].filter(Boolean).join(' / ')}`;
     }
-    if (referrer) {
+    if (ref) {
       try {
-        const host = new URL(referrer).hostname.replace(/^www\./, '');
+        const host = new URL(ref).hostname.replace(/^www\./, '');
         if (/google\./.test(host)) return 'Google (organic)';
         if (/bing\./.test(host)) return 'Bing (organic)';
         if (/duckduckgo\./.test(host)) return 'DuckDuckGo (organic)';
@@ -130,11 +182,23 @@ export async function POST(req: Request) {
         if (/youtube\./.test(host)) return 'YouTube';
         return host;
       } catch {
-        return referrer;
+        return ref;
       }
     }
-    return 'Direct / Unknown';
-  })();
+    return '';
+  };
+
+  const firstTouchChannel = formatTouch(
+    firstTouchUtmSource,
+    firstTouchUtmMedium,
+    firstTouchUtmCampaign,
+    firstTouchGclid,
+    firstTouchFbclid,
+    firstTouchReferrer
+  );
+
+  const lastTouchChannel = formatTouch(utmSource, utmMedium, utmCampaign, gclid, fbclid, referrer);
+  const inferredChannel = lastTouchChannel || firstTouchChannel || 'Direct / Unknown';
 
   if (!name || !phone || !address || !service) {
     return NextResponse.json(
@@ -290,6 +354,10 @@ export async function POST(req: Request) {
     timeline ? `Timeline: ${timeline}` : '',
     source ? `How They Heard: ${source}` : '',
     `Detected Channel: ${inferredChannel}`,
+    firstTouchChannel && firstTouchChannel !== lastTouchChannel ? `First Touch: ${firstTouchChannel}` : '',
+    firstTouchAtFormatted ? `First Touch At: ${firstTouchAtFormatted}` : '',
+    geoLine ? `IP Location: ${geoLine}` : '',
+    deviceHint ? `Device: ${deviceHint}` : '',
     referrer ? `Referrer: ${referrer}` : '',
     landingPage ? `Landing Page: ${landingPage}` : '',
     utmSource ? `UTM Source: ${utmSource}` : '',
@@ -299,6 +367,7 @@ export async function POST(req: Request) {
     utmContent ? `UTM Content: ${utmContent}` : '',
     gclid ? `Google Click ID: ${gclid}` : '',
     fbclid ? `Facebook Click ID: ${fbclid}` : '',
+    firstTouchLandingPage && firstTouchLandingPage !== landingPage ? `First Touch Landing: ${firstTouchLandingPage}` : '',
     pageUrlDisplay ? `Page: ${pageUrlDisplay}` : '',
     site ? `Site: ${site}` : '',
     `Message:\n${message || '(none)'}`,
@@ -393,8 +462,12 @@ export async function POST(req: Request) {
               <td style="padding:0 16px;">
                 <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="font-size:13px;">
                   <tr><td style="padding:10px 0;color:#64748b;width:140px;">Detected Channel</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(inferredChannel)}</td></tr>
+                  ${firstTouchChannel && firstTouchChannel !== lastTouchChannel ? `<tr><td style="padding:10px 0;color:#64748b;">First Touch</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(firstTouchChannel)}${firstTouchAtFormatted ? ` <span style="color:#64748b;font-weight:400;">(${escapeHtml(firstTouchAtFormatted)})</span>` : ''}</td></tr>` : ''}
+                  ${geoLine ? `<tr><td style="padding:10px 0;color:#64748b;">IP Location</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(geoLine)}</td></tr>` : ''}
+                  ${deviceHint ? `<tr><td style="padding:10px 0;color:#64748b;">Device</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(deviceHint)}</td></tr>` : ''}
                   ${referrer ? `<tr><td style="padding:10px 0;color:#64748b;vertical-align:top;">Referrer</td><td style="padding:10px 0;word-break:break-all;"><a href="${escapeHtml(referrer)}" style="color:${brandAccent};text-decoration:none;">${escapeHtml(referrer)}</a></td></tr>` : ''}
                   ${landingPage ? `<tr><td style="padding:10px 0;color:#64748b;vertical-align:top;">Landing Page</td><td style="padding:10px 0;word-break:break-all;"><a href="${escapeHtml(landingPage)}" style="color:${brandAccent};text-decoration:none;">${escapeHtml(landingPage)}</a></td></tr>` : ''}
+                  ${firstTouchLandingPage && firstTouchLandingPage !== landingPage ? `<tr><td style="padding:10px 0;color:#64748b;vertical-align:top;">First Touch Landing</td><td style="padding:10px 0;word-break:break-all;"><a href="${escapeHtml(firstTouchLandingPage)}" style="color:${brandAccent};text-decoration:none;">${escapeHtml(firstTouchLandingPage)}</a></td></tr>` : ''}
                   ${utmSource ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Source</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmSource)}</td></tr>` : ''}
                   ${utmMedium ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Medium</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmMedium)}</td></tr>` : ''}
                   ${utmCampaign ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Campaign</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmCampaign)}</td></tr>` : ''}
@@ -402,7 +475,7 @@ export async function POST(req: Request) {
                   ${utmContent ? `<tr><td style="padding:10px 0;color:#64748b;">UTM Content</td><td style="padding:10px 0;color:#0f172a;font-weight:700;">${escapeHtml(utmContent)}</td></tr>` : ''}
                   ${gclid ? `<tr><td style="padding:10px 0;color:#64748b;">Google Click ID</td><td style="padding:10px 0;color:#0f172a;font-family:'Courier New',monospace;font-size:11px;word-break:break-all;">${escapeHtml(gclid)}</td></tr>` : ''}
                   ${fbclid ? `<tr><td style="padding:10px 0;color:#64748b;">Facebook Click ID</td><td style="padding:10px 0;color:#0f172a;font-family:'Courier New',monospace;font-size:11px;word-break:break-all;">${escapeHtml(fbclid)}</td></tr>` : ''}
-                  ${!referrer && !utmSource && !utmMedium && !utmCampaign && !gclid && !fbclid ? `<tr><td colspan="2" style="padding:10px 0;color:#64748b;font-style:italic;">No tracking parameters captured — likely direct visit, bookmark, or typed-in URL.</td></tr>` : ''}
+                  ${!referrer && !utmSource && !utmMedium && !utmCampaign && !gclid && !fbclid && !firstTouchChannel ? `<tr><td colspan="2" style="padding:10px 0;color:#64748b;font-style:italic;">No tracking parameters captured — likely direct visit, bookmark, typed-in URL, or an in-app browser (Instagram/Facebook/iOS) that strips referrers. Self-reported source above is the best signal here.</td></tr>` : ''}
                 </table>
               </td>
             </tr>
