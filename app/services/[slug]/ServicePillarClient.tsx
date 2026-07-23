@@ -193,7 +193,7 @@ export default function ServicePillarClient({
             
             {/* Animated Image Carousel */}
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-[var(--onestop-line)] bg-slate-900 shadow-xl">
-               <ImageCarousel images={hasGallery && galleryImages.length > 0 ? galleryImages.slice(0,5) : [pillar.fallbackImage]} alt={serviceTitle} />
+               <ImageCarousel images={hasGallery && galleryImages.length > 0 ? galleryImages.slice(0,5) : [pillar.fallbackImage]} alt={`${serviceTitle} by One Stop Outdoor Construction`} />
             </div>
 
             {/* Quick Details Box */}

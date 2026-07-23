@@ -51,7 +51,7 @@ const richmond: AreaCity = {
   state: 'TX',
   zip: ['77406', '77407', '77469'],
   priority: 'primary',
-  titleTag: 'Patio Covers & Outdoor Construction in Richmond, TX',
+  titleTag: 'Patio Covers & Outdoor Construction Richmond TX | 5.0★ Rated',
   metaDescription:
     'Richmond, TX patio cover, pergola, outdoor kitchen & concrete contractor. Licensed, insured, 15+ years in Fort Bend County. 5.0 rating. Free estimates — (832) 945-8084.',
   h1: 'Patio Covers, Pergolas & Outdoor Construction in Richmond, TX',
@@ -168,7 +168,7 @@ const katy: AreaCity = {
   state: 'TX',
   zip: ['77449', '77450', '77493', '77494'],
   priority: 'seed',
-  titleTag: 'Patio Covers & Outdoor Kitchens in Katy, TX',
+  titleTag: 'Patio Covers & Outdoor Kitchens Katy TX | 5.0★ Rated',
   metaDescription:
     'Katy, TX patio cover, pergola, outdoor kitchen & concrete contractor serving Cinco Ranch, Firethorne & Cross Creek Ranch. Licensed, insured, 5.0 rated. Call (832) 945-8084.',
   h1: 'Patio Covers, Pergolas & Outdoor Construction in Katy, TX',
@@ -257,7 +257,7 @@ const sugarLand: AreaCity = {
   state: 'TX',
   zip: ['77478', '77479', '77498'],
   priority: 'seed',
-  titleTag: 'Patio Covers & Outdoor Construction in Sugar Land, TX',
+  titleTag: 'Patio Covers & Outdoor Construction Sugar Land TX | 5.0★',
   metaDescription:
     'Sugar Land, TX patio cover, outdoor kitchen & concrete contractor serving Riverstone, Telfair, First Colony & New Territory. Licensed, insured, 5.0 rated. (832) 945-8084.',
   h1: 'Patio Covers, Outdoor Kitchens & Concrete in Sugar Land, TX',
@@ -346,7 +346,7 @@ const rosenberg: AreaCity = {
   state: 'TX',
   zip: ['77469', '77471'],
   priority: 'seed',
-  titleTag: 'Patio Covers & Outdoor Construction in Rosenberg, TX',
+  titleTag: 'Patio Covers & Outdoor Construction Rosenberg TX | 5.0★',
   metaDescription:
     'Rosenberg, TX patio cover, pergola, outdoor kitchen & concrete contractor. Licensed, insured, serving Fort Bend County 15+ years. Free estimates — (832) 945-8084.',
   h1: 'Patio Covers, Pergolas & Concrete Patios in Rosenberg, TX',
@@ -430,7 +430,7 @@ const houston: AreaCity = {
   state: 'TX',
   zip: ['77048', '77031', '77072', '77083', '77099'],
   priority: 'seed',
-  titleTag: 'Patio Covers & Outdoor Construction in Houston, TX',
+  titleTag: 'Patio Covers & Outdoor Construction Houston TX | 5.0★ Rated',
   metaDescription:
     'Houston, TX patio cover, pergola, outdoor kitchen & concrete contractor serving west and southwest Houston. Licensed, insured, 5.0 rated. Free estimates — (832) 945-8084.',
   h1: 'Patio Covers, Outdoor Kitchens & Concrete in Houston, TX',
@@ -514,7 +514,7 @@ const fulshear: AreaCity = {
   state: 'TX',
   zip: ['77441', '77406', '77494'],
   priority: 'seed',
-  titleTag: 'Patio Covers & Outdoor Construction in Fulshear, TX',
+  titleTag: 'Patio Covers & Outdoor Construction Fulshear TX | 5.0★',
   metaDescription:
     'Fulshear, TX patio cover, pergola, outdoor kitchen & concrete contractor. Licensed, insured, 15+ years in Fort Bend County. 5.0 rating. Free estimates — (832) 945-8084.',
   h1: 'Patio Covers, Pergolas & Outdoor Construction in Fulshear, TX',

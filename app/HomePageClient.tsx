@@ -268,6 +268,12 @@ function ReviewsSection() {
                 <Stars count={5} size="h-3.5 w-3.5 text-[#FBBC05]" />
               </div>
             </div>
+
+            <div className="mt-8">
+              <Link href="/reviews" className="icon-nudge inline-flex items-center gap-1.5 text-sm font-bold text-[var(--onestop-gold)] hover:opacity-90 py-1">
+                Read all our 5-star reviews <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
           </div>
         </div>
 
@@ -527,7 +533,7 @@ export default function HomePageClient() {
           <Reveal className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 mb-3" delay={0.1}>
             {serviceData.slice(0, 3).map((s) => (
               <Link key={s.slug} href={`/services/${s.slug}`} className="hover-lift media-zoom icon-nudge group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end border border-transparent hover:border-[var(--onestop-gold)] shadow-md">
-                <Image src={getServicePreviewImage(s)} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
+                <Image src={getServicePreviewImage(s)} alt={`${s.title} by One Stop Outdoor Construction`} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="relative z-10 p-5">
                   <h3 className="text-lg font-extrabold text-white tracking-tight">{s.title}</h3>
@@ -543,7 +549,7 @@ export default function HomePageClient() {
           <Reveal className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3" delay={0.15}>
             {serviceData.slice(3, 6).map((s) => (
               <Link key={s.slug} href={`/services/${s.slug}`} className="hover-lift media-zoom icon-nudge group relative overflow-hidden rounded-xl bg-slate-100 aspect-[4/3] flex flex-col justify-end border border-transparent hover:border-[var(--onestop-gold)] shadow-md">
-                <Image src={getServicePreviewImage(s)} alt={s.title} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
+                <Image src={getServicePreviewImage(s)} alt={`${s.title} by One Stop Outdoor Construction`} fill className="object-cover group-hover:scale-[1.03] transition-transform duration-500" sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="relative z-10 p-5">
                   <h3 className="text-lg font-extrabold text-white tracking-tight">{s.title}</h3>
