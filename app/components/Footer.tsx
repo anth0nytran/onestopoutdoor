@@ -80,6 +80,7 @@ export function Footer() {
                   'Houston, TX': 'houston-tx',
                   'Sugar Land, TX': 'sugar-land-tx',
                   'Rosenberg, TX': 'rosenberg-tx',
+                  'Fulshear, TX': 'fulshear-tx',
                 };
                 const slug = citySlugMap[area];
                 return slug ? (
@@ -104,7 +105,7 @@ export function Footer() {
             <h4 className="text-xs font-bold uppercase tracking-[0.25em] text-white/50 mb-6">Company</h4>
             <ul className="space-y-4 text-sm text-white/50 font-medium">
               <li><Link href="/about" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/20" /> About One Stop Outdoor</Link></li>
-              <li><Link href="/#reviews" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/20" /> Customer Reviews</Link></li>
+              <li><Link href="/reviews" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/20" /> Customer Reviews</Link></li>
               <li><Link href="/gallery" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/20" /> Our Recent Work</Link></li>
               <li><Link href="/blog" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/20" /> Construction Blog</Link></li>
               <li><Link href="/contact" className="hover:text-white focus-visible:text-white focus-visible:outline-none focus-visible:underline transition-colors flex items-center gap-2"><ArrowRight className="h-3 w-3 text-white/20" /> Contact &amp; Free Estimate</Link></li>

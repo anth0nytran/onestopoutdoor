@@ -505,7 +505,118 @@ const houston: AreaCity = {
   ],
 };
 
-export const areaCities: AreaCity[] = [richmond, katy, sugarLand, rosenberg, houston];
+// ──────────────────────────────────────────────────────────────────
+// FULSHEAR — seed page (real completed covered-patio + concrete projects)
+// ──────────────────────────────────────────────────────────────────
+const fulshear: AreaCity = {
+  slug: 'fulshear-tx',
+  city: 'Fulshear',
+  state: 'TX',
+  zip: ['77441', '77406', '77494'],
+  priority: 'seed',
+  titleTag: 'Patio Covers & Outdoor Construction in Fulshear, TX',
+  metaDescription:
+    'Fulshear, TX patio cover, pergola, outdoor kitchen & concrete contractor. Licensed, insured, 15+ years in Fort Bend County. 5.0 rating. Free estimates — (832) 945-8084.',
+  h1: 'Patio Covers, Pergolas & Outdoor Construction in Fulshear, TX',
+  answerFirst:
+    'One Stop Outdoor Construction builds patio covers, pergolas, outdoor kitchens and concrete patios for Fulshear, TX homeowners across Fort Bend County. We have completed covered-patio and stamped-concrete projects in Fulshear and are licensed, insured, and 15+ years in business. Free on-site estimates — call (832) 945-8084.',
+  intro: [
+    'Fulshear has grown from a quiet Fort Bend town into one of the fastest-expanding suburbs in the Houston metro — Cross Creek Ranch, Fulbrook, Weston Lakes, Churchill Farms and Del Webb are full of newer homes with big backyards and blank slabs waiting to become real outdoor living space. We build those spaces.',
+    'Fulshear sits on the same expansive Brazos-bottom clay as the rest of west Fort Bend, so every concrete pour we do here starts with proper sub-base compaction and a correct expansion-joint grid — that is what keeps a Fulshear patio from cracking in its first summer. Covers get insulated aluminum or laminated solid panels that stay cool through August and shrug off Gulf storms.',
+    'We have already completed covered-patio and stamped-concrete builds in Fulshear, and owner David Arabzadeh delivers every quote in person — itemized, honest, and with the City of Fulshear or Fort Bend County permit and your HOA packet handled for you.',
+  ],
+  neighborhoods: [
+    'Cross Creek Ranch', 'Cross Creek West', 'Fulbrook', 'Weston Lakes',
+    'Churchill Farms', 'Del Webb Fulshear', 'Polo Ranch', 'Creek Rush',
+    'Tamarron', 'Jordan Ranch', 'Fulshear Run', 'Fulbrook on Fulshear Creek',
+  ],
+  county: 'Fort Bend County',
+  whyUs: [
+    {
+      heading: 'Real Fulshear projects, not just a service-area pin',
+      body:
+        'We have completed covered-patio and stamped-concrete work in Fulshear — this is not a town we merely claim to cover. Ask David for recent Fulshear references when he comes out for your estimate; there is a good chance we have built near your community.',
+    },
+    {
+      heading: 'HOA packets for Cross Creek Ranch, Fulbrook & Weston Lakes',
+      body:
+        'Fulshear\'s master-planned communities run strict architectural review — approved material lists, color chips, roof-pitch and setback rules. We prepare and submit the ARC package with drawings and track it through approval so your build does not stall. If a material gets rejected, we re-spec at no charge.',
+    },
+    {
+      heading: 'Built for Brazos-bottom clay',
+      body:
+        'Fulshear\'s expansive clay moves with the seasons. We prep with proper sub-base compaction, fiber-reinforced 3,500-psi mix, and expansion joints on a correct grid — the difference between a patio that stays flat and one that hairline-cracks in year one.',
+    },
+    {
+      heading: 'One contractor, one warranty, six trades',
+      body:
+        'Patio cover, outdoor kitchen, stamped concrete, roofing, pergola, walkways — all in-house since 2011. One quote, one crew, one point of contact, one warranty on the finished job. No subcontractor runaround.',
+    },
+  ],
+  proofQuotes: [
+    {
+      author: 'Barbara Autry Huyser',
+      quote:
+        'If you have any doubts about spending the additional money for stamped concrete, just do it — you will love it. David\'s crew was excellent, very personable, and kept me informed of the progress. The transformation was completed in 8 working days — covered patio, extended concrete, stamped, fascia, soffit, gutters, siding. One highly satisfied customer.',
+    },
+    {
+      author: 'Yogesh Varma',
+      quote:
+        'David is real, with no-fuss pricing and an eye for refinement and detail. Takes care of HOA approvals. Timely execution and proper post-construction cleanup. Highly recommended.',
+    },
+    {
+      author: 'AC Nguyen',
+      quote:
+        'His mission was to build it so it looked like it came with the house initially, and he exceeded expectations. We are extremely happy with our patio. I definitely recommend One Stop Outdoor Construction Texas.',
+    },
+  ],
+  faqs: [
+    {
+      q: 'How much does a patio cover cost in Fulshear, TX?',
+      a: 'A basic aluminum patio cover in Fulshear typically starts around $3,000 for a small attached cover. Mid-size insulated-panel covers (14\'x20\') generally run $8,000–$15,000 installed, and full custom pergolas or solid covers with fans, lighting and HOA paperwork run $15,000–$30,000+. Every estimate is free, on-site, and itemized before you sign.',
+    },
+    {
+      q: 'Do I need a permit for a patio cover in Fulshear?',
+      a: 'Usually yes. Homes inside the City of Fulshear limits go through the city building department; homes in unincorporated Fort Bend County go through the county. Attached covers, structures over 120 sq ft, and anything with electrical require a permit. We pull it, submit stamped drawings where required, and coordinate the inspection — you never have to deal with the county or city.',
+    },
+    {
+      q: 'Do you handle HOA approval in Cross Creek Ranch, Fulbrook or Weston Lakes?',
+      a: 'Yes. Each Fulshear community has its own ARC packet — material lists, color options, roof-pitch and setback rules. We prepare the submission with drawings and material chips and follow it through approval before we break ground. If your HOA rejects a material, we re-spec at no charge.',
+    },
+    {
+      q: 'Have you actually built projects in Fulshear?',
+      a: 'Yes — we have completed covered-patio and stamped-concrete projects in Fulshear, and we regularly build across the Cross Creek Ranch, Fulbrook and Weston Lakes corridor. Ask David for recent Fulshear references when he comes out for your free estimate.',
+    },
+    {
+      q: 'How do you handle Fulshear\'s clay soil for concrete?',
+      a: 'Fulshear sits on expansive Brazos-bottom clay. We prep with proper sub-base compaction, use fiber-reinforced 3,500-psi mix on residential slabs, cut expansion joints on a 10\'×10\' grid, and install control joints at slab transitions. That is what prevents the hairline cracks you see on poorly-built driveways and patios here.',
+    },
+    {
+      q: 'What Fulshear ZIP codes do you serve?',
+      a: 'We serve 77441 and the surrounding 77406 and 77494 areas, including Cross Creek Ranch, Cross Creek West, Fulbrook, Weston Lakes, Churchill Farms, Del Webb Fulshear, Polo Ranch and Tamarron. If you are anywhere in west Fort Bend County, we will come out for a free estimate.',
+    },
+    {
+      q: 'Are you licensed and insured in Texas?',
+      a: 'Yes. We are a fully licensed general contractor with comprehensive liability insurance on every job and workers\' comp on our crews. We can email a current certificate of insurance with your address as certificate holder before work starts.',
+    },
+  ],
+  geo: { lat: 29.6936, lng: -95.8919 },
+  heroImage: '/photos_new_web/patio-cover/covered-patio-concrete-fulshear-1.jpg',
+  projectPhotos: [
+    '/photos_new_web/patio-cover/covered-patio-concrete-fulshear-1.jpg',
+    '/photos_new_web/patio-cover/covered-patio-concrete-fulshear-2.jpg',
+    '/photos_new_web/patio-cover/patio-cover-2.jpg',
+    '/photos_new_web/patio-cover/patio-cover-4.jpg',
+    '/photos_new_web/patio-cover/patio-cover-5.jpg',
+    '/photos_new_web/patio-cover/patio-cover-6.jpg',
+    '/OneStopOutdoor_Photos/photo_14.jpg',
+    '/OneStopOutdoor_Photos/photo_16.jpg',
+    '/OneStopOutdoor_Photos/photo_18.jpg',
+    '/OneStopOutdoor_Photos/photo_20.jpg',
+  ],
+};
+
+export const areaCities: AreaCity[] = [richmond, katy, sugarLand, rosenberg, houston, fulshear];
 
 export function getCityBySlug(slug: string): AreaCity | undefined {
   return areaCities.find((c) => c.slug === slug);

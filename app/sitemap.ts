@@ -6,8 +6,10 @@ import { pillarContent } from './services/pillar-data';
 const BASE_URL = 'https://www.onestopoutdoorconstruction.com';
 
 // Use the last known content update date instead of new Date() every crawl.
-// Update this when major content changes are deployed.
-const LAST_DEPLOY = new Date('2026-04-18');
+// A stable, honest lastmod is trusted by Google; an always-"now" lastmod is
+// discounted. Bump this whenever a real content deploy ships so the crawler
+// re-fetches the pages that changed.
+const LAST_DEPLOY = new Date('2026-07-23');
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
@@ -52,6 +54,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: LAST_DEPLOY,
       changeFrequency: 'monthly',
       priority: 0.8,
+    },
+    {
+      url: `${BASE_URL}/reviews`,
+      lastModified: LAST_DEPLOY,
+      changeFrequency: 'monthly',
+      priority: 0.7,
     },
   ];
 

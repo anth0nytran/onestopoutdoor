@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Patio Cover Cost Houston TX (2026) — $15–$75/sq ft Real Pricing',
     description: 'Patio cover costs in Houston, Richmond & Katy TX by type. Real pricing per sq ft for aluminum, insulated & wood covers. 15+ years local experience.',
     date: '2026-03-28',
-    lastModified: '2026-04-18',
+    lastModified: '2026-07-23',
     readTime: '12 min read',
     category: 'Cost Guides',
     keywords: [
@@ -85,7 +85,7 @@ export const blogPosts: BlogPost[] = [
 <p>Most homeowners want at least one ceiling fan and recessed lighting under their cover. Adding a fan and 4&ndash;6 LED recessed lights typically adds <strong>$800&ndash;$2,000</strong> to the project. A dedicated electrical outlet for a TV, speaker system, or outdoor kitchen appliance adds another $300&ndash;$600. All electrical work requires a licensed electrician and a separate electrical permit in Fort Bend County.</p>
 
 <h3>Concrete and Foundation Work</h3>
-<p>If your existing concrete slab is in good condition and large enough, the cover attaches directly to it. If you need to extend or pour a new slab, add <strong>$8&ndash;$18 per square foot</strong> for the concrete work. Many homeowners combine a patio cover with stamped concrete to create a finished outdoor living space &mdash; that is often the most cost-effective approach because we handle both in one project with one crew mobilization. You can read more about concrete costs in our <a href="/blog/stamped-concrete-cost-houston-tx">stamped concrete cost guide</a>.</p>
+<p>If your existing concrete slab is in good condition and large enough, the cover attaches directly to it. If you need to extend or pour a new slab, add <strong>$8&ndash;$18 per square foot</strong> for the concrete work. Many homeowners combine a patio cover with stamped concrete to create a finished outdoor living space &mdash; that is often the most cost-effective approach because we handle both in one project with one crew mobilization. You can read more about concrete costs in our <a href="/blog/stamped-concrete-cost-houston-tx">stamped concrete cost guide</a>, and see pattern, color and layout options in our <a href="/blog/stamped-concrete-patio-design-ideas-houston">stamped concrete patio design guide</a>.</p>
 
 <h3>Foundation Prep on Houston Clay Soil</h3>
 <p>Houston sits on the Beaumont clay formation. This expansive clay soil swells when wet and shrinks when dry, causing ground movement that can shift footings and crack slabs. Proper footer preparation &mdash; drilling down to stable soil, using reinforced concrete piers, and compacting 4&ndash;6 inches of base material &mdash; is not optional here. It adds <strong>$500&ndash;$2,000</strong> compared to building on stable ground, but it prevents structural problems down the road. Any contractor who skips this step is cutting a corner that will cost you later.</p>
@@ -176,7 +176,7 @@ export const blogPosts: BlogPost[] = [
     title: 'Stamped Concrete Cost Houston TX (2026) — $8–$25/sq ft Guide',
     description: 'Stamped concrete costs in Houston, Katy & Richmond TX per sq ft by project type. Patterns, maintenance tips & stamped concrete vs pavers compared.',
     date: '2026-03-15',
-    lastModified: '2026-04-18',
+    lastModified: '2026-07-23',
     readTime: '14 min read',
     category: 'Cost Guides',
     keywords: [
@@ -357,10 +357,154 @@ export const blogPosts: BlogPost[] = [
 
 <h3>Related Articles</h3>
 <ul>
+  <li><a href="/blog/stamped-concrete-patio-design-ideas-houston">How to Design a Custom Stamped Concrete Patio &mdash; Ideas & Guide</a></li>
   <li><a href="/services/concrete-driveways">Concrete & Driveways &mdash; Full Service Details & Pricing</a></li>
   <li><a href="/blog/patio-cover-cost-houston-tx">Patio Cover Costs in Houston &mdash; Full 2026 Guide</a></li>
   <li><a href="/blog/pergola-vs-patio-cover-houston">Pergola vs Patio Cover in Houston: Which Is Right for You?</a></li>
   <li><a href="/services/walkways-pavers">Walkways & Pavers &mdash; Custom Installations</a></li>
+</ul>
+`,
+  },
+  {
+    slug: 'stamped-concrete-patio-design-ideas-houston',
+    title: 'How to Design a Custom Stamped Concrete Patio (2026 Ideas & Guide)',
+    description: 'Design a custom stamped concrete patio in Houston, Katy, Richmond & The Woodlands TX. Patterns, color pairings, borders, layouts & real design ideas from 15+ years of local builds.',
+    date: '2026-07-23',
+    lastModified: '2026-07-23',
+    readTime: '13 min read',
+    category: 'Design Guides',
+    keywords: [
+      'how to design a custom stamped concrete patio',
+      'stamped concrete patio design ideas',
+      'stamped concrete patio designs Houston',
+      'stamped concrete patio designs The Woodlands',
+      'custom stamped concrete patio Houston TX',
+      'stamped concrete patterns for patios',
+      'best stamped concrete colors for Texas homes',
+      'stamped concrete border ideas',
+      'stamped concrete patio layout ideas',
+      'stamped concrete patio with fire pit',
+      'stamped concrete patio color combinations',
+      'modern stamped concrete patio design',
+      'stamped concrete patio ideas Katy TX',
+      'ashlar slate stamped concrete patio',
+      'wood plank stamped concrete patio design',
+    ],
+    faqs: [
+      { q: 'How do I start designing a stamped concrete patio?', a: 'Start with three decisions in order: the footprint and shape (how the patio flows from your back door and how you will use each zone), the pattern (ashlar slate, random stone, wood plank, or cobblestone), and the color pairing (a base integral color plus a contrasting release accent). Nail those three and everything else is detail. We walk homeowners through all three during the free on-site design consultation.' },
+      { q: 'What is the most popular stamped concrete patio design in Houston?', a: 'A single ashlar slate field in a warm gray or tan base color, framed by a contrasting soldier-course or running-bond border. It reads as clean cut-stone, complements the brick on most Fort Bend and Woodlands homes, and hides weathering well.' },
+      { q: 'How do I choose stamped concrete colors to match my house?', a: 'Pull two colors from your home\'s existing materials — usually one from the brick or stone and one from the roof or trim — and use those as your base and accent. Warm brick pairs with tan and buff bases; cool gray brick and modern homes pair with slate grays and charcoals. Always look at a poured sample outdoors in daylight before committing.' },
+      { q: 'Can I combine different stamp patterns in one patio?', a: 'Yes, and it is one of the most effective design moves. A common approach is a large-format field pattern (ashlar slate) with a different border pattern (brick running-bond or cobblestone) to frame the space and define edges. Keep it to two patterns maximum so the design stays cohesive rather than busy.' },
+      { q: 'How should I design a stamped concrete patio around a fire pit or outdoor kitchen?', a: 'Design in zones. Use a banding or a subtle color shift in the stamped concrete to visually separate the dining/kitchen zone from the lounge/fire-pit zone, even though it is one continuous pour. A circular or octagonal accent stamp centered under a fire pit is a popular focal point in our Katy and Sugar Land builds.' },
+      { q: 'What stamped concrete design works best under a covered patio?', a: 'Because it is protected from direct sun and rain, a covered patio is the ideal place for lighter colors and finer detail — wood plank and fine ashlar patterns look excellent and stay cooler underfoot. Protected concrete also holds its color and sealer longer, so you can be more adventurous with two-tone designs.' },
+      { q: 'Do you design stamped concrete patios in The Woodlands?', a: 'Yes. We design and pour custom stamped concrete patios across the greater Houston metro, and the wooded, natural aesthetic popular in The Woodlands pairs especially well with random stone and wood plank patterns in earthy browns and grays.' },
+    ],
+    content: `
+<p>Designing a custom stamped concrete patio comes down to three choices made in the right order: <strong>the shape and layout, the stamp pattern, and the color pairing</strong>. Get those three right and you end up with an outdoor space that looks like natural stone, complements your home, and holds up to Houston&rsquo;s climate. Get them wrong &mdash; a busy pattern, a color that fights your brick, a layout that ignores how you actually use the yard &mdash; and even flawless concrete work will feel off.</p>
+<p>This guide walks through exactly how we design stamped concrete patios with homeowners across Richmond, Katy, Sugar Land, The Woodlands, and greater Houston &mdash; the same process we&rsquo;ve refined over 15+ years and 300+ builds. For pricing on any of the options below, see our companion <a href="/blog/stamped-concrete-cost-houston-tx">stamped concrete cost guide for Houston</a>.</p>
+<p><em>Last updated: July 2026.</em></p>
+
+<h2>Step 1: Design the Layout and Shape First</h2>
+<p>Before you pick a single pattern or color, design the footprint. The most beautiful stamp in the world won&rsquo;t fix a patio that&rsquo;s the wrong size or ignores how you live outdoors.</p>
+
+<h3>Map Out How You&rsquo;ll Use the Space</h3>
+<p>Walk your backyard and think in zones: Where will you dine? Where will people lounge? Is there a grill or outdoor kitchen, a fire pit, a hot tub? A patio that has to hold a dining table for six needs at least 12&times;12 feet in that zone alone; a lounge area with a sofa and chairs needs another 10&times;10. Sketch these zones before anything else &mdash; the total footprint falls out of the zones, not the other way around.</p>
+
+<h3>Choose a Shape That Fits Your Home</h3>
+<ul>
+  <li><strong>Rectangular / squared</strong> &mdash; the cleanest look, best for modern and transitional homes and for patios that sit under a covered structure. Easiest to furnish.</li>
+  <li><strong>Curved / free-form edges</strong> &mdash; softer and more organic, excellent for pool decks and garden patios where you want the concrete to flow with landscaping. Popular in wooded lots around The Woodlands.</li>
+  <li><strong>Multi-level or tiered</strong> &mdash; a step down from the covered area to an open sun/fire-pit zone adds dimension and naturally separates functions.</li>
+</ul>
+
+<h3>Plan the Flow From the House</h3>
+<p>A great patio design lines up with your back door and major sightlines. If your family room opens through French doors, the primary dining or lounge zone should sit directly off them so the indoor and outdoor spaces read as one. We always design the patio to look like it came with the house &mdash; that&rsquo;s the difference between an addition that feels intentional and one that looks bolted on.</p>
+
+<h2>Step 2: Choose Your Stamp Pattern</h2>
+<p>The pattern sets the entire personality of the patio. Here are the four that work best in the Houston metro and the design feel each one delivers.</p>
+
+<h3>Ashlar Slate &mdash; Clean, Timeless, Most Versatile</h3>
+<p>A geometric cut-stone look that suits almost any home style. It&rsquo;s our most-requested pattern across Cinco Ranch, Greatwood, and Pecan Grove because it reads as upscale natural stone without looking fussy. If you&rsquo;re unsure, this is the safe, high-impact default.</p>
+
+<h3>Random Stone / Flagstone &mdash; Natural and Organic</h3>
+<p>Irregular shapes that mimic hand-laid flagstone. Perfect when you want a relaxed, garden feel or you&rsquo;re working with curved edges and heavy landscaping. This is the pattern we most often steer homeowners toward on wooded lots and in The Woodlands, where a natural aesthetic fits the setting.</p>
+
+<h3>Wood Plank &mdash; Modern Warmth, Zero Rot</h3>
+<p>Replicates a wood-plank deck &mdash; the warm, linear look of hardwood with none of the rot, splinters, or termite problems real wood suffers in Houston humidity. It has become the go-to for modern and farmhouse-style homes and looks especially good under a covered patio where the finer detail is protected.</p>
+
+<h3>Cobblestone &mdash; Old-World Texture</h3>
+<p>Small, rounded stone shapes with an old-world European feel. Its extra texture hides wear and improves wet-weather traction, which is why it&rsquo;s a favorite for driveways and patio borders. As a full patio field it delivers a rustic, textured look.</p>
+
+<h3>The Pro Move: Field Plus Border</h3>
+<p>The single most effective design technique is pairing one <em>field</em> pattern with a different <em>border</em> pattern. An ashlar-slate field framed by a brick running-bond or cobblestone border instantly looks custom &mdash; the border defines the edges, frames your furniture, and adds a second material without the design becoming busy. Keep it to two patterns maximum.</p>
+
+<h2>Step 3: Get the Color Pairing Right</h2>
+<p>Color is where most DIY designs go wrong and where a well-designed patio really separates itself. Stamped concrete color is built from two layers working together.</p>
+
+<h3>How Stamped Concrete Color Actually Works</h3>
+<p>A <strong>base color</strong> (integral color mixed through the concrete) sets the overall tone. A <strong>release accent</strong> (a contrasting powder applied during stamping) settles into the grout lines and low spots, creating the shadow and depth that make concrete look like real stone. It&rsquo;s the interplay of these two that sells the effect &mdash; a single flat color always looks like painted concrete.</p>
+
+<h3>Match Your Colors to the House</h3>
+<p>The reliable method: pull two colors straight from your home&rsquo;s existing materials &mdash; typically one from the brick or stone and one from the roof or trim &mdash; and use them as your base and accent. That guarantees the patio belongs to the house.</p>
+<table>
+  <thead>
+    <tr><th>Home Style</th><th>Base Color</th><th>Release Accent</th><th>Feel</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>Warm red/brown brick (traditional)</td><td>Tan / buff / sandstone</td><td>Warm brown / walnut</td><td>Rich, classic</td></tr>
+    <tr><td>Cool gray brick or stucco (modern)</td><td>Slate gray</td><td>Charcoal</td><td>Sleek, contemporary</td></tr>
+    <tr><td>Farmhouse / white or light</td><td>Light gray / greige</td><td>Soft brown</td><td>Airy, current</td></tr>
+    <tr><td>Wooded lot / natural (The Woodlands)</td><td>Earthy brown</td><td>Antique black</td><td>Organic, natural</td></tr>
+  </tbody>
+</table>
+
+<h3>Always See a Sample Outdoors</h3>
+<p>Concrete color looks completely different indoors under fluorescent light than it does outdoors in daylight, and different again wet vs. dry. Before any pour, we show you a poured sample on-site so you see the exact base-and-release combination in your own light. Never approve a color from a photo or a showroom chip alone.</p>
+
+<h3>Houston Heat Note</h3>
+<p>Darker colors absorb more heat. For any patio in full sun &mdash; and especially pool decks &mdash; lean toward lighter bases so the surface stays comfortable barefoot in July. Save the dark, dramatic charcoals for covered or shaded areas.</p>
+
+<h2>Stamped Concrete Patio Design Ideas by Use</h2>
+<p>Here&rsquo;s how the three choices above come together for the projects we design most often.</p>
+
+<h3>Dining and Entertaining Patio</h3>
+<p>Rectangular footprint sized to your table plus walk-around room, ashlar slate field, contrasting border to frame the seating, base color pulled from the brick. Add a banded &ldquo;rug&rdquo; of accent color under the dining set to anchor it. Pair it with a <a href="/services/patio-covers">covered patio</a> and you have a true three-season room.</p>
+
+<h3>Fire-Pit Lounge</h3>
+<p>Design in zones with a subtle color shift or a decorative band separating the lounge from the rest of the patio, even in one continuous pour. A circular or octagonal accent stamp centered under the fire pit creates a natural focal point &mdash; one of the most popular features in our Katy and Sugar Land builds.</p>
+
+<h3>Pool Deck</h3>
+<p>Free-form curved edges that follow the pool, a lighter base color to stay cool underfoot, random stone or fine ashlar pattern, and a non-slip additive in the sealer. This is a design and safety decision at once.</p>
+
+<h3>Outdoor Kitchen Patio</h3>
+<p>Use a durable, wear-friendly pattern (ashlar or cobblestone) in the cooking zone and define the kitchen footprint with a border or color change. Coordinate the stamped concrete tones with your counter and stone selections so the whole space reads as one design. See our <a href="/blog/outdoor-kitchen-cost-houston-tx">outdoor kitchen cost guide</a> for how the two projects combine.</p>
+
+<h3>Wraparound and Walkways</h3>
+<p>Carry your patio pattern into connecting <a href="/services/walkways-pavers">walkways</a> for a cohesive look that ties the whole yard together, or switch to a complementary cobblestone runner to distinguish paths from gathering spaces.</p>
+
+<h2>Design Mistakes to Avoid</h2>
+<ul>
+  <li><strong>Too many patterns or colors.</strong> Two patterns and two colors, maximum. Restraint reads as custom; excess reads as busy.</li>
+  <li><strong>Ignoring the home&rsquo;s existing materials.</strong> A patio color chosen in isolation almost always clashes. Anchor every choice to the brick, stone, or roof.</li>
+  <li><strong>Designing the pattern before the layout.</strong> Function first. A gorgeous stamp on an undersized or awkward footprint is still an awkward patio.</li>
+  <li><strong>Skipping the outdoor sample.</strong> The number-one cause of &ldquo;it looked different than I expected.&rdquo;</li>
+  <li><strong>Forgetting drainage and slope.</strong> A solid stamped surface must be designed to shed Houston&rsquo;s rain away from the house &mdash; a design consideration, not an afterthought.</li>
+</ul>
+
+<h2>How Our Design Process Works</h2>
+<p>When you book a free consultation, we come to your property and design the patio with you on-site: measure and map the zones, recommend a pattern and layout suited to your home and how you&rsquo;ll use the space, and pull a color pairing from your existing materials. You approve a poured color sample before we schedule the work. Because we handle design, permitting, base prep, and the pour with one crew, the finished patio matches the plan &mdash; no surprises.</p>
+<p>We design and build across Richmond (77407), Katy (77493), Sugar Land (77478), Houston, Rosenberg (77471), The Woodlands, and surrounding communities including <a href="/service-areas/katy-tx">Katy</a>, <a href="/service-areas/richmond-tx">Richmond</a>, and <a href="/service-areas/sugar-land-tx">Sugar Land</a>.</p>
+
+<h2>Get a Free Stamped Concrete Design Consultation</h2>
+<p>Ready to design your custom stamped concrete patio? One Stop Outdoor Construction brings 15+ years of local design-build experience to every project, with a 5.0-star rating across 32 Google reviews. Every consultation and estimate is free and no-pressure.</p>
+<p>Call <a href="tel:+18329458084">(832) 945-8084</a> or <a href="/contact">request your free design consultation online</a>.</p>
+
+<h3>Related Articles</h3>
+<ul>
+  <li><a href="/blog/stamped-concrete-cost-houston-tx">Stamped Concrete Cost in Houston &mdash; 2026 Pricing Guide</a></li>
+  <li><a href="/services/concrete-driveways">Concrete & Driveways &mdash; Full Service Details</a></li>
+  <li><a href="/blog/patio-cover-cost-houston-tx">Patio Cover Costs in Houston &mdash; 2026 Guide</a></li>
+  <li><a href="/services/patio-covers">Patio Covers &mdash; Custom Design & Installation</a></li>
 </ul>
 `,
   },
